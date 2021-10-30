@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+// 1 importaciones
 import './App.css';
+import Dashboard from './components/functionals/dashboard';
+import Modulo from './components/functionals/modulo';
+import Header from './components/layout/header';
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
+import {useEffect, useState} from 'react';
+
+// COMPONENTE
 function App() {
+  // 2) ESTADO: Variables, funciones y ciclos de vida
+  const [data, setData] = useState(false);
+
+
+  // 3) UI 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Header/>
+    
+    <Switch>
+    <Route exact path="/" component={Dashboard}/>
+    <Route exact path="/modulo/:id" component={Modulo}/>
+    
+    </Switch>
+    </BrowserRouter>
   );
 }
 
