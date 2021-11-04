@@ -26,7 +26,6 @@ export default function Dashboard(){
                 // setData(res.data);
                 console.log(res.data);
             });
-              
         })
     },[]) // [] => corchete vacio efecto se ejecuta al comienzo 
 

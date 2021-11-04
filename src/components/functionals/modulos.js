@@ -28,13 +28,15 @@ export default function Modulo(props){
             indicadores.indicadores.map((ind,i)=>(
                 <Tab eventKey={ind.name} title={ind.name}   key={i}>
                     {ind.name}
+                    <br></br>
+                    <SelectContext/>
                 </Tab>
             ))
             :
             "Fetching data from server..."
         }
         </Tabs>
-        <SelectContext/>
+        
         {/* grafico> */}
         
         </div>
