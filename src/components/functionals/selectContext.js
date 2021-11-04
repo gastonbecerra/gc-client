@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import {Form, Select} from 'react-bootstrap';
+// import {Form, Select} from 'react-bootstrap';
 
 export default function SelectContext(props){
     // 1) capturamos el id del usuario
@@ -9,16 +9,18 @@ export default function SelectContext(props){
 
     // 2) traemos de api contextos correspondientes
     useEffect(()=>{
-        fetch('/contexts/basics')
+        fetch('/contexts/api/basics')
         .then(response => {
             return response.json();
         })
         .then(data =>{
-            setContexts(data)
+            setContexts(data[0].contexts)
         })
     },[])
 
     return(
+        <>
+        <label>Select Context </label>
         <select>
             {contexts ? 
             contexts.map((c,i)=>(
@@ -30,5 +32,6 @@ export default function SelectContext(props){
             null
         }
         </select>
+        </>
     )
 }

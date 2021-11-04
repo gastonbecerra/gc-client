@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import Axios from 'axios'; 
 
 export default function Dashboard(){
     
@@ -9,12 +10,23 @@ export default function Dashboard(){
     
     //CICLO DE VIDA - [] corchetes vacios al inicio del componente
     useEffect(()=>{
-        fetch('/modules/basics')
+        fetch('/modules/api/basics')
         .then(response => {
             return response.json();
         })
         .then(data =>{
             setModulos(data)
+        })
+        .then(()=>{
+            Axios({
+                method: "GET",
+                withCredentials: true,
+                url: "/user",
+            }).then((res) => {
+                // setData(res.data);
+                console.log(res.data);
+            });
+              
         })
     },[]) // [] => corchete vacio efecto se ejecuta al comienzo 
 
@@ -27,7 +39,7 @@ export default function Dashboard(){
                     <Card key={i} className="modulo-card">
                         <Card.Header as="h5">{m.title}</Card.Header>
                         <Card.Body>
-                            <Card.Text>Lorem ipsum context Lorem ipsum context Lorem ipsum context Lorem ipsum context Lorem ipsum context Lorem ipsum context </Card.Text>
+                            <Card.Text>{m.text}</Card.Text>
                         </Card.Body>
                      <Link to={{ pathname: `/modulo/${m.id}`, state: { modulo: `${m.title}` } }}>
                         <Button variant="primary">Indicadores</Button>    

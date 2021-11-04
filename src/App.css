@@ -1,21 +1,23 @@
-.navbar{
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(247, 174, 146);
-  height: 7vh;
-  align-items: center;
-}
 .navbar-brand {
-  margin-left: 20px;
   font-size: large;
   font-weight: 900;
 }
+
 .modulo-container{
   margin-left: 7vw;
 }
 
 #menu-icon{
   
+}
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.error-text {
+  color: #ff0000;
 }
 
 .modulo-list{
