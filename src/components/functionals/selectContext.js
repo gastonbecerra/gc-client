@@ -1,12 +1,13 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../context/context";
 // import {Form, Select} from 'react-bootstrap';
 
 export default function SelectContext(props){
     // 1) capturamos el id del usuario
 
     const [contexts, setContexts] = useState(false);
-
+    const {setContext} = useContext(UserContext);
     // 2) traemos de api contextos correspondientes
     useEffect(()=>{
         fetch('/contexts/api/basics')
@@ -14,18 +15,23 @@ export default function SelectContext(props){
             return response.json();
         })
         .then(data =>{
-            setContexts(data[0].contexts)
+            setContexts(data)
+            // console.log(data);
         })
     },[])
+
+    useEffect(()=>{
+        console.log(contexts);
+    },[contexts])
 
     return(
         <>
         <label>Select Context </label>
-        <select>
+        <select onChange={(e)=>setContext(e.target.value)}>
             {contexts ? 
             contexts.map((c,i)=>(
-                <option key={i}>
-                    {c}
+                <option key={i} id={c._id}>
+                    {c.name}
                 </option>
             ))
             :

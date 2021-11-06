@@ -43,4 +43,14 @@
   justify-content: space-around;
 }
 
+.inner-modulo{
+  height: 80vh;
+  border-radius: 0.5%;
+  max-width: 90vw;
+  border: solid 1px gray;
+  border-right: solid 1px gray;
+  border-bottom: solid 1px gray;
+  margin: 1.5vh;
+  padding: 10px;
+}
   

@@ -1,22 +1,25 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import SelectContext from "./selectContext";
 import {Tabs, Tab} from 'react-bootstrap'
+import InnerModule from "./innerModule";
 
 export default function Modulo(props){
-    let {id} = useParams();
+    let {id_module} = useParams();
     var moduleSelected = props.location.state.modulo;
     const [indicadores, setIndicadores] = useState(false); 
     
     useEffect(()=>{
-        fetch(`/indicators/api/basics/${id}`)
+        fetch(`/modules/modulo/${id_module}`)
         .then(response => {
             return response.json();
         })
         .then(data =>{
             setIndicadores(data)
+            console.log(data);
         })
+
     },[])
+
 
     return(
         <div className="indicadores-container">
@@ -25,20 +28,15 @@ export default function Modulo(props){
         <Tabs id="modulo-indicadores">
         
         {indicadores !== false ? 
-            indicadores.indicadores.map((ind,i)=>(
-                <Tab eventKey={ind.name} title={ind.name}   key={i}>
-                    {ind.name}
-                    <br></br>
-                    <SelectContext/>
+            indicadores.map((ind,i)=>(
+                <Tab eventKey={ind.name} title={ind.name} key={i}>
+                    <InnerModule indicatorId={ind._id}/>
                 </Tab>
             ))
             :
             "Fetching data from server..."
         }
         </Tabs>
-        
-        {/* grafico> */}
-        
         </div>
     )
 }
