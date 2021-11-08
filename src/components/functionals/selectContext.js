@@ -8,9 +8,10 @@ export default function SelectContext(props){
 
     const [contexts, setContexts] = useState(false);
     const {setContext} = useContext(UserContext);
+
     // 2) traemos de api contextos correspondientes
     useEffect(()=>{
-        fetch('/contexts/api/basics')
+        fetch('/contexts')
         .then(response => {
             return response.json();
         })

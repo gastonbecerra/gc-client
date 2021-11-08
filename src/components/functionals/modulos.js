@@ -9,7 +9,7 @@ export default function Modulo(props){
     const [indicadores, setIndicadores] = useState(false); 
     
     useEffect(()=>{
-        fetch(`/modules/modulo/${id_module}`)
+        fetch(`/modules/${id_module}`)
         .then(response => {
             return response.json();
         })
@@ -20,17 +20,19 @@ export default function Modulo(props){
 
     },[])
 
-
     return(
         <div className="indicadores-container">
 
         <h4>Indicadores {moduleSelected}</h4>
         <Tabs id="modulo-indicadores">
         
-        {indicadores !== false ? 
+        {indicadores !== false ?
             indicadores.map((ind,i)=>(
                 <Tab eventKey={ind.name} title={ind.name} key={i}>
-                    <InnerModule indicatorId={ind._id}/>
+                    <InnerModule 
+                        indicatorId={ind._id} 
+                        
+                        />
                 </Tab>
             ))
             :
@@ -38,5 +40,6 @@ export default function Modulo(props){
         }
         </Tabs>
         </div>
+
     )
 }

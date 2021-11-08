@@ -13,7 +13,7 @@ export default function Dashboard(){
 
     //CICLO DE VIDA - [] corchetes vacios al inicio del componente
     useEffect(()=>{
-        fetch('/modules/api/basics')
+        fetch('/modules')
         .then(response => {
             return response.json();
         })
