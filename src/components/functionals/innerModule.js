@@ -14,6 +14,7 @@ export default function InnerModule(props) {
     const {context, user} = useContext(UserContext);
     const [spinner, setSpinner] = useState(false); // => mientras se mandan datos al servidor, se muestra el spinner
     const [inputsFaltantes, setInputsFaltanets] = useState(false);
+    const [data, setData] = useState(false);
 
     const  getIndicatorByUser=()=>{
         Axios.get(`/indicators/${id_indicator}/${context}/${user.id}`)
@@ -22,6 +23,7 @@ export default function InnerModule(props) {
                 setInputsFaltanets(response.data.inputs.inputs_faltantes)
             }else{
                 setInputsFaltanets(false)
+                setData(response.data)
             }
         })
     }
@@ -62,29 +64,39 @@ export default function InnerModule(props) {
             <br></br>
             Context: {context ? context : "select context"}
             <br></br>
-            User: {user ? user.id : <Link to="/signin">"login required"</Link>}
+            User: {user ? user.id : 'login'}
             <br></br>           
 
             <div>                
-              {                         
-                inputsFaltantes !== false ?                             
-                            <div>
-                                <h6>Para poder visualizar este indicador necesitamos que llenes el sigueinte dato</h6>
-                                    {inputsFaltantes.map((input,y)=>(
-                                        <Form onSubmit={(e)=>submitInput(e, input, y)} key={y}>
-                                                <Form.Group>
-                                                    <Form.Label For={`${y}`}>{input}</Form.Label>
-                                                        <Form.Control id={`${y}`} type="text" placeholder={`Ingrese ${input}`} required></Form.Control>                                                        
-                                                </Form.Group>
-                                            <Button type="submit">Submit</Button>
-                                            {spinner ? <Spinner/> : null}
-                                        </Form>
-                                    ))}
-                            </div>
-                                :
-                            'Tienes toos los datos para ver este indicador'
-              }                
-        </div>
+           
+            {
+                user ? 
+
+                    inputsFaltantes !== false ?                             
+                    <div>
+                        <h6>Para poder visualizar este indicador necesitamos que llenes el sigueinte dato</h6>
+                            {inputsFaltantes.map((input,y)=>(
+                                <Form onSubmit={(e)=>submitInput(e, input, y)} key={y}>
+                                        <Form.Group>
+                                            <Form.Label For={`${y}`}>{input}</Form.Label>
+                                                <Form.Control id={`${y}`} type="text" placeholder={`Ingrese ${input}`} required></Form.Control>                                                        
+                                        </Form.Group>
+                                    <Button type="submit">Submit</Button>
+                                    {spinner ? <Spinner/> : null}
+                                </Form>
+                            ))}
+                    </div>
+
+                :
+                    <div>
+                        <h6>Tienes todos los datos para ver este indicador</h6>
+                        <pre>{JSON.stringify(data, null, 2) }</pre>
+                    </div>
+                : 
+                
+                <h6>You need to <Link to="/signin">login</Link> before access to indicator data</h6>
+            }            
+            </div>
         </div>        
     )
 }
