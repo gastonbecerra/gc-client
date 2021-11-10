@@ -17,18 +17,13 @@ export default function SelectContext(props){
         })
         .then(data =>{
             setContexts(data)
-            // console.log(data);
         })
     },[])
-
-    useEffect(()=>{
-        console.log(contexts);
-    },[contexts])
 
     return(
         <>
         <label>Select Context </label>
-        <select onChange={(e)=>setContext(e.target.value)}>
+        <select onClick={(e)=>setContext(e.target.value)} >
             {contexts ? 
             contexts.map((c,i)=>(
                 <option key={i} id={c._id}>

@@ -19,7 +19,6 @@ export default function Dashboard(){
         })
         .then(data =>{
             setModulos(data)
-            console.log(data);
         })
         .then(()=>{
             Axios({

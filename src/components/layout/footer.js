@@ -5,7 +5,7 @@ export default function Footer() {
     return (
 
     <>
-    <Navbar bg="dark" variant="dark">
+    <Navbar id="footer" bg="dark" variant="dark">
         <Container>
         <Nav className="me-auto">
         <Nav.Link href="">Dashboard</Nav.Link>

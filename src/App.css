@@ -54,3 +54,15 @@
   padding: 10px;
 }
   
+
+#footer{
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+}
+
+#footer .me-auto{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
