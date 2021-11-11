@@ -7,7 +7,7 @@ export default function Header() {
         <Container fluid>
         <Navbar expand="lg" variant="light" bg="light">
             <Container>
-            <Navbar.Brand href="/">Get Contentext()</Navbar.Brand>
+            <Navbar.Brand href="/">Get Context()</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end" >
             <NavDropdown title="Menú" id="basic-nav-dropdown">
