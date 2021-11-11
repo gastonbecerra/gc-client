@@ -43,7 +43,7 @@ export default function Dashboard(){
                         <Card.Body>
                             <Card.Text>{m.text}</Card.Text>
                         </Card.Body>
-                     <Link to={{ pathname: `/modulo/${m._id}`, state: { modulo: `${m.title}` } }}>
+                     <Link  to={{ pathname: `/modulo/${m._id}`, state: { modulo: `${m.title}` } }}>
                         <Button variant="primary">Indicadores</Button>    
                     </Link>
                     </Card>

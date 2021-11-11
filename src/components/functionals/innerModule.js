@@ -28,6 +28,10 @@ export default function InnerModule(props) {
         })
     }
 
+    useEffect(()=>{
+        getIndicatorByUser();
+    },[context])
+
     const submitInput = (e, input, y) => {
         e.preventDefault();
         setSpinner(true);
