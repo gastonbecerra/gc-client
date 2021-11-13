@@ -4,8 +4,9 @@ import SelectContext from "./selectContext";
 import { UserContext } from "../context/context";
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
-import {Form, Button, Spinner} from 'react-bootstrap';
+import {Form, Button, Spinner, Alert} from 'react-bootstrap';
 import {useHistory} from "react-router-dom";
+import MinMax from '../charts/minMax';
 
 export default function InnerModule(props) {
     const history = useHistory();
@@ -24,6 +25,7 @@ export default function InnerModule(props) {
             }else{
                 setInputsFaltanets(false)
                 setData(response.data)
+                console.log(response.data)
             }
         })
     }
@@ -74,7 +76,7 @@ export default function InnerModule(props) {
             <div>                
            
             {
-                user ? 
+                user && context ? 
 
                     inputsFaltantes !== false ?                             
                     <div>
@@ -93,12 +95,22 @@ export default function InnerModule(props) {
 
                 :
                     <div>
-                        <h6>Tienes todos los datos para ver este indicador</h6>
-                        <pre>{JSON.stringify(data, null, 2) }</pre>
+                        <Alert variant={"info"}>Tienes todos los datos para ver este indicador</Alert>
+                        {/* <pre>{JSON.stringify(data, null, 2) }</pre> */}
+                        { 
+                           user && context !== false && data !== false && data.indicator.type === "max-min" && data.context !== false && data.user.user !== false ? 
+                            
+                                <MinMax 
+                                    sample={data.context} 
+                                    userValue={data.user.user.valor}/>
+                            :
+
+                            <Alert variant={'danger'}> No hay un valor de muestra para el contexto seleccionado</Alert>
+                        }
                     </div>
                 : 
                 
-                <h6>You need to <Link to="/signin">login</Link> before access to indicator data</h6>
+                <Alert color='primary'>You need to <Alert.Link href="/signin">login</Alert.Link> before access to indicator data</Alert>
             }            
             </div>
         </div>        
