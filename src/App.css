@@ -4,12 +4,11 @@
 }
 
 .modulo-container{
-  margin-left: 7vw;
+  padding: 2vh 2vw 2vh 2vw;
+  min-height: 140vh;
+  overflow-y: auto;
 }
 
-#menu-icon{
-  
-}
 .form-item {
   display: flex;
   flex-direction: column;
@@ -26,16 +25,15 @@
 }
 
 .modulo-card{
-  margin-right: 15px;
-  margin-top: 15px;
   width: 400px;
   border: 2px solid lightblue;
   border-radius: 1%;
   padding: 15px 15px 15px 15px;
+  margin-bottom: 1vh;
 }
 
 .indicadores-container{
-  margin-left: 3vw;
+  /* margin-left: 3vw; */
 }
 
 #modulo-indicadores{
@@ -44,14 +42,8 @@
 }
 
 .inner-modulo{
-  height: 80vh;
-  border-radius: 0.5%;
-  max-width: 90vw;
-  border: solid 1px gray;
-  border-right: solid 1px gray;
-  border-bottom: solid 1px gray;
-  margin: 1.5vh;
-  padding: 10px;
+  padding: 2vh 2vw 2vh 2vw;
+  
 }
   
 

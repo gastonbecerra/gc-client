@@ -13,6 +13,7 @@ export default function Modulo(props){
         .then(response => {
             setIndicadores(response.data);
         })
+        .then((data)=> console.log(data))
     },[])
 
     return(
