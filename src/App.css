@@ -1,7 +1,4 @@
-.navbar-brand {
-  font-size: large;
-  font-weight: 900;
-}
+
 
 .modulo-container{
   padding: 2vh 2vw 2vh 2vw;
@@ -45,16 +42,27 @@
   padding: 2vh 2vw 2vh 2vw;
   
 }
+.tab-indicator{
+  display: inline;
+  overflow-x: auto;
+  font-size: 0.6em;
+  margin-top: 0.7vh;
   
+}
 
 #footer{
   position: fixed;
   bottom: 0px;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: solid 0.5px darkgray;
+  font-weight: 600;
+  height: 7vh;
 }
 
-#footer .me-auto{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+#footer * {
+  text-decoration: none;
 }

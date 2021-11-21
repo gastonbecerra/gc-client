@@ -1,7 +1,7 @@
 import React,{useEffect, useState, useContext} from 'react'
 import { useParams } from "react-router";
-import SelectContext from "./selectContext";
-import { UserContext } from "../context/context";
+import SelectContext from "../selectContext";
+import { UserContext } from "../../context/context";
 import Axios from 'axios';
 import {Form, Button, Spinner, Alert} from 'react-bootstrap';
 import {useHistory} from "react-router-dom";

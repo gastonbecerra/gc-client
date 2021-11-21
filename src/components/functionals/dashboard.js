@@ -1,14 +1,22 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import { Card, Button, ListGroup, Alert, ListGroupItem, Spinner } from 'react-bootstrap';
-import Axios from 'axios'; 
-import { UserContext } from "../context/context";
+//redux
+import { fetchUser } from "../../store/slices/user";
+import { fetchContexts } from "../../store/slices/context";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Dashboard(){
     
     const [modulos, setModulos] = useState(false);
-    const {setUser} = useContext(UserContext);
     const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
+    const {auth} = useSelector(state => state.user)
+
+    useEffect(()=>{
+        dispatch(fetchUser());
+        dispatch(fetchContexts());
+    },[dispatch])
 
     useEffect(()=>{
         fetch('/modules/mindicators')
@@ -18,15 +26,8 @@ export default function Dashboard(){
         .then(data =>{
             setModulos(data)
         })
-        .then(()=>{
-            Axios({
-                method: "GET",
-                withCredentials: true,
-                url: "/user",
-            }).then((res) => {
-                setUser(res.data)
-                console.log(res.data);
-            });
+        .catch(()=>{
+            setModulos(false)
         })
     },[]) 
 
@@ -57,7 +58,10 @@ export default function Dashboard(){
 
         }
 
-            <div className="modulo-list">
+        {auth == false ? <Alert color='primary'>You need to <Alert.Link href="/signin">login</Alert.Link> before access to indicator data</Alert>
+        
+        : 
+        <div className="modulo-list">
             {modulos !== false ? 
                 modulos.map((m,i)=>(
                     <Card key={i} className="modulo-card" border="success">
@@ -74,13 +78,13 @@ export default function Dashboard(){
                             :
                         <ListGroup>
                          {m.indicators.map((ind, i)=>(
-                            <ListGroupItem>
-                            <div className="ms-2 me-auto">
+                            <ListGroupItem key={i}>
+                            <div className="ms-2">
                             <div className="fw-bold">{ind.name}</div>
-                            <Card.Text>{ind.description}</Card.Text>
+                            <Card.Text className="my-2">{ind.description}</Card.Text>
                             </div>
-                            <Link  to={{ pathname: `/innermodulo/${ind._id}`, state: { indicator: `${ind.name}`, modulo: `${m.title}` } }}>
-                                <Button size="sm" variant="outline-primary">Acceder</Button>    
+                            <Link to={{ pathname: `/innermodulo/${ind._id}`, state: { indicator: `${ind.name}`, modulo: `${m.title}` } }}>
+                                <Button size="sm" className="my-0.5 pl-1" variant="outline-primary">Acceder</Button>    
                             </Link>
                             </ListGroupItem>
                          ))}
@@ -93,12 +97,13 @@ export default function Dashboard(){
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
-            }
-
-            <Link  to={{ pathname: `/modulo/618043fa8d4b26307ac61c76`, state: { indicator: ' ' } }}>
-                <Button size="sm" variant="outline-primary">Acceder</Button>    
+            }            
+        </div>
+        
+        }
+            <Link  to={{ pathname: `/modulo/618043fa8d4b26307ac61c76`, state: { id: '61803b098d4b26307ac61c71', name: "Ahorro" } }}>
+                <Button size="sm" variant="outline-primary">Test new UI</Button>    
             </Link>
-            </div>
         </div>
     )
 }

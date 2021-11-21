@@ -1,26 +1,18 @@
 
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../context/context";
+import { useState, useEffect } from "react";
 import {Form, FloatingLabel} from 'react-bootstrap';
+import { useDispatch, useSelector } from "react-redux"; 
+import { pickContext } from "../../store/slices/context";
 
 export default function SelectContext(props){
-    const [contexts, setContexts] = useState(false);
-    const {setContext, context} = useContext(UserContext);
-
-    useEffect(()=>{
-        fetch('/contexts')
-        .then(response => {
-            return response.json();
-        })
-        .then(data =>{
-            setContexts(data)
-        })
-    },[])
+    
+    const dispatch = useDispatch();
+    const {contexts, selectedContext} = useSelector(state => state.context)
 
     return(
         <>
         <FloatingLabel style={{marginBottom: '7px'}} controlId="context" label="Select a Context">
-        <Form.Select onClick={(e)=>setContext(e.target.value)} defaultValue={context === false ? ' ' : null} >
+        <Form.Select onChange={(e)=>dispatch(pickContext(e.target.value))} defaultValue={selectedContext === false ? ' ' : null} >
             
             {contexts ? 
             contexts.map((c,i)=>(

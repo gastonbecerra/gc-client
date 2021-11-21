@@ -8,11 +8,14 @@ import SignIn from './components/functionals/singIn';
 import InnerModulo from './components/functionals/innerModule';
 import  UserContext  from './components/context/context';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
         <BrowserRouter>
         <UserContext>
+        <Provider store={store}>
         <Header/>
         <Switch>
           <Route exact path="/" component={Dashboard}/>
@@ -22,6 +25,7 @@ function App() {
           <Route exact path="/signin" component={SignIn}/>
         </Switch>
         <Footer/>
+        </Provider>
         </UserContext>
     </BrowserRouter>
   );
