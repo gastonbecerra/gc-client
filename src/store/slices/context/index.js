@@ -4,7 +4,7 @@ import Axios from 'axios';
 export const contextSlice = createSlice({
     name: 'context',
     initialState: {
-        contexts: [],
+        contexts: false,
         selectedContext: false
     },
     reducers: {

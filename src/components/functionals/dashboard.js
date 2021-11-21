@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
-import { Card, Button, ListGroup, Alert, ListGroupItem, Spinner } from 'react-bootstrap';
+import { Card, Button, ListGroup, Alert, ListGroupItem, Spinner, Container } from 'react-bootstrap';
 //redux
 import { fetchUser } from "../../store/slices/user";
 import { fetchContexts } from "../../store/slices/context";
 import { useDispatch, useSelector } from "react-redux";
-
+import { saveModules } from "../../store/slices/modules";
 export default function Dashboard(){
     
     const [modulos, setModulos] = useState(false);
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
-    const {auth} = useSelector(state => state.user)
+    const { auth } = useSelector(state => state.user);
+    const   modules   = useSelector(state => state.modulo)
 
     useEffect(()=>{
         dispatch(fetchUser());
@@ -19,6 +20,7 @@ export default function Dashboard(){
     },[dispatch])
 
     useEffect(()=>{
+        
         fetch('/modules/mindicators')
         .then(response => {
             return response.json();
@@ -29,13 +31,11 @@ export default function Dashboard(){
         .catch(()=>{
             setModulos(false)
         })
+        
     },[]) 
 
-    useEffect(()=>{
-        console.log(modulos);
-    },[modulos])
     return(
-        <div className="modulo-container">
+        <Container md="6" className="modulo-container">
         
         {show ? 
         
@@ -83,7 +83,7 @@ export default function Dashboard(){
                             <div className="fw-bold">{ind.name}</div>
                             <Card.Text className="my-2">{ind.description}</Card.Text>
                             </div>
-                            <Link to={{ pathname: `/innermodulo/${ind._id}`, state: { indicator: `${ind.name}`, modulo: `${m.title}` } }}>
+                            <Link to={{ pathname: `/modulo/${ind._id}`, state: { id: `${ind._id}`, name: `${ind.name}` } }}>
                                 <Button size="sm" className="my-0.5 pl-1" variant="outline-primary">Acceder</Button>    
                             </Link>
                             </ListGroupItem>
@@ -99,11 +99,7 @@ export default function Dashboard(){
             </Spinner>
             }            
         </div>
-        
         }
-            <Link  to={{ pathname: `/modulo/618043fa8d4b26307ac61c76`, state: { id: '61803b098d4b26307ac61c71', name: "Ahorro" } }}>
-                <Button size="sm" variant="outline-primary">Test new UI</Button>    
-            </Link>
-        </div>
+        </Container>
     )
 }
