@@ -38,6 +38,18 @@
   justify-content: space-around;
 }
 
+#indicator-nav{
+  display: flex;
+  justify-content: space-evenly;
+  overflow-x: auto;
+  width: 100vw;
+}
+
+#indicator-nav * {
+  width: 25%;
+  font-size: small;
+}
+
 .inner-modulo{
   padding: 2vh 2vw 2vh 2vw;
   

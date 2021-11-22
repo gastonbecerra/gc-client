@@ -12,7 +12,7 @@ export default function Dashboard(){
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const { auth } = useSelector(state => state.user);
-    const   modules   = useSelector(state => state.modulo)
+    const { modules } = useSelector(state => state.modulo)
 
     useEffect(()=>{
         dispatch(fetchUser());
@@ -20,18 +20,19 @@ export default function Dashboard(){
     },[dispatch])
 
     useEffect(()=>{
-        
+        if(modules === false){
         fetch('/modules/mindicators')
         .then(response => {
             return response.json();
         })
         .then(data =>{
+            saveModules(data)
             setModulos(data)
         })
         .catch(()=>{
             setModulos(false)
         })
-        
+    } 
     },[]) 
 
     return(

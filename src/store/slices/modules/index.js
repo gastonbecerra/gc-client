@@ -4,8 +4,7 @@ import Axios from 'axios';
 export const moduleSlice = createSlice({
     name: 'modulo',
     initialState: {
-        modules: [],
-        undefined: true
+        modules: false,
     },
     reducers : {
         setModules : (state, action) => {

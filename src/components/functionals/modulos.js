@@ -25,16 +25,17 @@ export default function Modulo(props){
     },[indicator_id])
 
     useEffect(()=>{
-        if(flag){
-            dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id));
-        }  
+        if(flag) dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id));
     },[flag])
 
     return(
         <>
-        <div className="d-flex justify-content-center">
-            <div className="bg-light border text-center" style={{width:'20%'}}><Link style={{textDecoration:'none'}}to={'/'}>Back</Link></div>
-            <div className="bg-light border text-center" style={{width:'80%'}}>{indicator_name}</div>
+        <div id="indicator-nav" className="d-flex justify-content-center">
+            {/* <div className="bg-light border text-center" style={{width:'20%'}}><Link style={{textDecoration:'none'}}to={'/'}>Back</Link></div> */}
+            <div className="bg-light border text-center"><Link style={{textDecoration:'none', color: 'black', fontWeight: '700'}}to={'/'}>Back</Link></div>
+            <div className="bg-light border text-center"><Link style={{textDecoration:'none'}}to={'/'}>Ahorro</Link></div>
+            <div className="bg-light border text-center"><Link style={{textDecoration:'none'}}to={'/'}>Ingr. x hora</Link></div>
+            <div className="bg-light border text-center"><Link style={{textDecoration:'none'}}to={'/'}>Ind. 3</Link></div>
         </div>
             <Tabs className="tab-indicator" defaultActiveKey={inputs_faltantes == false ? 'Indicator': 'Inputs'}> 
             
@@ -57,10 +58,7 @@ export default function Modulo(props){
                         {tabs[4]}
                 </Tab>
             
-            </Tabs>
-
-
-        
+            </Tabs>        
         </>
     )
 }
