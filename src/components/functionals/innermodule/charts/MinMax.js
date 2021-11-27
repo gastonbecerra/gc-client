@@ -1,16 +1,18 @@
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
-import { Alert } from 'react-bootstrap' 
+import { Alert, Container } from 'react-bootstrap' 
 
-export default function MinMax() {
+export default function MinMax({ref}) {
     const { sample } = useSelector(state => state.indicator);
     const { user_value } = useSelector(state => state.indicator); 
+    const { inputs_faltantes } = useSelector(state => state.indicator); 
+    
     return (
-        <div>
-            {sample && user_value ? 
+        <Container className="chart-container">
+            {sample ? 
             
                 <Chart
-                width={'95vw'}
+                    
                     height={'300px'}
                     chartType="ScatterChart"
                     loader={<div>Loading Chart</div>}
@@ -18,7 +20,7 @@ export default function MinMax() {
                         ['', sample.contexto], // columnas
                         [sample.values.val_max, 0], //min
                         [sample.values.val_min, 0], //max
-                        [user_value.valor, 0], //max
+                        [user_value ? user_value.value : 0, 0], //max
                     ]}
                     options={{                        
                         title: 'Ahorro',
@@ -31,6 +33,14 @@ export default function MinMax() {
                 : 
                 <Alert variant={'danger'}> No hay un valor de muestra para el contexto seleccionado</Alert>
                 }        
-        </div>
+
+                { !user_value && inputs_faltantes &&
+                    <Alert variant={'warning'}> Aún no ingresaste un valor para participar de la muestra</Alert>
+                }
+
+                { !user_value && !inputs_faltantes &&
+                    <Alert variant={'warning'}> Aún no procesamos tus datos como parte de la muestra. Espera, en breve estará listo!</Alert>
+                }
+        </Container>
     )
 }

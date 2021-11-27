@@ -6,18 +6,23 @@ import { fetchUser } from "../../store/slices/user";
 import { fetchContexts } from "../../store/slices/context";
 import { useDispatch, useSelector } from "react-redux";
 import { saveModules } from "../../store/slices/modules";
+
 export default function Dashboard(){
     
-    const [modulos, setModulos] = useState(false);
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
-    const { auth } = useSelector(state => state.user);
+    const { id: user_id, auth} = useSelector(state => state.user)
+    const { contexts } = useSelector(state => state.context);
     const { modules } = useSelector(state => state.modulo)
 
     useEffect(()=>{
-        dispatch(fetchUser());
-        dispatch(fetchContexts());
+        auth === false && dispatch(fetchUser());
+        contexts === false && dispatch(fetchContexts());
     },[dispatch])
+
+    useEffect(()=>{
+        auth === true && dispatch(fetchUser())
+    },[user_id])
 
     useEffect(()=>{
         if(modules === false){
@@ -26,17 +31,16 @@ export default function Dashboard(){
             return response.json();
         })
         .then(data =>{
-            saveModules(data)
-            setModulos(data)
+            dispatch(saveModules(data))
         })
         .catch(()=>{
-            setModulos(false)
+            dispatch(saveModules(false))
         })
     } 
     },[]) 
 
     return(
-        <Container md="6" className="modulo-container">
+        <Container className="px-2 py-2 modulo-container">
         
         {show ? 
         
@@ -62,9 +66,10 @@ export default function Dashboard(){
         {auth == false ? <Alert color='primary'>You need to <Alert.Link href="/signin">login</Alert.Link> before access to indicator data</Alert>
         
         : 
+        
         <div className="modulo-list">
-            {modulos !== false ? 
-                modulos.map((m,i)=>(
+            {modules !== false ? 
+                modules.map((m,i)=>(
                     <Card key={i} className="modulo-card" border="success">
                         <Card.Header as="h5">{m.title}</Card.Header>
                         
@@ -77,6 +82,7 @@ export default function Dashboard(){
                         null
 
                             :
+
                         <ListGroup>
                          {m.indicators.map((ind, i)=>(
                             <ListGroupItem key={i}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Form, Spinner, Button, Alert, Col, Row} from 'react-bootstrap';
+import {Form, Button, Alert, Col, Row} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIndicatorByUser } from '../../../store/slices/indicator'
 import Axios from 'axios';
@@ -11,17 +11,16 @@ export default function Inputer(props) {
     const {auth, id: user_id} = useSelector(state => state.user);
     const { selectedContext: context_id } = useSelector(state => state.context);
     const {id : indicator_id, name: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
-
-    const submitInput = (e, input, i)=>{
+    
+    const submitInput = (e, name, i)=>{
         e.preventDefault();
         setSpinner(true)
         Axios({
           method: "POST",
           data: {
-            variable: input,
+            name: name,
             value: document.getElementById(i).value,
             user: user_id,
-            timestamp: Date.now()
           },
           withCredentials: true,
           url: "/inputs",
@@ -35,11 +34,11 @@ export default function Inputer(props) {
     }
 
     return (
-        <div className="px-2">        
+        <div className="inputs-container">        
 
             {inputs_faltantes !== false ? 
             <Form>
-                <Alert className="mt-2 text-center" variant="warning" text="dark">
+                <Alert className="text-center" variant="warning" text="dark">
                 Completa los siguientes campos para poder acceder a los contextos asociados a este indicador
                 </Alert>{' '}
 
@@ -47,27 +46,24 @@ export default function Inputer(props) {
                 {inputs_faltantes.map((input, i)=>(
                         <Form.Group key={i} >
                         {spinner === false ?
-                        <Form>
-                            <Form.Label>{input}</Form.Label>
+                        <Form className="inputs-faltantes">
+                            <Form.Label>{input.name}</Form.Label>
                             <div className="d-flex flex-row align-items-center">
                                 <Col xs={{ span: 9, offset: 0 }}>
                                     <Form.Control 
                                         id={`${i}`} 
-                                        className="px-2" 
-                                        onChange={()=>console.log('')}
                                         style={{height: '84%'}}>
                                     </Form.Control>       
                                 </Col>
-                                <Col xs={{ span: 3, offset: 0 }} className="text-end">
-                                    <Button className="" size="sm" type="submit" onClick={(e)=>{submitInput(e, input, i)}} >Submit</Button>    
+                                <Col xs={{ span: 3, offset: 0 }} className="text-center">
+                                    <Button className="" size="sm" type="submit" onClick={(e)=>{submitInput(e, input.name, i)}} >Submit</Button>    
                                 </Col>
                             </div>
                         </Form>    
 
                             :
-
-                        <h1>ooooo</h1>
-
+                        null
+                        
                         }
                         
                     </Form.Group>
@@ -80,21 +76,17 @@ export default function Inputer(props) {
             }
 
             {inputs !== false ? 
-                <Form>
+                <Form className="my-1 inputs-existentes">
 
-                <strong className="my-1">Datos ya ingresados para indicador de {indicator_name}</strong>
+                <strong>Datos ya ingresados para indicador de {indicator_name}</strong>
                 {inputs.map((input, i)=>(
-
                     <Form.Group key={i}>
-                        <Form.Label>{input.variable}</Form.Label>
-                        <div className="px-2">
-                        <Row>
+                        <Form.Label>{input.name}</Form.Label>
+                        <Row className="px-2">
                             <Form.Control 
                                 value={input.value}
                                 id={`${i}`} 
-                                className="px-2" 
-                                onChange={()=>console.log('')}
-                                style={{height: '84%'}}>
+                                >
                             </Form.Control>       
                         </Row>
                         <Row className="d-flex justify-content-around py-1">
@@ -105,17 +97,17 @@ export default function Inputer(props) {
                                 style={{maxWidth: '40%'}}
                                 onClick={(e)=>{submitInput(e, input, i)}} >
                                     Edit
-                                </Button>
-                                <Button variant="warning"
+                            </Button>
+                            <Button variant="warning"
                                 className="" 
                                 size="sm" 
                                 type="submit" 
                                 style={{maxWidth: '40%'}}
                                 onClick={(e)=>{submitInput(e, input, i)}} >
                                     Add new value
-                                </Button>    
+                            </Button>    
                         </Row>
-                        </div>
+                        
                     </Form.Group>
                 ))}                
                 

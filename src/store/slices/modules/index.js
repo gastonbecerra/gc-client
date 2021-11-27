@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Axios from 'axios'; 
 
 export const moduleSlice = createSlice({
     name: 'modulo',

@@ -24,15 +24,11 @@ export const indicatorSlice = createSlice({
         setIndicator : (state, action) => {
             state.indicator = action.payload;
         },
-        setSample : (state, action) => {
-            if(action.payload !== false){
-                state.sample = action.payload[0]
-            }else{
-                state.sample = false;    
-            }
+        setSample : (state, action) => {            
+            state.sample = action.payload[0];
         },
         setUserValue : (state, action) => {
-            state.user_value = action.payload;
+            state.user_value = action.payload[0];
         }
     }
 })
@@ -46,14 +42,14 @@ export const selectIndicator = (id, name) => (dispatch) => {
 }
 
 export const fetchIndicatorByUser = (indicator_id, context_id, user_id) => (dispatch) => {
-    Axios.get(`/indicators/${indicator_id}/${context_id}/${user_id}`)
+    Axios.get(`/inputs/full/${indicator_id}/${context_id}/${user_id}`)
         .then((response)=>{            
             if(response.data){
-                dispatch(setInputs(response.data.inputs.inputs));
-                dispatch(setMissingInputs(response.data.inputs.inputs_faltantes));
+                dispatch(setInputs(response.data.user_data.inputs));
+                dispatch(setMissingInputs(response.data.user_data.inputs_required));
                 dispatch(setIndicator(response.data.indicator))
-                dispatch(setSample(response.data.context))
-                dispatch(setUserValue(response.data.user.user))
+                dispatch(setSample(response.data.sample))
+                dispatch(setUserValue(response.data.user_data.user_value))
             }
         })
 }

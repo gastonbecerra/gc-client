@@ -1,12 +1,16 @@
 import React from 'react'
-import { Navbar, Container, NavDropdown, Nav } from 'react-bootstrap';
+import { Navbar, Container, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+    const { username, id: user_id} = useSelector(state => state.user)
+
     return ( 
-        <Navbar expand="lg" variant="light" bg="light">
+        <Navbar id="header" expand="lg" variant="light" bg="light">
             <Container>
             <Navbar.Brand ><Link style={{textDecoration: 'none', color: 'black', fontWeight:'650'}} to={"/"}>Get Context( )</Link></Navbar.Brand>
+            <span style={{position:'absolute', top:'4.3vh'}}>{username && username} {user_id && user_id}</span> 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end" >
             <NavDropdown title="Menú" id="basic-nav-dropdown">
@@ -15,6 +19,9 @@ export default function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item>
                     <Link to={"/signup"} style={{textDecoration: 'none', color: 'black'}}>Sign Up</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <Link to={"/"} style={{textDecoration: 'none', color: 'black'}}>Logout</Link>
                 </NavDropdown.Item>
             </NavDropdown>
             </Navbar.Collapse>
