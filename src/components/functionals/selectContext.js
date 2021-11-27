@@ -1,26 +1,24 @@
 
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../context/context";
-import {Form, FloatingLabel} from 'react-bootstrap';
+import { useEffect } from "react";
+import { Form, FloatingLabel, Container } from 'react-bootstrap';
+import { useDispatch, useSelector } from "react-redux"; 
+import { pickContext } from "../../store/slices/context";
+import { fetchIndicatorByUser } from "../../store/slices/indicator";
 
 export default function SelectContext(props){
-    const [contexts, setContexts] = useState(false);
-    const {setContext, context} = useContext(UserContext);
+    const dispatch = useDispatch();
+    const {contexts, selectedContext: context_id} = useSelector(state => state.context)
+    const {id: user_id} = useSelector(state => state.user);
+    const {id : indicator_id } = useSelector(state => state.indicator.selectedIndicator);
 
     useEffect(()=>{
-        fetch('/contexts')
-        .then(response => {
-            return response.json();
-        })
-        .then(data =>{
-            setContexts(data)
-        })
-    },[])
+        dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id));
+    },[context_id])
 
     return(
-        <>
-        <FloatingLabel style={{marginBottom: '7px'}} controlId="context" label="Select a Context">
-        <Form.Select onClick={(e)=>setContext(e.target.value)} defaultValue={context === false ? ' ' : null} >
+        <Container  className="context-container">
+        <FloatingLabel style={{marginBottom: '5px'}} controlId="context" label="Select a Context" defaultValue={context_id}>
+        <Form.Select onChange={(e)=>dispatch(pickContext(e.target.value))}  >
             
             {contexts ? 
             contexts.map((c,i)=>(
@@ -33,6 +31,6 @@ export default function SelectContext(props){
         }
         </Form.Select>
         </FloatingLabel>
-        </>
+        </Container>
     )
 }

@@ -1,19 +1,18 @@
 import React from 'react'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
 
     <>
-    <Navbar id="footer" bg="dark" variant="dark">
-        <Container>
-        <Nav className="me-auto">
-        <Nav.Link href="">Dashboard</Nav.Link>
-        <Nav.Link href="">Modulos</Nav.Link>
-        <Nav.Link href="">Contextos</Nav.Link>
-        <Nav.Link href="">Feed</Nav.Link>
-        </Nav>
-        </Container>
+    <Navbar id="footer" class="align" bg="light" variant="dark">
+        
+        <Link to={"/"}><span>Módulos</span></Link>
+        <Link to={"/"}>Feed</Link>
+        <Link to={"/"}>Contextos</Link>
+        <Link to={"/"}>Feed</Link>
+        
     </Navbar>
     </>
 

@@ -70,13 +70,16 @@ export default function SignUp() {
                             {!passwordsMatch && <small className="error-text">Las contraseñas no coinciden</small>}
                         </div>
                         
-                        <Button 
+                        
+                        <Button
+                            style={{width: '100%'}}
                             type="submit"
                             variant="primary" 
                             disabled={username.length === 0 || !validPassword || !passwordsMatch}
                         >
                             Crear
                         </Button>
+                        
                     </form>
                 </Col>
             </Row>

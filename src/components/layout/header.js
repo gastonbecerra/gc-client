@@ -1,44 +1,31 @@
 import React from 'react'
 import { Navbar, Container, NavDropdown } from 'react-bootstrap';
-
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
-    return (
-        <Container fluid>
-        <Navbar expand="lg" variant="light" bg="light">
+    const { username, id: user_id} = useSelector(state => state.user)
+
+    return ( 
+        <Navbar id="header" expand="lg" variant="light" bg="light">
             <Container>
-            <Navbar.Brand href="/">Get Context()</Navbar.Brand>
+            <Navbar.Brand ><Link style={{textDecoration: 'none', color: 'black', fontWeight:'650'}} to={"/"}>Get Context( )</Link></Navbar.Brand>
+            <span style={{position:'absolute', top:'4.3vh'}}>{username && username} {user_id && user_id}</span> 
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end" >
             <NavDropdown title="Menú" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/signin">Sign In</NavDropdown.Item>
-                <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+                <NavDropdown.Item>
+                    <Link to={"/signin"} style={{textDecoration: 'none', color: 'black'}}>Sign In</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <Link to={"/signup"} style={{textDecoration: 'none', color: 'black'}}>Sign Up</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <Link to={"/"} style={{textDecoration: 'none', color: 'black'}}>Logout</Link>
+                </NavDropdown.Item>
             </NavDropdown>
             </Navbar.Collapse>
             </Container>
-        </Navbar>
-        </Container>
+        </Navbar>        
     )
 }
-
-/*
-<Navbar bg="light" expand="lg">
-  <Container>
-    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-*/

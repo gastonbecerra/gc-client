@@ -1,35 +1,55 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import Axios from 'axios';
-import {Link} from 'react-router-dom';;
+import { useEffect, useState } from "react";
+import Inputer from "./innermodule/inputer";
+import Indicator from "./innermodule/indicator";
+import Info from './innermodule/info';
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedIndicator, fetchIndicatorByUser } from "../../store/slices/indicator";
+import { Link } from 'react-router-dom';
+import { Container } from "react-bootstrap";
 
 export default function Modulo(props){
-    let {id_module} = useParams();
-    var moduleSelected = props.location.state.modulo;
-    const [indicadores, setIndicadores] = useState(false); 
+    const dispatch = useDispatch()
+    let tabs = ["Inputs", "Indicator", "Info", "Muestra"]
+    const { id: user_id} = useSelector(state => state.user)
+    const {id : indicator_id, name: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
+    const { selectedContext: context_id } = useSelector(state => state.context)
+    let indicatorState = props.location.state;
+    const [flag, setFlag] = useState(false);
 
     useEffect(()=>{
-        Axios.get(`/modules/${id_module}`)
-        .then(response => {
-            setIndicadores(response.data);
-        })
-        .then((data)=> console.log(data))
+        dispatch(setSelectedIndicator(indicatorState)) 
     },[])
 
+    useEffect(()=>{
+        if(indicator_id === indicatorState.id) setFlag(true);
+    },[indicator_id])
+
+    useEffect(()=>{
+        if(flag){
+            dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id));
+        }  
+    },[flag])
+
     return(
-        <div className="indicadores-container">
-        <h4>Indicadores {moduleSelected}</h4>
-        
-        {indicadores !== false ?
-            indicadores.map((ind,i)=>(
-                <Link  to={{ pathname: `/innermodulo/${ind._id}`, state: { selectedIndicator: `${ind.name}` } }}>
-                        {ind.name}
-                        {'  '}
-                </Link>
-            ))
-            :
-            "Fetching data from server..."
-        }
+        <>
+        <div className="d-flex justify-content-center">
+            <div className="bg-light border text-center" style={{width:'20%'}}><Link style={{textDecoration:'none'}}to={'/'}>Back</Link></div>
+            <div className="bg-light border text-center" style={{width:'80%'}}>{indicator_name}</div>
         </div>
+
+        <div className="d-flex justify-content-evenly">
+            {tabs.map((t,i)=>(
+                <div className="border text-center"  style={{width:'25%'}}>{t}</div>
+            ))}
+        </div>
+            
+        <Container className="indicador-container">
+            <Indicator/>
+            <Inputer/>
+            <Info/>
+        </Container>
+        
+        </>
     )
 }
+

@@ -49,6 +49,7 @@ export default function SignIn() {
                             />
                         </div>
                         <Button 
+                            style={{width: '100%'}}
                             type="submit"
                             variant="primary"
                             disabled={username.length === 0 || password.length === 0}
