@@ -27,7 +27,7 @@ export default function SignIn() {
     };
 
     return (
-        <Container>
+        <Container className="sign-forms">
             <Row className="justify-content-md-center">
                 <Col md="6">
                     <h3>Login</h3>
