@@ -15,6 +15,7 @@ code {
     monospace;
 }
 
+// MEDIA QUERY BREAKPOINTS
 $breakpoints: (
   sm : 540px,
   md: 768px,
@@ -22,6 +23,7 @@ $breakpoints: (
   xl : 1280px    
 );
 
+// MEDIA QUERY DEFINITIONS
 @mixin media-up($breakpoint){
   @media screen and (min-width: map-get($breakpoints, $breakpoint)){
     @content; 
@@ -118,16 +120,22 @@ $breakpoints: (
 }
 
 // LOGIN SIGNUP PAGES
-.error-text {
-  color: #ff0000;
+.sign-forms{
+  height: 80vh;
+  
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  
+    .error-text {
+      color: #ff0000;
+    }
+  }
 }
 
-.form-item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
 
+// LAYOUT COMPONENTS
 #footer{
   position: fixed;
   bottom: 0px;
@@ -151,6 +159,3 @@ $breakpoints: (
 
 
 //Sign forms pages
-.sign-forms{
-  height: 80vh;
-}
