@@ -30,15 +30,31 @@ $breakpoints: (
   }
 }
 #header{
+  height: 7.3vh;
   @include media-up(md){
    height: 7vh;
   }
+}
+
+//HOME PAGES
+//tab
+#home-tabs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 // DASHBOARD PAGE
 .modulo-container{
   min-height: 120vh;
   overflow-y: auto;
+
+  .alert-info{
+    position: relative !important;
+    top: -50px !important;
+  }
 
   .modulo-list{
     display: flex;
@@ -116,6 +132,17 @@ $breakpoints: (
   // => sample tab
   .sample-container{
 
+  }
+}
+
+// -- LAB PAGES
+.lab-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .indicator-card{
+    box-shadow: 5px;
   }
 }
 

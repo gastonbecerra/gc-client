@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import { Card, Button, ListGroup, Alert, ListGroupItem, Spinner, Container } from 'react-bootstrap';
-//redux
 import { fetchUser } from "../../store/slices/user";
 import { fetchContexts } from "../../store/slices/context";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,10 +40,10 @@ export default function Dashboard(){
 
     return(
         <Container className="px-2 py-2 modulo-container">
-        
+
         {show ? 
         
-            <Alert variant="success" onClose={() => setShow(false)} dismissible>
+            <Alert className="alert-info" variant="success" onClose={() => setShow(false)} dismissible>
                 <Alert.Heading>Hey!</Alert.Heading>
                 <p>
                     En <strong>Get Context( )</strong> tendrás acceso a diferentes indicadores, separados en módulos, 
