@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Form, Button, Alert, Col, Row} from 'react-bootstrap';
+import {Form, Button, Alert, Col, Row, Modal, Accordion, Spinner, Carousel} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIndicatorByUser } from '../../../store/slices/indicator'
 import Axios from 'axios';
@@ -7,7 +7,8 @@ import Axios from 'axios';
 export default function Inputer(props) {
     const [spinner, setSpinner] = useState(false); // => mientras se mandan datos al servidor, se muestra el spinner
     const dispatch = useDispatch()
-    const { inputs_faltantes, inputs } = useSelector(state => state.indicator);
+    const { inputs_faltantes, inputs} = useSelector(state => state.indicator);
+    const { user_value } = useSelector(state => state.indicator); 
     const {auth, id: user_id} = useSelector(state => state.user);
     const { selectedContext: context_id } = useSelector(state => state.context);
     const {id : indicator_id, name: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
@@ -33,43 +34,51 @@ export default function Inputer(props) {
         }).then(setSpinner(false));
     }
 
+    // UI functions
+    const [index, setIndex] = useState(0);
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
+
     return (
         <div className="inputs-container">        
 
             {inputs_faltantes !== false ? 
-            <Form>
-                <Alert className="text-center" variant="warning" text="dark">
-                Completa los siguientes campos para poder acceder a los contextos asociados a este indicador
-                </Alert>{' '}
+          
+            <Accordion style={{minWidth: "100%"}} id="inputs-faltantes">
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>Missing Inputs</Accordion.Header>
+                    <Accordion.Body>
 
-                <strong>Datos faltantes para indicador de {indicator_name}</strong>
-                {inputs_faltantes.map((input, i)=>(
-                        <Form.Group key={i} >
-                        {spinner === false ?
-                        <Form className="inputs-faltantes">
-                            <Form.Label>{input.name}</Form.Label>
-                            <div className="d-flex flex-row align-items-center">
-                                <Col xs={{ span: 9, offset: 0 }}>
-                                    <Form.Control 
-                                        id={`${i}`} 
-                                        style={{height: '84%'}}>
-                                    </Form.Control>       
-                                </Col>
-                                <Col xs={{ span: 3, offset: 0 }} className="text-center">
-                                    <Button className="" size="sm" type="submit" onClick={(e)=>{submitInput(e, input.name, i)}} >Submit</Button>    
-                                </Col>
-                            </div>
-                        </Form>    
-
-                            :
-                        null
-                        
-                        }
-                        
-                    </Form.Group>
-                ))}                
-                
-            </Form>
+                    <Carousel interval={10000000} controls={true} variant="dark" activeIndex={index} onSelect={handleSelect}>
+                    {inputs_faltantes.map((input, i)=>(
+                        <Carousel.Item>
+                        <Form>
+                        <Form.Group key={i} >                 
+                            <Form> 
+                                <Form.Label>{input.name}</Form.Label>
+                                <div className="d-flex flex-row align-items-center">
+                                    <Col xs={{ span: 9, offset: 0 }}>
+                                        <Form.Control 
+                                            id={`${i}`} 
+                                            style={{height: '84%'}}>
+                                        </Form.Control>       
+                                    </Col>
+                                    <Col xs={{ span: 3, offset: 0 }} className="text-center">
+                                        <Button className="" size="sm" type="submit" onClick={(e)=>{submitInput(e, input.name, i)}} >Submit</Button>    
+                                    </Col>
+                                </div>
+                            </Form>   
+                            </Form.Group>
+                            </Form>
+                            </Carousel.Item>
+                            
+                    ))}                
+                    </Carousel>
+                    </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
+            
 
             :
                 null

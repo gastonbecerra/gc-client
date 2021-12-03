@@ -43,13 +43,14 @@ $breakpoints: (
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  // margin-top: 10px;
 }
 
 // DASHBOARD PAGE
 .modulo-container{
   min-height: 120vh;
   overflow-y: auto;
+  max-width: 100vw;
 
   .alert-info{
     position: relative !important;
@@ -85,11 +86,12 @@ $breakpoints: (
 // INDICATOR PAGE
 .indicador-container{
   min-height: 140vh;
-  overflow-y:scroll;
+  overflow-y:hidden;
   padding: 5px 5px 0 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   @include media-up(md){
     max-width: 70vw;
   }
@@ -99,10 +101,12 @@ $breakpoints: (
     display: flex;
     flex-direction: column;
     width: 100%;
-
+    border: solid 1px red;
     .context-container{
+      
       @include media-up(md){
-        width: 50%;
+        width: 75%;
+        max-width: 600px;
       }
     }
     .chart-container{
@@ -114,9 +118,27 @@ $breakpoints: (
 
   // => inputs tab
   .inputs-container{
+    min-height: 140vh;
+    overflow-y: hidden;
+    padding: 5px 5px 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px red;
+    width: 100%;
 
-    .inputs-faltantes{
+    @include media-up(md){
+      width: 100%;
+    }   
 
+    #inputs-faltantes{
+      max-width: 75%;
+      min-height: 100%;
+
+      @include media-up(md){
+        width: 50%;
+        max-width: 500px;
+      }
     }
     
     .inputs-existentes{
@@ -142,8 +164,49 @@ $breakpoints: (
   align-items: center;
 
   .indicator-card{
-    box-shadow: 5px;
+    border: solid 2px black;
+    box-shadow: 2px 2px;
+    // max-width: 99vw;
   }
+}
+
+#inputs-faltantes > div > div > div{
+  padding-bottom: 20%;
+}
+
+#inputs-faltantes > div > div > div > div{
+  position: relative;
+}
+#inputs-faltantes > div > div > div > div > a.carousel-control-prev > span.carousel-control-prev-icon{
+  height: 20px;
+}
+
+#inputs-faltantes > div > div > div > div > a.carousel-control-next > span.carousel-control-next-icon{
+  height: 20px;
+}
+#inputs-faltantes > div > div > div > div > a.carousel-control-prev {
+  position: absolute;
+  bottom: -19vh;
+  left: 20%;
+  // height: 70%;
+  @include media-up(md){
+    bottom: -37vh;
+    left: 30%;
+  }
+}
+
+#inputs-faltantes > div > div > div > div > a.carousel-control-next{
+  position: absolute;
+  bottom: -19vh;
+  right:20%;
+  @include media-up(md){
+    bottom: -37vh;
+    right:30%;
+  }
+}
+
+#inputs-faltantes > div > div > div > div > div.carousel-indicators{
+  display: none;
 }
 
 // LOGIN SIGNUP PAGES

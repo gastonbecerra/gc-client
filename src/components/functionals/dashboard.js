@@ -39,7 +39,7 @@ export default function Dashboard(){
     },[]) 
 
     return(
-        <Container className="px-2 py-2 modulo-container">
+        <Container className="modulo-container">
 
         {show ? 
         

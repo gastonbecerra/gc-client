@@ -6,19 +6,19 @@ export default function LabHome() {
     return (
         <Container className="lab-container">
             
-            <Button 
+            <a 
                 variant="outline-danger" 
                 size="lg"
                 className="my-2"
                 style={{maxWidth: '300px'}}
+                href="#create"
                 >
                     Create new Indicator
-                </Button>{' '}
-            
+                </a>{' '}    
             <div>
-            <ListGroup.Item className="my-4">
-                
-                <div className="fw-bold indicator-card">Indicator name</div>
+
+            <ListGroup.Item className="my-4 indicator-card">               
+                <div className="fw-bold">Indicator name</div>
                 <Card.Text className="my-2">This a lorem ipsum description for not yet created indicator that will come for our users creativiy!</Card.Text>
                 <Accordion>
                 <Accordion.Item eventKey="0">
@@ -41,7 +41,7 @@ export default function LabHome() {
                 </Link>
             </ListGroup.Item>
 
-            <ListGroup.Item className="my-2">
+            <ListGroup.Item className="my-2 indicator-card">
                 
                 <div className="fw-bold">Indicator name</div>
                 <Card.Text className="my-2">This a lorem ipsum description for not yet created indicator that will come for our users creativiy!</Card.Text>
@@ -50,6 +50,13 @@ export default function LabHome() {
                     <Button size="sm" className="my-0.5 pl-1" variant="outline-primary">Acceder</Button>    
                 </Link>
             </ListGroup.Item>
+            </div>
+            
+            <hr></hr>
+            
+            <div>
+                
+
             </div>
         </Container>
     )

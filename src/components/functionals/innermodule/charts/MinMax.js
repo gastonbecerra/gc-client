@@ -12,8 +12,6 @@ export default function MinMax({ref}) {
             {sample ? 
             
                 <Chart
-                    
-                    height={'300px'}
                     chartType="ScatterChart"
                     loader={<div>Loading Chart</div>}
                     data={[
@@ -34,12 +32,8 @@ export default function MinMax({ref}) {
                 <Alert variant={'danger'}> No hay un valor de muestra para el contexto seleccionado</Alert>
                 }        
 
-                { !user_value && inputs_faltantes &&
-                    <Alert variant={'warning'}> Aún no ingresaste un valor para participar de la muestra</Alert>
-                }
-
                 { !user_value && !inputs_faltantes &&
-                    <Alert variant={'warning'}> Aún no procesamos tus datos como parte de la muestra. Espera, en breve estará listo!</Alert>
+                    <Alert variant={'warning text-center'}> Aún no procesamos tus datos como parte de la muestra. Espera, en breve estará listo!</Alert>
                 }
         </Container>
     )
