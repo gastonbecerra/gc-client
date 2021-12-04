@@ -20,7 +20,7 @@ export default function MinMax({ref}) {
                         ['', sample.contexto], // columnas
                         [sample.values.val_max, 0], //min
                         [sample.values.val_min, 0], //max
-                        [user_value ? user_value.value : 0, 0], //max
+                        [user_value && user_value.valor , 0], //max
                     ]}
                     options={{                        
                         title: 'Ahorro',

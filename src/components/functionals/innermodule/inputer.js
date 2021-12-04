@@ -21,6 +21,7 @@ export default function Inputer(props) {
             name: name,
             value: document.getElementById(i).value,
             user: user_id,
+            indicator : indicator_id,
           },
           withCredentials: true,
           url: "/inputs",
