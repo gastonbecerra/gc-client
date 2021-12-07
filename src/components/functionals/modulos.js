@@ -5,8 +5,7 @@ import Info from './innermodule/info';
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedIndicator, fetchIndicatorByUser } from "../../store/slices/indicator";
 import { Link } from 'react-router-dom';
-import { Container, Tabs, Tab } from "react-bootstrap";
-import modules from "../../store/slices/modules";
+import { Container } from "react-bootstrap";
 
 export default function Modulo(props){
     const dispatch = useDispatch()
@@ -19,8 +18,7 @@ export default function Modulo(props){
     const [flag, setFlag] = useState(false);
 
     useEffect(()=>{
-        dispatch(setSelectedIndicator(indicatorState)) 
-        console.log(props.location.state.mods);
+        dispatch(setSelectedIndicator(indicatorState)); 
     },[])
 
     useEffect(()=>{

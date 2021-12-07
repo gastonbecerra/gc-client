@@ -69,7 +69,7 @@ export default function Dashboard(){
         <div className="modulo-list">
             {modules !== false ? 
                 modules.map((m,i)=>(
-                    <Card key={i} className="modulo-card" border="success">
+                    <Card key={i} className="modulo-card" >
                         <Card.Header as="h5">{m.title}</Card.Header>
                         
                         <Card.Body>

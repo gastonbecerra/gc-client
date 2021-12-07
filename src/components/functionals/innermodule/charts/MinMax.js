@@ -18,7 +18,7 @@ export default function MinMax({ref}) {
                         ['', sample.contexto], // columnas
                         [sample.values.val_max, 0], //min
                         [sample.values.val_min, 0], //max
-                        [user_value ? user_value.value : 0, 0], //max
+                        [user_value && user_value.valor, 0], //user
                     ]}
                     options={{                        
                         title: 'Ahorro',
@@ -29,7 +29,7 @@ export default function MinMax({ref}) {
                     rootProps={{ 'data-testid': '1' }}/>
 
                 : 
-                <Alert variant={'danger'}> No hay un valor de muestra para el contexto seleccionado</Alert>
+                <Alert variant={'info'}> No hay un valor de muestra para el contexto seleccionado</Alert>
                 }        
 
                 { !user_value && !inputs_faltantes &&
