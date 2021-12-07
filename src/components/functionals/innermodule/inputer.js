@@ -27,6 +27,7 @@ export default function Inputer(props) {
             name: input.name,
             value: document.getElementById(i).value,
             user: user_id,
+            indicator: indicator_id
           },
           withCredentials: true,
           url: "/inputs",
@@ -35,6 +36,7 @@ export default function Inputer(props) {
             // if(res.data === true){
             //     dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id))
             // }
+            console.log(res)
             dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id))
         })
         .then(()=>{
@@ -59,9 +61,6 @@ export default function Inputer(props) {
           url: `/inputs/${input._id}`,
         })
         .then((res) => {
-            // if(res.data === true){
-            //     dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id))
-            // }
             dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id))
         })
         .then(()=>{
@@ -81,9 +80,6 @@ export default function Inputer(props) {
           url: `/inputs/${input._id}`,
         })
         .then((res) => {
-            // if(res.data === true){
-            //     dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id))
-            // }
             dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id))
         }).finally(()=>{
             setSpinner(false);
