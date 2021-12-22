@@ -1,0 +1,324 @@
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#header {
+  height: 7.3vh;
+}
+
+@media screen and (min-width: 768px) {
+  #header {
+    height: 7vh;
+  }
+}
+
+#home-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modulo-container {
+  min-height: 120vh;
+  overflow-y: auto;
+  max-width: 100vw;
+}
+
+.modulo-container .alert-info {
+  position: relative !important;
+  top: -50px !important;
+}
+
+.modulo-container .modulo-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modulo-container .modulo-list .modulo-card {
+  min-width: 400px;
+  border-radius: 1%;
+  padding: 15px 15px 15px 15px;
+  margin-bottom: 1vh;
+}
+
+@media screen and (min-width: 768px) {
+  .modulo-container .modulo-list .modulo-card {
+    min-width: 600px;
+    max-width: 600px;
+    padding: 25px 25px 25px 25px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modulo-container .modulo-list .modulo-card {
+    max-width: 800px;
+  }
+}
+
+.indicador-container {
+  min-height: 140vh;
+  overflow-y: hidden;
+  padding: 5px 5px 0 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .indicador-container {
+    max-width: 70vw;
+  }
+}
+
+.indicador-container .indicator-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .indicador-container .indicator-container .context-container {
+    width: 75%;
+    max-width: 600px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .indicador-container .indicator-container .chart-container {
+    width: 50%;
+  }
+}
+
+.indicador-container .inputs-container {
+  min-height: 140vh;
+  overflow-y: hidden;
+  padding: 5px 5px 0 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .indicador-container .inputs-container {
+    width: 100%;
+  }
+}
+
+.indicador-container .inputs-container .inputs-faltantes {
+  border: solid black 1px;
+  width: 100%;
+  min-height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .indicador-container .inputs-container .inputs-faltantes {
+    max-width: 500px !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .indicador-container .inputs-container .inputs-faltantes {
+    max-width: 700px !important;
+  }
+}
+
+.indicador-container .inputs-container .inputs-existentes {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .indicador-container .inputs-container .inputs-existentes {
+    max-width: 500px !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .indicador-container .inputs-container .inputs-existentes {
+    max-width: 700px !important;
+  }
+}
+
+.indicador-container .inputs-container .inputs-existentes .form-buttons {
+  max-width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.indicador-container .inputs-container .inputs-existentes .form-labels {
+  font-style: italic;
+  background-color: lightcyan;
+  padding: 0 3px 0 3px 0;
+}
+
+.lab-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.lab-container .indicator-card {
+  -webkit-box-shadow: 2px 2px;
+          box-shadow: 2px 2px;
+}
+
+.inputs-faltantes > div > div > div {
+  padding-bottom: 20%;
+}
+
+.inputs-faltantes > div > div > div > div {
+  position: relative;
+}
+
+.inputs-faltantes > div > div > div > div > a.carousel-control-prev > span.carousel-control-prev-icon {
+  height: 20px;
+}
+
+.inputs-faltantes > div > div > div > div > a.carousel-control-next > span.carousel-control-next-icon {
+  height: 20px;
+}
+
+.inputs-faltantes > div > div > div > div > a.carousel-control-prev {
+  position: absolute;
+  bottom: -19vh;
+  left: 20%;
+}
+
+@media screen and (min-width: 768px) {
+  .inputs-faltantes > div > div > div > div > a.carousel-control-prev {
+    bottom: -37vh;
+    left: 30%;
+  }
+}
+
+.inputs-faltantes > div > div > div > div > a.carousel-control-next {
+  position: absolute;
+  bottom: -19vh;
+  right: 20%;
+}
+
+@media screen and (min-width: 768px) {
+  .inputs-faltantes > div > div > div > div > a.carousel-control-next {
+    bottom: -37vh;
+    right: 30%;
+  }
+}
+
+.inputs-faltantes > div > div > div > div > div.carousel-indicators {
+  display: none;
+}
+
+.sign-forms {
+  height: 80vh;
+}
+
+.sign-forms .form-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.sign-forms .form-item .error-text {
+  color: #ff0000;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  border: solid 0.5px darkgray;
+  font-weight: 600;
+  height: 7vh;
+}
+
+#footer * {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  #footer {
+    position: static;
+    height: 15vh;
+  }
+}
+/*# sourceMappingURL=App.css.map */

@@ -34,6 +34,11 @@ $breakpoints: (
   @include media-up(md){
    height: 7vh;
   }
+  #icon-header{
+    position: relative;
+    bottom: 2.5px;
+    margin-right: 2vw;
+  }
 }
 
 //HOME PAGES
@@ -127,7 +132,7 @@ $breakpoints: (
     }   
 
     .inputs-faltantes{
-      
+      border: solid black 1px;
       width: 100%;
       min-height: 100%;
 
@@ -249,20 +254,30 @@ $breakpoints: (
   position: fixed;
   bottom: 0px;
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 20% 19% 20% 18% 18%;
+  padding: 5px;
+  grid-gap: 5px;
+  // flex-direction: row;
+  // justify-content: space-around;
+  // align-items: flex-start;
   border: solid 0.5px darkgray;
   font-weight: 600;
   height: 7vh;
   * {
     text-decoration: none;
+    // border: 1px solid black;
+    text-align: center;
   }
-
+  div div {
+    // display: block;
+  }
   @include media-up(md){
     position: static;
     height: 15vh;
+  }
+  .footer-icon{
+    font-size: 20px;
   }
 }
 
