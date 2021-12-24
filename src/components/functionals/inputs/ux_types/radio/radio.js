@@ -1,22 +1,53 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { BsGenderTrans } from 'react-icons/bs';
+import Studies from '../../assets/studies.png';
 
 export default function RadioUx ({input, i, submitInput}) {
-    return (
+    
+    const [value, setValue] = React.useState('female');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+
+    function renderImage(){
+        switch (input.name) {
+            case "gender":
+                return <BsGenderTrans style={{fontSize: '200px'}} className="input-image"/>
+            break;
+            
+            case "studies":
+                return <img src={Studies} className="input-image"/>
+            break;
+
+            case "map":
+            
+            break;
         
+            default:
+                break;
+        }
+    }
+    
+    return (        
         <FormControl component="fieldset" className="input-control">
-        <BsGenderTrans style={{fontSize: '200px'}} className="input-image"/>
+        
+        {renderImage()}
+        
+        
         <RadioGroup
             aria-label={input.name}
             name="radio-buttons-group"
+            value={value}
+            onChange={handleChange}
         >
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+        {input.validation.map((opt, y)=>(
+            <FormControlLabel value={opt} control={<Radio />} label={opt} />
+        ))}
         </RadioGroup>
         </FormControl>
         

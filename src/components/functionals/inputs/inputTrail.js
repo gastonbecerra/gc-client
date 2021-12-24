@@ -29,6 +29,10 @@ const InputTrail = ({ slides }) => {
             case 'radioUx':
             type = 'RadioUx'
             break;
+
+            case 'worder':
+            type = 'OpenCat'
+            break;
     
         default:
             type = 'BasicFormInput'
@@ -38,6 +42,15 @@ const InputTrail = ({ slides }) => {
     return <Component input={slide} i={index}/>
  }
 
+ function setPropperTitle(slide){
+  if(slide && slide.name === "preferencias_financieras"){
+    var [a, b] = slide.name.split("_");
+    return <span className='title'>{a}</span>
+  }else{
+    return <h1 className='title'>{slide.name}</h1>
+  }
+ }
+
   return (
     <section className='slider'>
       
@@ -45,7 +58,7 @@ const InputTrail = ({ slides }) => {
         return (
           <div className={index === current ? 'slide active' : 'slide'} key={index}>
             {index === current && (
-              <h1 className='title'>{slide.name}</h1>
+              setPropperTitle(slide)
             )}          
             
             {renderRequiredInput(slide, index)}

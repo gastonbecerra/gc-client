@@ -19,7 +19,7 @@ export default function Footer() {
         
         <div>
             <MdInput className="footer-icon"/>
-            <div><Link to={"/"}>Inputs</Link></div>
+            <div><Link to={"/inputs"}>Inputs</Link></div>
         </div>
         
         <div>

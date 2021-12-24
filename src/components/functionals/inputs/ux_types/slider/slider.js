@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
-import old from './old.png';
-import man from './man.png';
-import boy from './boy.png';
+import React from 'react';
+import Earning from './types/earning';
+import Age from './types/age';
 
-export default function SliderUx() {
-  const [age, setAge] = useState(18);
-  const [root, setRoot] = useState("old");
+export default function SliderUx({input}) {
   
-  return (
-    <Box width={300} className="input-control">
-      
-      <img src={age < 18 ? boy : age > 55 ? old : man} className="input-image" /> 
+  function renderElement(){
+        switch (input.name) {
+            case "ingresos":
+                return <Earning input={input}/>
+            break;
+            
+            case "edad":
+                return <Age input={input}/>
+            break;
 
-      <Slider
-        size="small"
-        onChange={(e) => setAge(e.target.value)}
-        aria-label="Small"
-        valueLabelDisplay="auto"
-        marks
-        min={0}
-        max={110}
-      />
-      <p className="input-value">{age}</p>
-    </Box>
+            case "map":
+            
+            break;
+        
+            default:
+                break;
+        }
+    }
+
+
+  return (
+    renderElement()
   );
 }
