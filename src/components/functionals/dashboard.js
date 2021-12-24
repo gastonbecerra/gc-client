@@ -25,7 +25,7 @@ export default function Dashboard(){
 
     useEffect(()=>{
         if(modules === false){
-        fetch('/modules/mindicators')
+        fetch('/indicators')
         .then(response => {
             return response.json();
         })
@@ -41,28 +41,7 @@ export default function Dashboard(){
     return(
         <Container className="modulo-container">
 
-        {show ? 
-        
-            <Alert className="alert-info" variant="success" onClose={() => setShow(false)} dismissible>
-                <Alert.Heading>Hey!</Alert.Heading>
-                <p>
-                    En <strong>Get Context( )</strong> tendrás acceso a diferentes indicadores, separados en módulos, 
-                    que te permitirán situarte en contextos diferentes en relación a otros usuarios.
-                </p>
-                <hr />
-                <p className="mb-0">
-                    Para ellos te pediremos compartir ciertos datos, anonimizados, que te permitirán seguir conociéndoto, y conociendo a otros en un marco de respecto y tolerancia. 
-                </p>
-                <strong>More info right here...</strong>
-            </Alert>
-
-            :
-
-            <Alert onClick={() => setShow(true)} variant="success"><strong>What is this all about?</strong></Alert>
-
-        }
-
-        {auth == false ? <Alert color='primary'>You need to <Alert.Link href="/signin">login</Alert.Link> before access to indicator data</Alert>
+        {auth == false ? <Alert color='primary'>You need to <Alert.Link href="/signin">login</Alert.Link> to access to all available data</Alert>
         
         : 
         
