@@ -16,14 +16,14 @@ export default function SelectContext(props){
     },[context_id])
 
     return(
-        <Container  className="context-container">
+        <Container  className="context-container mt-2">
         <FloatingLabel style={{marginBottom: '5px'}} controlId="context" label="Select a Context" defaultValue={context_id}>
         <Form.Select onChange={(e)=>dispatch(pickContext(e.target.value))}  >
             
             {contexts ? 
             contexts.map((c,i)=>(
                 <option key={i} id={c._id}>
-                    {c.name}
+                    {c.context}
                 </option>
             ))
             :

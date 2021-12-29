@@ -42,14 +42,15 @@ export const selectIndicator = (id, name) => (dispatch) => {
 }
 
 export const fetchIndicatorByUser = (indicator_id, context_id, user_id) => (dispatch) => {
-    Axios.get(`/inputs/full/${indicator_id}/${context_id}/${user_id}`)
+    Axios.get(`/indicators/${indicator_id}/${context_id}/${user_id}`)
         .then((response)=>{            
             if(response.data){
-                dispatch(setInputs(response.data.user_data.inputs));
-                dispatch(setMissingInputs(response.data.user_data.inputs_required));
-                dispatch(setIndicator(response.data.indicator))
+                console.log(response.data.sample);
                 dispatch(setSample(response.data.sample))
-                dispatch(setUserValue(response.data.user_data.user_value))
+                dispatch(setUserValue(response.data.user_value))
+                dispatch(setInputs(response.data.vals));
+                // dispatch(setMissingInputs(response.data.user_data.inputs_required));
+                // dispatch(setIndicator(response.data.indicator))
             }
         })
 }

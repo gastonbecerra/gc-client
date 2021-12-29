@@ -9,6 +9,7 @@ export default function MinMax({ref}) {
     
     return (
         <Container className="chart-container">
+            
             {sample ? 
             
                 <Chart
@@ -35,6 +36,7 @@ export default function MinMax({ref}) {
                 { !user_value && !inputs_faltantes &&
                     <Alert variant={'warning text-center'}> Aún no procesamos tus datos como parte de la muestra. Espera, en breve estará listo!</Alert>
                 }
+
         </Container>
     )
 }

@@ -1,45 +1,49 @@
 export const SliderData =   [
   {
       "_id":  "6187df233b2a467cc61dfa26",
-      "name": "gender",
+      "var": "gender",
       "description": "Monto de dinero generado mensualmente",
       "value_type": "cat_closed",
-      "ux_type": "radioUx",
+      "ux_input": "radioUx",
       "validation":["Masculino", "Feminino", "Binarie", "Otro"],
   },
   {
       "_id":  "6187df233b2a467cc61dfa27",
-      "name": "edad",
+      "var": "edad",
       "description": "Monto de dinero generado mensualmente",
       "value_type": "number",
-      "ux_type": "sliderUx"
+      "ux_input": "numberUx"
   },
-  {
-      "_id":  "6187df233b2a467cc61dfa28",
-      "name": "studies",
-      "description": "Monto de dinero generado mensualmente",
-      "value_type": "cat_closed",
-      "ux_type": "radioUx",
-      "validation":["Primario", "Secundario", "Universitario", "Posgrado"],
-  },
-  {
-    "_id":"61c2af6dbdedfb648b771bbe",
-    "name":"ingresos",
-    "type":"int",
-    "ux_type":"sliderUx",
-    "validation":false,
-    "description":"xxx",
-    "timestamp":"2021-12-01T03:00:00.000Z",
-    },
     {
     "_id":"61c2afe5bdedfb648b771bcd",
-    "name":"preferencias_financieras",
+    "var":"preferencias_financieras",
     "description":"xxx",
     "type":"cat_open",
-    "ux_type":"worder",
+    "ux_input":"worder",
     "validation": false,
     "timestamp":"2021-12-01T03:00:00.000Z"
     },
+    {
+        "processed": true,
+        "_id": "61ca34a835742bfab4e0c050",
+        "value": "60000",
+        "user": "Pepe",
+        "type": "int",
+        "validation": "",
+        "ux_input": "numberUx",
+        "var": "ingresos",
+        "description": "xxx",
+        "measurement": "currency"
+    },
+    {
+        "_id": "61c2af95bdedfb648b771bc3",
+        "timestamp": "2021-12-01T03:00:00.000Z",
+        "type": "int",
+        "ux_input": "numberUx",
+        "validation": "",
+        "var": "gastos",
+        "description": "xxx"
+    }
 ];
 
 

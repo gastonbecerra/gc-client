@@ -21,9 +21,9 @@ const InputTrail = ({ slides }) => {
 
  function renderRequiredInput (slide, index){
     let type;
-    switch (slide.ux_type) {
-        case 'sliderUx':
-            type = 'SliderUx'
+    switch (slide.ux_input) {
+        case 'numberUx':
+            type = 'NumberUx'
             break;
 
             case 'radioUx':
@@ -43,11 +43,11 @@ const InputTrail = ({ slides }) => {
  }
 
  function setPropperTitle(slide){
-  if(slide && slide.name === "preferencias_financieras"){
-    var [a, b] = slide.name.split("_");
+  if(slide && slide.var === "preferencias_financieras"){
+    var [a, b] = slide.var.split("_");
     return <span className='title'>{a}</span>
   }else{
-    return <h1 className='title'>{slide.name}</h1>
+    return <h1 className='title'>{slide.var}</h1>
   }
  }
 

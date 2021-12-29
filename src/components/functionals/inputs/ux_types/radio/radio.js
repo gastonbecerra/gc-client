@@ -15,7 +15,7 @@ export default function RadioUx ({input, i, submitInput}) {
     };
 
     function renderImage(){
-        switch (input.name) {
+        switch (input.var) {
             case "gender":
                 return <BsGenderTrans style={{fontSize: '200px'}} className="input-image"/>
             break;
@@ -40,7 +40,7 @@ export default function RadioUx ({input, i, submitInput}) {
         
         
         <RadioGroup
-            aria-label={input.name}
+            aria-label={input.var}
             name="radio-buttons-group"
             value={value}
             onChange={handleChange}

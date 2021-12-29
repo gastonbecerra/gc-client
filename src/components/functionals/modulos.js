@@ -1,57 +1,96 @@
-import { useEffect, useState } from "react";
-import Inputer from "./innermodule/inputer";
-import Indicator from "./innermodule/indicator";
-import Info from './innermodule/info';
+import React,{ useEffect, useState } from "react";
+import SelectContext from "./selectContext";
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedIndicator, fetchIndicatorByUser } from "../../store/slices/indicator";
-import { Link } from 'react-router-dom';
-import { Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import InnerModule from "./innerModule";
 
 export default function Modulo(props){
-    const dispatch = useDispatch()
-    let tabs = ["Inputs", "Indicator", "Info", "Muestra"]
-    const { id: user_id} = useSelector(state => state.user)
-    const {id : indicator_id, name: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
+    let history = useHistory();
+    const dispatch = useDispatch();
+    let tabs = ["Inputs", "Indicator", "Info", "Muestra"];
+    const { selectedModule } = useSelector(state => state.modulo);
+    const { _id : indicator_id, indicator: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
+    const { selectedIndicator } = useSelector(state => state.indicator)
     const { selectedContext: context_id } = useSelector(state => state.context)
-    const { modules } = useSelector(state => state.modulo)
-    let indicatorState = props.location.state;
     const [flag, setFlag] = useState(false);
+    let indicatorState = props.location.state;
 
     useEffect(()=>{
-        dispatch(setSelectedIndicator(indicatorState)); 
+        selectedModule == false && history.push('/')
     },[])
 
     useEffect(()=>{
-        if(indicator_id === indicatorState.id) setFlag(true);
-    },[indicator_id])
+        dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
+    },[selectedIndicator])
 
     useEffect(()=>{
-        if(flag){
-            dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id));
-        }  
-    },[flag])
+        dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
+    },[context_id])
 
-    const [key, setKey] = useState();
+    useEffect(()=>{
+        console.log(selectedIndicator.indicator)
+    },[selectedIndicator])
+
+    // UI Logic
+    const [value, setValue] = useState(indicator_name);
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
 
     return(
         <>
-        <div className="d-flex justify-content-center">
-            <div className="bg-light border text-center" style={{width:'50px'}}><Link style={{textDecoration:'none'}}to={'/'}>Back</Link></div>
-            <div className="bg-light border text-center" style={{width:'100%', paddingRight: '5vw'}}>{indicator_name}</div>
-        </div> 
 
-        <div className="d-flex justify-content-evenly">
-            {tabs.map((t,i)=>(
-                <div className="border text-center"  style={{width:'25%'}}>{t}</div>
-            ))}
-        </div>
-            
+        <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
+
+        <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList 
+            onChange={handleChange} 
+            aria-label="lab API tabs example" 
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example">
+            {selectedModule &&
+                selectedModule.indicators &&
+                selectedModule.indicators.map((indicator, i)=>(
+                    <Tab label={indicator.indicator} value={indicator.indicator} onClick={()=> dispatch(setSelectedIndicator(indicator))}/>
+                ))
+            }
+          </TabList>
+          <SelectContext/>
+
+        </Box>
+        {selectedModule &&
+            selectedModule.indicators &&
+            selectedModule.indicators.map((indicator, i)=>(
+                <TabPanel value={indicator.indicator}>
+                    {/* {indicator.indicator} */}
+                    {/* { selectedIndicator !== false && selectedIndicator !== undefined && <InnerModule indicator = {selectedIndicator}/>} */}
+                    <InnerModule indicator={selectedIndicator}/>
+                </TabPanel>
+            ))
+        }
+        </TabContext>
+        </Box>
+
+        
+        
+        
+        {/*                                 
         <Container className="indicador-container">
             <Indicator/>
             <Inputer/>
             <Info/>
         </Container>
-        
+
+         */}
         </>
     )
 }

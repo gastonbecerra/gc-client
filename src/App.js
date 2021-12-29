@@ -17,7 +17,7 @@ function App() {
         <Header/>
         <Switch>
           <Route exact path="/" component={Dashboard}/>
-          <Route exact path="/modulo/:id_module" component={Modulo}/>
+          <Route exact path="/modulo" component={Modulo}/>
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/signin" component={SignIn}/>
           <Route exact path="/inputs" component={Inputs}/>

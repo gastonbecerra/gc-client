@@ -7,11 +7,11 @@ export default function Earning({input}) {
     const [earning, setEarning] = useState(false);
 
     useEffect(()=>{
-        console.log(earning);
-    },[earning])
+        input.value && setEarning(input.value);
+    },[])
 
     return (
-            <Box width={300} className="input-control">
+            <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"}>
                 <MdOutlineAttachMoney style={{fontSize: '200px'}} className="input-image"/>
                 <TextField
                     id="ingresos"
@@ -20,9 +20,10 @@ export default function Earning({input}) {
                     InputLabelProps={{
                         shrink: true,
                     }}
-                    max={9999999}
+                    max={999999}
                     min={0}
                     style={{maxWidth: 'initial', maxWidth: '300px'}}
+                    value={earning}
                     onChange={(e)=>setEarning(e.target.value)}
                 />
                 <p className="input-value">{earning}<span>ARS</span></p>
