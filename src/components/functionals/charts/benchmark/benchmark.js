@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
 import { Container } from 'react-bootstrap' 
@@ -13,20 +13,13 @@ export default function Benchmark() {
 
     return (
         <Container>
-
-            {sample ? 
+            <Divider textAlign="left" className='mb-2'>
+                <Chip label={"Chart" } style={{width:'100px'}}/>          
+            </Divider>
             
-            <>
+            {sample ? 
 
-            {selectedIndicator ? 
-                <Divider textAlign="left" className='mb-2'>
-                    <Chip label={`Chart for ${selectedIndicator.indicator}`}/>          
-                </Divider>
-                :
-                <Divider textAlign="left" className='mb-2'>
-                    <Chip label="Chart" />          
-                </Divider>
-            }
+            <>
 
             <Chart
                 chartType="ScatterChart"
@@ -49,10 +42,6 @@ export default function Benchmark() {
             : 
             <Alert variant="outlined" severity="error"> No hay un valor de muestra para el contexto seleccionado</Alert>
             }        
-
-            {/* { !user_value && !inputs_faltantes &&
-                <Alert variant={'warning text-center'}> Aún no procesamos tus datos como parte de la muestra. Espera, en breve estará listo!</Alert>
-            } */}
 
     </Container>
         

@@ -20,7 +20,7 @@ export default function Inputer() {
         <>
         
         <Divider textAlign="left" className="my-2">
-            <Chip label="Inputs"/>            
+            <Chip label="Inputs" style={{width:'100px'}}/>            
           </Divider>
         
         <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>

@@ -1,6 +1,8 @@
 import React from 'react'
 import * as Chart from './charts/index';
 import Inputer from './inputer';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
 
 export default function InnerModule(indicator) {
 
@@ -33,7 +35,13 @@ export default function InnerModule(indicator) {
 
     return (
         <div>
+        
             {renderRequiredChart()}            
+
+            <Divider textAlign="left" className='mb-2'>
+                <Chip label={"Highlights"} style={{width:'100px'}}/>          
+            </Divider>
+
             <Inputer/>
         </div>
         )
