@@ -1,5 +1,6 @@
 import React from 'react'
 import * as Chart from './charts/index';
+import Inputer from './inputer';
 
 export default function InnerModule(indicator) {
 
@@ -32,10 +33,8 @@ export default function InnerModule(indicator) {
 
     return (
         <div>
-            <strong className='text-center'>{indicator.indicator.indicator}</strong>
-            {renderRequiredChart()}
-            
-
+            {renderRequiredChart()}            
+            <Inputer/>
         </div>
         )
 }

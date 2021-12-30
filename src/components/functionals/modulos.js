@@ -15,27 +15,21 @@ export default function Modulo(props){
     const dispatch = useDispatch();
     let tabs = ["Inputs", "Indicator", "Info", "Muestra"];
     const { selectedModule } = useSelector(state => state.modulo);
-    const { _id : indicator_id, indicator: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
+    const { indicator: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
     const { selectedIndicator } = useSelector(state => state.indicator)
     const { selectedContext: context_id } = useSelector(state => state.context)
-    const [flag, setFlag] = useState(false);
-    let indicatorState = props.location.state;
 
     useEffect(()=>{
-        selectedModule == false && history.push('/')
+        if(selectedModule == false && selectedIndicator == false)  history.push('/')
     },[])
 
     useEffect(()=>{
-        dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
+        if(selectedIndicator.indicator !== false && context_id !== false) dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
     },[selectedIndicator])
 
     useEffect(()=>{
-        dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
+        if(selectedIndicator.indicator !== false && context_id !== false) dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
     },[context_id])
-
-    useEffect(()=>{
-        console.log(selectedIndicator.indicator)
-    },[selectedIndicator])
 
     // UI Logic
     const [value, setValue] = useState(indicator_name);
@@ -70,7 +64,7 @@ export default function Modulo(props){
         {selectedModule &&
             selectedModule.indicators &&
             selectedModule.indicators.map((indicator, i)=>(
-                <TabPanel value={indicator.indicator}>
+                <TabPanel value={indicator.indicator} key={i}>
                     {/* {indicator.indicator} */}
                     {/* { selectedIndicator !== false && selectedIndicator !== undefined && <InnerModule indicator = {selectedIndicator}/>} */}
                     <InnerModule indicator={selectedIndicator}/>
