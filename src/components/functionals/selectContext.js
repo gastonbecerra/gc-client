@@ -9,10 +9,12 @@ export default function SelectContext(props){
     const dispatch = useDispatch();
     const {contexts, selectedContext: context_id} = useSelector(state => state.context)
     const {id: user_id} = useSelector(state => state.user);
+    const { selectedIndicator } = useSelector(state => state.indicator)
     const {id : indicator_id } = useSelector(state => state.indicator.selectedIndicator);
 
     useEffect(()=>{
-        dispatch(fetchIndicatorByUser(indicator_id, context_id, user_id));
+    ![false, undefined].includes(selectedIndicator.indicator && context_id) &&
+        dispatch(fetchIndicatorByUser(indicator_id, context_id, 'Gastón'));
     },[context_id])
 
     return(
