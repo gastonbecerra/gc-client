@@ -10,7 +10,7 @@ import { setSelectedIndicator, fetchIndicatorByUser } from "../../store/slices/i
 import { useHistory } from "react-router-dom";
 import InnerModule from "./innerModule";
 
-export default function Modulo(props){
+export default function Modulo(){
     let history = useHistory();
     const dispatch = useDispatch();
     let tabs = ["Inputs", "Indicator", "Info", "Muestra"];
@@ -54,7 +54,7 @@ export default function Modulo(props){
             {selectedModule &&
                 selectedModule.indicators &&
                 selectedModule.indicators.map((indicator, i)=>(
-                    <Tab label={indicator.indicator} value={indicator.indicator} onClick={()=> dispatch(setSelectedIndicator(indicator))}/>
+                    <Tab label={indicator.indicator} key={i} value={indicator.indicator} onClick={()=> dispatch(setSelectedIndicator(indicator))}/>
                 ))
             }
           </TabList>

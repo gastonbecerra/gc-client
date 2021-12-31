@@ -19,9 +19,7 @@ export default function Inputer() {
     return (
         <>
         
-        <Divider textAlign="left" className="my-2">
-            <Chip label="Inputs" style={{width:'100px'}}/>            
-          </Divider>
+        <strong>Inputs</strong>
         
         <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>
           {values.map((v, idx) => (

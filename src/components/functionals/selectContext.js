@@ -17,7 +17,7 @@ export default function SelectContext(props){
 
     return(
         <Container  className="context-container mt-2">
-        <FloatingLabel style={{marginBottom: '5px'}} controlId="context" label="Select a Context" defaultValue={context_id}>
+        <FloatingLabel style={{marginBottom: '5px', fontWeight:'900'}} controlId="context" label="Select a Context" defaultValue={context_id}>
         <Form.Select onChange={(e)=>dispatch(pickContext(e.target.value))}  >
             
             {contexts ? 

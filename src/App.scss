@@ -41,15 +41,6 @@ $breakpoints: (
   }
 }
 
-//HOME PAGES
-//tab
-#home-tabs{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
 // DASHBOARD PAGE
 .modulo-container{
   min-height: 120vh;
@@ -86,152 +77,18 @@ $breakpoints: (
   }
 }
 
-// INDICATOR PAGE
-.indicador-container{
-  min-height: 140vh;
-  overflow-y:hidden;
-  padding: 5px 5px 0 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
+// CHART COMPONENT
+.chart-container{
+  min-height: 20vh;
   @include media-up(md){
-    max-width: 70vw;
-  }
-
-  // => indicator (chart) tab
-  .indicator-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    .context-container{
-      @include media-up(md){
-        width: 75%;
-        max-width: 600px;
-      }
-    }
-    .chart-container{
-      @include media-up(lg){
-        width: 50%;
-      }
-    }
-  }
-
-  // => inputs tab
-  .inputs-container{
-    min-height: 140vh;
-    overflow-y: hidden;
-    padding: 5px 5px 0 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-
-    @include media-up(md){
-      width: 100%;
-    }   
-
-    .inputs-faltantes{
-      border: solid black 1px;
-      width: 100%;
-      min-height: 100%;
-
-      @include media-up(md){
-        max-width: 500px !important;
-      }
-
-      @include media-up(lg){
-        max-width: 700px !important;
-      }
-    }
     
-    .inputs-existentes{
-      
-      width: 100%;
-
-      @include media-up(md){
-        max-width: 500px !important;
-      }
-
-      @include media-up(lg){
-        max-width: 700px !important;
-      }
-      .form-buttons{
-        max-width: 30%; 
-        display:flex; 
-        justify-content:space-around; 
-        align-items: center;
-        
-      }
-      .form-labels{
-        font-style: italic;
-        background-color: lightcyan;
-        padding: 0 3px 0 3px 0;
-      }
-    }
   }
 
-  // => documentation tab
-  .documentation-container{
-
-  }
-
-  // => sample tab
-  .sample-container{
-
-  }
-}
-
-// -- LAB PAGES
-.lab-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .indicator-card{
+  @include media-up(lg){
     
-    box-shadow: 2px 2px;
-    // max-width: 99vw;
   }
 }
 
-.inputs-faltantes > div > div > div{
-  padding-bottom: 20%;
-}
-
-.inputs-faltantes > div > div > div > div{
-  position: relative;
-}
-.inputs-faltantes > div > div > div > div > a.carousel-control-prev > span.carousel-control-prev-icon{
-  height: 20px;
-}
-
-.inputs-faltantes > div > div > div > div > a.carousel-control-next > span.carousel-control-next-icon{
-  height: 20px;
-}
-.inputs-faltantes > div > div > div > div > a.carousel-control-prev {
-  position: absolute;
-  bottom: -19vh;
-  left: 20%;
-  @include media-up(md){
-    bottom: -37vh;
-    left: 30%;
-  }
-}
-
-.inputs-faltantes > div > div > div > div > a.carousel-control-next{
-  position: absolute;
-  bottom: -19vh;
-  right:20%;
-  @include media-up(md){
-    bottom: -37vh;
-    right:30%;
-  }
-}
-
-.inputs-faltantes > div > div > div > div > div.carousel-indicators{
-  display: none;
-}
 
 // LOGIN SIGNUP PAGES
 .sign-forms{
@@ -258,9 +115,6 @@ $breakpoints: (
   grid-template-columns: 20% 19% 20% 18% 18%;
   padding: 5px;
   grid-gap: 5px;
-  // flex-direction: row;
-  // justify-content: space-around;
-  // align-items: flex-start;
   border: solid 0.5px darkgray;
   font-weight: 600;
   height: 7vh;
@@ -281,5 +135,3 @@ $breakpoints: (
   }
 }
 
-
-//Sign forms pages

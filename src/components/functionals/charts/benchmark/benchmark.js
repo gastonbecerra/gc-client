@@ -12,14 +12,11 @@ export default function Benchmark() {
     const { selectedIndicator } = useSelector(state => state.indicator);
 
     return (
-        <Container>
-            <Divider textAlign="left" className='mb-2'>
-                <Chip label={"Chart" } style={{width:'100px'}}/>          
-            </Divider>
             
-            {sample ? 
-
+            
             <>
+
+            {sample && 
 
             <Chart
                 chartType="ScatterChart"
@@ -37,13 +34,8 @@ export default function Benchmark() {
                     legend: 'none',
                 }}
                 rootProps={{ 'data-testid': '1' }}/>
-                </>
-
-            : 
-            <Alert variant="outlined" severity="error"> No hay un valor de muestra para el contexto seleccionado</Alert>
-            }        
-
-    </Container>
+            }
+            </>
         
     )
 }

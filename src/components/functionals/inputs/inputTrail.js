@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { SliderData } from './SliderData';
 import { FcPrevious, FcNext } from "react-icons/fc";
 import * as Inputs from './ux_types';
 
