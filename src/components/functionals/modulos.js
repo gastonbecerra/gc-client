@@ -24,12 +24,9 @@ export default function Modulo(){
     },[])
 
     useEffect(()=>{
-        if(selectedIndicator.indicator !== false && context_id !== false) dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
-    },[selectedIndicator])
-
-    useEffect(()=>{
-        if(selectedIndicator.indicator !== false && context_id !== false) dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
-    },[context_id])
+        ![false, undefined].includes(selectedIndicator.indicator && context_id) &&
+            dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
+    },[selectedIndicator, context_id])
 
     // UI Logic
     const [value, setValue] = useState(indicator_name);
@@ -65,26 +62,12 @@ export default function Modulo(){
             selectedModule.indicators &&
             selectedModule.indicators.map((indicator, i)=>(
                 <TabPanel value={indicator.indicator} key={i}>
-                    {/* {indicator.indicator} */}
-                    {/* { selectedIndicator !== false && selectedIndicator !== undefined && <InnerModule indicator = {selectedIndicator}/>} */}
                     <InnerModule indicator={selectedIndicator}/>
                 </TabPanel>
             ))
         }
         </TabContext>
         </Box>
-
-        
-        
-        
-        {/*                                 
-        <Container className="indicador-container">
-            <Indicator/>
-            <Inputer/>
-            <Info/>
-        </Container>
-
-         */}
         </>
     )
 }

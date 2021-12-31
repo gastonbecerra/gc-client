@@ -1,10 +1,8 @@
-import React,{ useEffect, useState } from "react";
+import React,{ useState } from "react";
 import { Container, Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import InputHome from '../../components/functionals/inputs/inputHome';
 import { MdInput } from 'react-icons/md';
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
 
 export default function Inputer() {
     const values = [true];

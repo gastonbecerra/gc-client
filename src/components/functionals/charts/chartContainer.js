@@ -1,8 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap' 
 import Alert from '@mui/material/Alert';
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
 import { useSelector } from "react-redux";
 import * as Chart from './index';
 
@@ -54,6 +52,7 @@ export default function ChartContainer(indicator) {
             <div className="highlights-container">
                 <strong>Highlights</strong>
             </div>
+            
 
         </Container>
     )

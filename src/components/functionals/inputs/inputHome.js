@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './inputTrail.css';
 import InputTrail from './inputTrail';
 import { useSelector } from "react-redux";
 
-function App() {
-  const { inputs } = useSelector(state => state.indicator)
+function App(props) {
+
+  useEffect(()=>{
+    console.log(window.location.pathname);
+  },[])
   
-  React.useEffect(()=>{
-      console.log(inputs);
-  },[inputs])
+  const { inputs } = useSelector(state => state.indicator)
 
   return <InputTrail inputs={inputs} />;
 
