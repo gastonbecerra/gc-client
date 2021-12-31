@@ -51,7 +51,9 @@ export default function ChartContainer(indicator) {
                 {renderRequiredChart()}    
             </div>
 
-            <strong>Highlights</strong>
+            <div className="highlights-container">
+                <strong>Highlights</strong>
+            </div>
 
         </Container>
     )

@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from "react";
-import { Modal } from 'react-bootstrap';
+import { Container, Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import InputHome from '../../components/functionals/inputs/inputHome';
 import { MdInput } from 'react-icons/md';
@@ -17,9 +17,10 @@ export default function Inputer() {
     }
   
     return (
-        <>
-        
-        <strong>Inputs</strong>
+        <Container>
+        <div>
+          <strong>Inputs</strong>
+        </div>
         
         <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>
           {values.map((v, idx) => (
@@ -37,7 +38,7 @@ export default function Inputer() {
             </Modal.Body>
           </Modal>
           </div>
-        </>
+        </Container>
       );
     }
   
