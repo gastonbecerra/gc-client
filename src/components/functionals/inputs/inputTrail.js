@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { FcPrevious, FcNext } from "react-icons/fc";
 import * as Inputs from './ux_types';
 
@@ -12,6 +13,7 @@ const InputTrail = ({ inputs }) => {
 
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
+    alert(document.getElementById('value').value)
   };
 
   if (!Array.isArray(inputs) || inputs.length <= 0) {
@@ -21,21 +23,26 @@ const InputTrail = ({ inputs }) => {
  function renderRequiredInput (slide, index){
     let type;
     switch (slide.ux_input) {
-        case 'numberUx':
-            type = 'NumberUx'
-            break;
+      case 'numberUx':
+        type = 'NumberUx'
+        break;
 
-            case 'radioUx':
-            type = 'RadioUx'
-            break;
+      case 'radioUx':
+        type = 'RadioUx'
+        break;
 
-            case 'worder':
-            type = 'OpenCat'
-            break;
-    
-        default:
-            type = 'BasicFormInput'
-            break;
+      case 'open_cat':
+        type = 'OpenCat'
+        break;
+
+      case 'cat_open':
+        type = 'OpenCat'
+        break;
+
+    default:
+      return null;
+        // type = 'BasicFormInput'
+        // break;
     }
     const Component = Inputs[type]
     return <Component input={slide} i={index}/>
@@ -44,10 +51,26 @@ const InputTrail = ({ inputs }) => {
  function setPropperTitle(slide){
   if(slide && slide.var === "preferencias_financieras"){
     var [a, b] = slide.var.split("_");
-    return <span className='title'>{a}</span>
+    return (
+      <>
+        <h1 className='title'>{a}</h1>
+        <span>{slide.timestamp && slide.timestamp }</span>
+      </>
+    )
   }else{
-    return <h1 className='title'>{slide.var}</h1>
+    return (
+      <>
+        <h1 className='title'>{slide.var}</h1>
+        <div className='text-center'>
+          <span style={{}}>{slide.timestamp && slide.timestamp }</span>
+        </div>
+      </>
+    )
   }
+ }
+
+ function dataTaking(){
+  console.log('RECIBI DESDE ')
  }
 
   return (
@@ -60,12 +83,12 @@ const InputTrail = ({ inputs }) => {
               setPropperTitle(slide)
             )}          
             
-            {renderRequiredInput(slide, index)}
+            {renderRequiredInput(slide, index, dataTaking)}
               
           </div>
         );
       })}
-      <FcPrevious className='left-arrow' onClick={prevSlide} />
+      <FcPrevious className='left-arrow' onClick={prevSlide}/>
       <FcNext className='right-arrow' onClick={nextSlide} />
     </section>
   );

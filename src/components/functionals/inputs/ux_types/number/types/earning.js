@@ -14,7 +14,7 @@ export default function Earning({input}) {
             <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"}>
                 <MdOutlineAttachMoney style={{fontSize: '200px'}} className="input-image"/>
                 <TextField
-                    id="ingresos"
+                    id="value"
                     label="Ingresos"
                     type="number"
                     InputLabelProps={{

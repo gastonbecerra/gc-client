@@ -8,13 +8,13 @@ import { fetchIndicatorByUser } from "../../store/slices/indicator";
 export default function SelectContext(props){
     const dispatch = useDispatch();
     const {contexts, selectedContext: context_id} = useSelector(state => state.context)
-    const {id: user_id} = useSelector(state => state.user);
+    const { username:  user_id} = useSelector(state => state.user)
     const { selectedIndicator } = useSelector(state => state.indicator)
     const {id : indicator_id } = useSelector(state => state.indicator.selectedIndicator);
 
     useEffect(()=>{
     ![false, undefined].includes(selectedIndicator.indicator && context_id) &&
-        dispatch(fetchIndicatorByUser(indicator_id, context_id, 'Gastón'));
+        dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, user_id));
     },[context_id])
 
     return(

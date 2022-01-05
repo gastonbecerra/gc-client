@@ -5,6 +5,7 @@ export const indicatorSlice = createSlice({
     name: 'indicator',
     initialState: {
         inputs: false,
+        missing_inputs: false,
         sample: false,
         user_value: false,
         selectedIndicator: false
@@ -21,11 +22,14 @@ export const indicatorSlice = createSlice({
         },
         setUserValue : (state, action) => {
             state.user_value = action.payload[0];
+        },
+        setMissingInputs : (state, action) => {
+            state.missing_inputs = action.payload;
         }
     }
 })
 
-export const { setSelectedIndicator, getIndicatorByUser, postInput, setInputs, setSample, setUserValue  } = indicatorSlice.actions;
+export const { setSelectedIndicator, getIndicatorByUser, postInput, setInputs, setSample, setUserValue, setMissingInputs  } = indicatorSlice.actions;
 
 export default indicatorSlice.reducer;
 
@@ -37,9 +41,10 @@ export const fetchIndicatorByUser = (indicator_id, context_id, user_id) => (disp
     Axios.get(`/indicators/${indicator_id}/${context_id}/${user_id}`)
         .then((response)=>{            
             if(response.data){
-                dispatch(setSample(response.data.sample))
-                dispatch(setUserValue(response.data.user_value))
+                dispatch(setSample(response.data.sample));
+                dispatch(setUserValue(response.data.user_value));
                 dispatch(setInputs(response.data.inputs_front));
+                dispatch(setMissingInputs(response.data.missing_inputs));
             }
         })
 }

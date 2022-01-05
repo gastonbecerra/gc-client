@@ -17,6 +17,9 @@ export const {setInputs} = inputSlice.actions;
 
 export default inputSlice.reducer;
 
-export const fetchInputs = (user_id) => dispatch => {
-    
+export const fetchInputsByUser = (user_id) => (dispatch) => {
+    Axios.get(`/vars/${user_id}`)
+    .then((response)=>{
+        dispatch(setInputs(response.data))
+    })
 }

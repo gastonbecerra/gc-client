@@ -12,6 +12,7 @@ export default function Age({input}) {
     useEffect(() => {
         input.value && setValue(input.value)
     }, [])
+    
     return (
         <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"} >      
         <img src={value < 18 ? boy : value > 55 ? old : man} className="input-image" /> 
@@ -20,6 +21,7 @@ export default function Age({input}) {
                 onChange={(e) => setValue(e.target.value)}
                 aria-label="Small"
                 valueLabelDisplay="auto"
+                id="value"
                 marks
                 min={0}
                 max={110}

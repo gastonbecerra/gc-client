@@ -13,11 +13,11 @@ import InnerModule from "./innerModule";
 export default function Modulo(){
     let history = useHistory();
     const dispatch = useDispatch();
-    let tabs = ["Inputs", "Indicator", "Info", "Muestra"];
     const { selectedModule } = useSelector(state => state.modulo);
     const { indicator: indicator_name } = useSelector(state => state.indicator.selectedIndicator);
     const { selectedIndicator } = useSelector(state => state.indicator)
     const { selectedContext: context_id } = useSelector(state => state.context)
+    const { username : user_id} = useSelector(state => state.user)
 
     useEffect(()=>{
         if(selectedModule == false && selectedIndicator == false)  history.push('/')
@@ -25,7 +25,7 @@ export default function Modulo(){
 
     useEffect(()=>{
         ![false, undefined].includes(selectedIndicator.indicator && context_id) &&
-            dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, 'Gastón'));
+            dispatch(fetchIndicatorByUser(selectedIndicator.indicator, context_id, user_id));
     },[selectedIndicator, context_id])
 
     // UI Logic
