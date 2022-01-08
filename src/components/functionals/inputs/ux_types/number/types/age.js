@@ -4,29 +4,64 @@ import man from '../../../assets/man.png'
 import boy from '../../../assets/boy.png'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-
+import { useDispatch, useSelector } from "react-redux";
+import { setInputRequest } from '../../../../../../store/slices/inputs';
+import { setMissingRequest } from '../../../../../../store/slices/indicator';
 
 export default function Age({input}) {
     const [value, setValue] = useState(false);
+    const { username } = useSelector(state => state.user);
+    const { queu } = useSelector(state => state.inputs);
+    const dispatch = useDispatch();
+    const { missing_queu } = useSelector(state => state.indicator);
+    var route = window.location.pathname;
 
     useEffect(() => {
         input.value && setValue(input.value)
     }, [])
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        
+        var body = {
+                field: input.var,
+                op: input.value ? 'PUT' : 'POST',
+                id: input.value ? input._id : null,
+                required: input.required === true ? true : false,
+                data: {
+                    var: input.var,
+                    timestamp: Date.now(),
+                    user: username ? username : input.user,
+                    value: event.target.value
+            }
+        }
+        
+        if (route === '/modulo'){
+            let data = missing_queu.filter(q => q.field !== input.var)
+            data = [...data, body]
+            dispatch(setMissingRequest(data))           
+        }
+        
+        if(route === '/inputs'){
+            let data = queu.filter(q => q.field !== input.var)
+            data = [...data, body]
+            dispatch(setInputRequest(data))
+        }
     
+    };
+
     return (
         <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"} >      
         <img src={value < 18 ? boy : value > 55 ? old : man} className="input-image" /> 
             <Slider
-                size="large"
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 aria-label="Small"
                 valueLabelDisplay="auto"
                 id="value"
                 marks
                 min={0}
                 max={110}
-                value={value}
-            
+                value={input.value && value}            
             />
             <p><span className="input-value">{value}</span></p>
         </Box>

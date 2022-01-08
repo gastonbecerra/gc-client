@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Card, Button, ListGroup, ListGroupItem, Container } from 'react-bootstrap';
 import { fetchUser } from "../../store/slices/user";
 import { fetchContexts } from "../../store/slices/context";
@@ -8,6 +8,7 @@ import { saveModules, setSelectedModule } from "../../store/slices/modules";
 import { setSelectedIndicator } from "../../store/slices/indicator";
 import Alert from '@mui/material/Alert';
 import { useHistory } from "react-router-dom";
+import Axios from 'axios'; 
 
 export default function Dashboard(){
     
@@ -62,8 +63,8 @@ export default function Dashboard(){
         {modules !== false && 
         <div className="modulo-list">
             {modules.map((mod,i)=>(
-                <div>
-                <Card key={i} className="modulo-card" >
+                <div key={i}>
+                <Card className="modulo-card" >
                         <Card.Header as="h5">{mod.module}</Card.Header>
                         
                         <Card.Body>
@@ -80,16 +81,6 @@ export default function Dashboard(){
                             <Card.Text className="my-2">{ind.description}</Card.Text>
                             </div>
                             <Button variant="outline-primary" onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[y], ind._id)}>Acceder</Button>
-                            {/*                             
-                            <Link to={{ pathname: `/modulo/${ind._id}`, 
-                                state:{ 
-                                    indicator: {id: `${ind._id}`, name: `${ind.indicator}` }, 
-                                    module: { mod: `${modules[i]}` }}}}
-                            >
-                                <Button size="sm" className="my-0.5 pl-1" variant="outline-primary">Acceder</Button>    
-                            </Link> 
-                            */}
-
                             </ListGroupItem>
                          ))}
                          </ListGroup>
@@ -100,51 +91,7 @@ export default function Dashboard(){
             ))}
         </div>
         }
-        
-        
         </Container>
     )
 }
 
-/*
-
-<div className="modulo-list">
-            {modules !== false ? 
-                modules.map((m,i)=>(
-                    <Card key={i} className="modulo-card" >
-                        <Card.Header as="h5">{m.indicator}</Card.Header>
-                        
-                        <Card.Body>
-                            <Card.Text>{m.text}</Card.Text>
-                        </Card.Body>
-
-                        {m.indicators.length === 0  ? 
-                        
-                        null
-
-                            :
-
-                        <ListGroup>
-                         {m.indicators.map((ind, i)=>(
-                            <ListGroupItem key={i}>
-                            <div className="ms-2">
-                            <div className="fw-bold">{ind.name}</div>
-                            <Card.Text className="my-2">{ind.description}</Card.Text>
-                            </div>
-                            <Link to={{ pathname: `/modulo/${ind._id}`, state: { id: `${ind._id}`, name: `${ind.name}` } }}>
-                                <Button size="sm" className="my-0.5 pl-1" variant="outline-primary">Acceder</Button>    
-                            </Link>
-                            </ListGroupItem>
-                         ))}
-                         </ListGroup>
-
-                        }
-                    </Card>
-                ))
-            :
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-            }            
-          </div>
-*/

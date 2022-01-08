@@ -6,20 +6,23 @@ import { fetchInputsByUser } from '../../../store/slices/inputs';
 
 function App(props) {
   const { username: user_id } = useSelector(state => state.user);
-
+  var route = window.location.pathname;
+  const { inputs} = useSelector(state => state.indicator);
+  const { missing_inputs} = useSelector(state => state.indicator);
+  const { inputs: data } = useSelector(state => state.inputs);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     ![false, undefined].includes(user_id) && dispatch(fetchInputsByUser(user_id));
   }, [user_id])
-
-  var route = window.location.pathname;
-  const { inputs} = useSelector(state => state.indicator);
-  const { inputs: data } = useSelector(state => state.inputs);
-  const dispatch = useDispatch();
+  
+  var mod_data;
+  missing_inputs ? mod_data = inputs.concat(missing_inputs) : mod_data = inputs;
   
   return(
     <>
       {data && route === '/inputs' && <InputTrail inputs={data} />}
-      {inputs && route === '/modulo' && <InputTrail inputs={inputs} />}
+      {mod_data && route === '/modulo' && <InputTrail inputs={mod_data} />}
     </>
   )
 
