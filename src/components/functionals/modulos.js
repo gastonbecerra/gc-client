@@ -20,7 +20,7 @@ export default function Modulo(){
     const { username : user_id} = useSelector(state => state.user)
 
     useEffect(()=>{
-        if(selectedModule == false && selectedIndicator == false)  history.push('/')
+        if(selectedModule == false || selectedIndicator == false)  history.push('/')
     },[])
 
     useEffect(()=>{

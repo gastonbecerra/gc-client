@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
-
+import { useDispatch, useSelector } from "react-redux";
+import { submitInput } from '../../../store/slices/inputs';
 import { FcPrevious, FcNext } from "react-icons/fc";
+import { submitMissingInput } from '../../../store/slices/indicator';
 import * as Inputs from './ux_types';
 
 const InputTrail = ({ inputs }) => {
   const [current, setCurrent] = useState(0);
   const length = inputs.length;
-
+  const { queu } = useSelector(state => state.inputs);
+  const { missing_queu } = useSelector(state => state.indicator);
+  const { missing_inputs } = useSelector(state => state.indicator);
+  const dispatch = useDispatch();
+  var route = window.location.pathname;
+  
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
+    if(route === '/inputs' && queu.length > 0) dispatch(submitInput(queu));
+    if(route === '/modulo' && missing_queu.length > 0) dispatch(submitMissingInput(missing_queu, missing_inputs));
+    
   };
 
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
-    alert(document.getElementById('value').value)
+    if(route === '/inputs' && queu.length > 0) dispatch(submitInput(queu));
+    if(route === '/modulo' && missing_queu.length > 0) dispatch(submitMissingInput(missing_queu, missing_inputs));
   };
 
   if (!Array.isArray(inputs) || inputs.length <= 0) {
@@ -41,8 +52,6 @@ const InputTrail = ({ inputs }) => {
 
     default:
       return null;
-        // type = 'BasicFormInput'
-        // break;
     }
     const Component = Inputs[type]
     return <Component input={slide} i={index}/>
@@ -63,14 +72,11 @@ const InputTrail = ({ inputs }) => {
         <h1 className='title'>{slide.var}</h1>
         <div className='text-center'>
           <span style={{}}>{slide.timestamp && slide.timestamp }</span>
+          {slide.required === true ? <p style={{display: 'inline', color: 'tomato', fontWeight: '700'}}>Input required for this Indicator</p> : null }
         </div>
       </>
     )
   }
- }
-
- function dataTaking(){
-  console.log('RECIBI DESDE ')
  }
 
   return (
@@ -83,7 +89,7 @@ const InputTrail = ({ inputs }) => {
               setPropperTitle(slide)
             )}          
             
-            {renderRequiredInput(slide, index, dataTaking)}
+            {renderRequiredInput(slide, index)}
               
           </div>
         );
