@@ -22,7 +22,8 @@ export const indicatorSlice = createSlice({
             state.sample = action.payload[0];
         },
         setUserValue : (state, action) => {
-            state.user_value = action.payload[0];
+            if(!action.payload){state.user_value = action.payload}
+            if(action.payload){ state.user_value = action.payload[0]}
         },
         setMissingInputs : (state, action) => {
             state.missing_inputs = action.payload;

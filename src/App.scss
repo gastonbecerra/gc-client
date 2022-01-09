@@ -77,6 +77,11 @@ $breakpoints: (
   }
 }
 
+.inner-module{
+  min-height: 160vh;
+  overflow-y: auto;
+}
+
 // CHART COMPONENT
 .chart-container{
   min-height: 20vh;

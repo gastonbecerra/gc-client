@@ -1,38 +1,42 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
-import { Container } from 'react-bootstrap' 
-import Alert from '@mui/material/Alert';
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
 
 export default function Benchmark() {
     const { sample } = useSelector(state => state.indicator);
     const { user_value } = useSelector(state => state.indicator); 
     const { selectedIndicator } = useSelector(state => state.indicator);
+    const { selectedContext } = useSelector(state => state.context);
+    const [ dataChart, setDataChart ] = React.useState(false)
+    const [options, setOptions] = React.useState(false)
 
-    return (
-            
-            
+    React.useEffect(()=>{
+        var holder = []
+        holder.push([sample.context, sample.context, {role: 'style'}])
+        sample && selectedIndicator.chart === 'benchmark' &&
+            holder.push([sample.values.val_max, 0, 'color: blue'])
+            holder.push([sample.values.val_min, 0, 'color: blue'])
+        user_value &&
+            holder.push([user_value.value, 0, 'color: tomato' ])
+
+        setOptions({                        
+            title: selectedIndicator.indicator,
+            hAxis: { gridlines: {color: 'white'}, minValue: 0, maxValue: sample.values.val_max + sample.values.val_max * 0.1 },
+            vAxis: { gridlines: {color: 'white'}, minValue: 0, maxValue: 0 },
+            legend: 'none',
+        })
+        setDataChart(holder)
+    },[sample])
+
+    return (                        
             <>
-
-            {sample && 
+            {sample && selectedContext &&
 
             <Chart
                 chartType="ScatterChart"
                 loader={<div>Loading Chart</div>}
-                data={[
-                    ['', sample.context], // columnas
-                    [sample.values.val_max, 0], //min
-                    [sample.values.val_min, 0], //max
-                    [user_value && user_value.value, 0], //user
-                ]}
-                options={{                        
-                    title: 'Ahorro',
-                    hAxis: { minValue: 0, maxValue: sample.values.val_max * 1.2 },
-                    vAxis: { minValue: 0, maxValue: 0 },
-                    legend: 'none',
-                }}
+                data={dataChart}
+                options={options}
                 rootProps={{ 'data-testid': '1' }}/>
             }
             </>

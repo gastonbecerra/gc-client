@@ -46,7 +46,8 @@ export default function ChartContainer(indicator) {
 
             
             <div  className="chart-container">
-                {renderRequiredChart()}    
+                
+                {(sample && user_value) ? renderRequiredChart() : null}    
             </div>
 
             <div className="highlights-container">
