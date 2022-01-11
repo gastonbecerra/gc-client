@@ -5,16 +5,18 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         id: false,
-        username: 'pepe',
+        username: false,
         auth: false,
-        type: ''
+        type: false,
+        picture: false
     },
     reducers: {
         getUser : (state, action) =>{
             state.id = action.payload.id;
             state.username = action.payload.username;
             state.type = action.payload.type;
-            state.auth = action.payload.id ? true : false;
+            state.auth = action.payload.username ? true : false;
+            state.picture = action.payload.picture ? action.payload.picture : false;
         }
     }
 })
