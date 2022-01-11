@@ -11,7 +11,7 @@ export default function Footer() {
     return (
 
     <>
-    <Navbar id="footer" bg="light" variant="dark">
+    <Navbar id="footer" bg="white" variant="dark">
         <div>
             <MdViewModule className="footer-icon"/>
             <div><Link to={"/"}><span>Indicators</span></Link></div>

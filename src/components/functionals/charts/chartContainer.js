@@ -46,7 +46,8 @@ export default function ChartContainer(indicator) {
 
             
             <div  className="chart-container">
-                {renderRequiredChart()}    
+                
+                {![false, undefined].includes(sample) ? renderRequiredChart() : null}    
             </div>
 
             <div className="highlights-container">
