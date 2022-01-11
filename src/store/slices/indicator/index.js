@@ -22,8 +22,7 @@ export const indicatorSlice = createSlice({
             state.sample = action.payload[0];
         },
         setUserValue : (state, action) => {
-            if(!action.payload){state.user_value = action.payload}
-            if(action.payload){ state.user_value = action.payload[0]}
+            state.user_value = action.payload[0];
         },
         setMissingInputs : (state, action) => {
             state.missing_inputs = action.payload;
@@ -46,12 +45,12 @@ export const fetchIndicatorByUser = (indicator_id, context_id, user_id) => (disp
     ![false, undefined, null].includes(indicator_id, context_id, user_id) &&
     Axios.get(`/indicators/${indicator_id}/${context_id}/${user_id}`)
         .then((response)=>{            
-            if(response.data){
-                dispatch(setSample(response.data.sample));
-                dispatch(setUserValue(response.data.user_value));
-                dispatch(setInputs(response.data.inputs_front));
-                dispatch(setMissingInputs(response.data.missing_inputs));
-            }
+            
+            dispatch(setSample(response.data.sample));
+            dispatch(setUserValue(response.data.user_value));
+            dispatch(setInputs(response.data.inputs_front));
+            dispatch(setMissingInputs(response.data.missing_inputs));
+            
         })
 }
 

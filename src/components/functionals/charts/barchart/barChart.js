@@ -13,9 +13,10 @@ export default function BarChart() {
 
     useEffect(()=>{
         var holder = []
-        if(sample && selectedIndicator && selectContext){
-            holder.push([selectedIndicator.indicator, sample.context, { role: 'style' }])
-            sample.values.data.forEach((row, i)=>{
+        if(sample && typeof(sample.values) !== undefined && selectedIndicator && selectContext){
+            try{
+                holder.push([selectedIndicator.indicator, sample.context, { role: 'style' }])
+                sample.values.data.forEach((row, i)=>{
                 var k = Object.keys(row)
                 var v = Object.values(row)
                 if(k[0] === user_value.value ){
@@ -24,22 +25,27 @@ export default function BarChart() {
                     holder.push([k[0], v[0], 'color: #76A7FA'])
                 }
             })
+            }catch(error){
+
+            }
+            
             if (user_value && sample) setOptions({                        
                 
                     title: selectedIndicator.indicator,
                     chartArea: { width: "90%" },
-                    hAxis: {
-                      title: sample.context,
-                      minValue: 0,
-                    },
+                    hAxis: { 
+                        title: sample.context, 
+                        minValue: 0, 
+                        gridlines: {color: 'white'}},
                     vAxis: {
-                      title: "Nivel de estudio",
+                      title: "Nivel de estudio", 
+                      gridlines: {color: 'white'}
                     },
 
             })
             setDataChart(holder)
         } 
-    },[sample])
+    },[sample, user_value])
     
     return (
         <>

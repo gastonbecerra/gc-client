@@ -26,7 +26,7 @@ export default function Benchmark() {
             legend: 'none',
         })
         setDataChart(holder)
-    },[sample])
+    },[sample, user_value])
 
     return (                        
             <>
