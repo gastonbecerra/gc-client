@@ -11,13 +11,16 @@ function App(props) {
   const { missing_inputs} = useSelector(state => state.indicator);
   const { inputs: data } = useSelector(state => state.inputs);
   const dispatch = useDispatch();
-  
+  const [mod_data, setData] = React.useState()
+
   useEffect(() => {
     ![false, undefined].includes(user_id) && dispatch(fetchInputsByUser(user_id));
   }, [user_id])
   
-  var mod_data;
-  missing_inputs ? mod_data = inputs.concat(missing_inputs) : mod_data = inputs;
+  // var mod_data;
+  useEffect(() => {
+    missing_inputs ? setData(inputs.concat(missing_inputs)) : setData(inputs);
+  }, [inputs, missing_inputs])
   
   return(
     <>

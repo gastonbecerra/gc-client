@@ -23,9 +23,9 @@ export default function Dashboard(){
         contexts === false && dispatch(fetchContexts());
     },[dispatch])
 
-    useEffect(()=>{
-        auth === true && dispatch(fetchUser())
-    },[user_id])
+    // useEffect(()=>{
+    //     auth === true && dispatch(fetchUser())
+    // },[user_id])
 
     useEffect(()=>{
         if(modules === false){
