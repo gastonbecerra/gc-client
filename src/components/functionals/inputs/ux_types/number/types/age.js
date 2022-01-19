@@ -24,11 +24,16 @@ export default function Age({input}) {
         setValue(event.target.value);
         
         var body = {
-                field: input.var,
-                op: input.value ? 'PUT' : 'POST',
-                id: input.value ? input._id : null,
-                required: input.required === true ? true : false,
-                data: {
+            field: input.var,
+            op: input.value ? 'PUT' : 'POST',
+            id: input.value ? input._id : null,
+            required: input.required === true ? true : false,
+            type: input.type,
+            validation: input.validation,
+            ux_input: input.ux_input,
+            description: input.description,
+            measurement: input.measurement,
+            data: {
                     var: input.var,
                     timestamp: Date.now(),
                     user: username ? username : input.user,

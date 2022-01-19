@@ -11,22 +11,31 @@ const InputTrail = ({ inputs }) => {
   const { queu } = useSelector(state => state.inputs);
   const { missing_queu } = useSelector(state => state.indicator);
   const { missing_inputs } = useSelector(state => state.indicator);
+  const { inputs : inputs_mod } = useSelector(state => state.indicator);
   const dispatch = useDispatch();
   var route = window.location.pathname;
   
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
-    if(route === '/inputs' && queu.length > 0) dispatch(submitInput(queu));
-    if(route === '/modulo' && missing_queu.length > 0) dispatch(submitMissingInput(missing_queu, missing_inputs));
-    
   };
 
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
-    if(route === '/inputs' && queu.length > 0) dispatch(submitInput(queu));
-    if(route === '/modulo' && missing_queu.length > 0) dispatch(submitMissingInput(missing_queu, missing_inputs));
   };
 
+  React.useEffect(() => {
+    if(route === '/inputs' && queu.length > 0 ){
+      dispatch(submitInput(queu));      
+    } 
+    if(route === '/modulo' && missing_queu.length > 0){
+      dispatch(submitMissingInput(missing_queu, missing_inputs, inputs_mod));    
+    } 
+  }, [current])
+
+  React.useEffect(()=>{
+    console.log('TRAIL', inputs);
+  },[inputs])
+  
   if (!Array.isArray(inputs) || inputs.length <= 0) {
     return null;
   }
@@ -82,7 +91,7 @@ const InputTrail = ({ inputs }) => {
   return (
     <section className='slider'>
       
-      {inputs.map((slide, index) => {
+      {inputs?.map((slide, index) => {
         return (
           <div className={index === current ? 'slide active' : 'slide'} key={index}>
             {index === current && (
@@ -90,6 +99,7 @@ const InputTrail = ({ inputs }) => {
             )}          
             
             {renderRequiredInput(slide, index)}
+        
               
           </div>
         );

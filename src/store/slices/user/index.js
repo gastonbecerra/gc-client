@@ -6,7 +6,7 @@ export const userSlice = createSlice({
     initialState: {
         id: false,
         username: false,
-        auth: false,
+        auth: true,
         type: false,
         picture: false
     },

@@ -7,13 +7,17 @@ import TextField from '@mui/material/TextField';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { useDispatch, useSelector } from "react-redux";
 import { setInputRequest } from '../../../../../store/slices/inputs';
+import { setMissingRequest } from '../../../../../store/slices/indicator';
+
 
 export default function OpenCat({input}) {
     const [initialValues, setInitialValues] = useState(false);
     const [selectedValues, setSelectedValues] = useState([]);
     const { username } = useSelector(state => state.user);
-    const { queu } = useSelector(state => state.inputs);
     const dispatch = useDispatch();
+    const { missing_queu } = useSelector(state => state.indicator);
+    const { queu } = useSelector(state => state.inputs);
+    var route = window.location.pathname;
 
     useEffect(()=>{
         input.value && setSelectedValues([...input.value])
@@ -49,7 +53,12 @@ export default function OpenCat({input}) {
                 field: input.var,
                 op: input.value ? 'PUT' : 'POST',
                 id: input.value ? input._id : null,
-                state: 'pending',
+                required: input.required === true ? true : false,
+                type: input.type,
+                validation: input.validation,
+                ux_input: input.ux_input,
+                description: input.description,
+                measurement: input.measurement,
                 data: {
                     var: input.var,
                     timestamp: Date.now(),
@@ -58,11 +67,17 @@ export default function OpenCat({input}) {
                 }
             }
             
-            var data = queu.filter(q => q.field !== input.var)
+            if (route === '/modulo'){
+                let data = missing_queu ? missing_queu.filter(q => q.field !== input.var) : data=[];
+                data = [...data, body]
+                dispatch(setMissingRequest(data))
+            }
             
-            data = [...data, body]
-            
-            dispatch(setInputRequest(data))
+            if(route === '/inputs'){
+                let data = queu.filter(q => q.field !== input.var)
+                data = [...data, body]
+                dispatch(setInputRequest(data))
+            }
         }                
     },[ selectedValues])
 

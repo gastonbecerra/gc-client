@@ -8,7 +8,6 @@ import { saveModules, setSelectedModule } from "../../store/slices/modules";
 import { setSelectedIndicator } from "../../store/slices/indicator";
 import Alert from '@mui/material/Alert';
 import { useHistory } from "react-router-dom";
-import Axios from 'axios'; 
 
 export default function Dashboard(){
     

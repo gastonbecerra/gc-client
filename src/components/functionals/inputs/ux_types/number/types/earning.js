@@ -26,18 +26,23 @@ export default function Earning({input}) {
                 op: input.value ? 'PUT' : 'POST',
                 id: input.value ? input._id : null,
                 required: input.required === true ? true : false,
+                type: input.type,
+                validation: input.validation,
+                ux_input: input.ux_input,
+                description: input.description,
+                measurement: input.measurement,
                 data: {
                     var: input.var,
                     timestamp: Date.now(),
                     user: username ? username : input.user,
-                    value: value
+                    value: e.target.value
             }
         }
         
         if (route === '/modulo'){
-            // let data = missing_queu.filter(q => q.field !== input.var)
-            // data = [...data, body]
-            dispatch(setMissingRequest([body]))
+            let data = missing_queu.filter(q => q.field !== input.var)
+            data = [...data, body]
+            dispatch(setMissingRequest(data))
         }
         
         if(route === '/inputs'){

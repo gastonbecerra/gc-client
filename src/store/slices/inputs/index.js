@@ -32,7 +32,7 @@ export const fetchInputsByUser = (user_id) => (dispatch) => {
     })
 }
 
-export const setInputRequest = ({data}) => (dispatch) => {
+export const setInputRequest = (data) => (dispatch) => {
     dispatch(setRequest(data))
 }
 
