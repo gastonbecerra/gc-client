@@ -20,7 +20,7 @@ function App(props) {
   // var mod_data;
   useEffect(() => {
     missing_inputs ? setData(inputs.concat(missing_inputs)) : setData(inputs);
-  }, [inputs, missing_inputs])
+  }, [inputs, missing_inputs, route])
   
   return(
     <>
