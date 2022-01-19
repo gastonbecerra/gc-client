@@ -4,8 +4,8 @@ import Axios from 'axios';
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        id: 'pepe',
-        username: 'pepe',
+        id: false,
+        username: false,
         auth: true,
         type: false,
         picture: false
