@@ -31,10 +31,6 @@ const InputTrail = ({ inputs }) => {
       dispatch(submitMissingInput(missing_queu, missing_inputs, inputs_mod));    
     } 
   }, [current])
-
-  React.useEffect(()=>{
-    console.log('TRAIL', inputs);
-  },[inputs])
   
   if (!Array.isArray(inputs) || inputs.length <= 0) {
     return null;

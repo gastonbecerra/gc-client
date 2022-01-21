@@ -3,17 +3,44 @@ import { Container, Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import InputHome from '../../components/functionals/inputs/inputHome';
 import { MdInput } from 'react-icons/md';
+import { useDispatch, useSelector } from "react-redux";
+import { submitInput } from "../../store/slices/inputs";
+import { fetchIndicatorByUser, submitMissingInput } from "../../store/slices/indicator";
+import context from "react-bootstrap/esm/AccordionContext";
 
 export default function Inputer() {
     const values = [true];
     const [fullscreen, setFullscreen] = useState('xxl-down');
     const [show, setShow] = useState(false);
+    const { queu } = useSelector(state => state.inputs);
+    const { missing_queu } = useSelector(state => state.indicator);
+    const { missing_inputs } = useSelector(state => state.indicator);
+    const { inputs : inputs_mod } = useSelector(state => state.indicator);
+    const { selectedIndicator} = useSelector(state => state.indicator);
+    const { username: user_id } = useSelector(state => state.user)
+    const { selectedContext } = useSelector(state => state.context);
+    const dispatch = useDispatch();
+    var route = window.location.pathname;
   
     function handleShow(breakpoint) {
       setFullscreen(breakpoint);
       setShow(true);
     }
+
+    function handleClose(){
+      if(route === '/inputs' && queu.length > 0 ){
+        dispatch(submitInput(queu));      
+      } 
+      if(route === '/modulo' && missing_queu.length > 0){
+        dispatch(submitMissingInput(missing_queu, missing_inputs, inputs_mod));    
+      }
+    }
+
+    React.useEffect(()=>{
+      if(route === '/modulo') dispatch(fetchIndicatorByUser(selectedIndicator.indicator, selectedContext, user_id))
+    },[missing_queu])
   
+
     return (
         <Container>
         <div>
@@ -27,7 +54,7 @@ export default function Inputer() {
               {typeof v === 'string' && `below ${v.split('-')[0]}`}
             </Button>
           ))}
-          <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+          <Modal show={show} fullscreen={fullscreen} onExit={()=> handleClose()} onHide={() => setShow(false)}>
             <Modal.Header closeButton>
               <Modal.Title>Inputs</Modal.Title>
             </Modal.Header>
