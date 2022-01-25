@@ -13,27 +13,37 @@ export default function Footer() {
     <>
     <Navbar id="footer" bg="white" variant="dark">
         <div>
+        <Link to={"/"}>
             <MdViewModule className="footer-icon"/>
-            <div><Link to={"/"}><span>Indicators</span></Link></div>
+            <div><span>Indicators</span></div>
+            </Link>
         </div>
         
         <div>
+            <Link to={"/inputs"}>
             <MdInput className="footer-icon"/>
-            <div><Link to={"/inputs"}>Inputs</Link></div>
+            <div>Inputs</div>
+            </Link>
         </div>
         
         <div>
+        <Link to={"/"}>
             <VscActivateBreakpoints className="footer-icon"/>
-            <div><Link to={"/"}>Contexts</Link></div>
+            <div>Contexts</div>
+        </Link>
             
         </div>
         <div>
+        <Link to={"/"}>
             <ImLab className="footer-icon"/>
-            <div><Link to={"/"}>Lab</Link></div>
+            <div>Lab</div>
+        </Link>
         </div>
         <div>
+            <Link to={"/"}>
             <MdOutlineRssFeed className="footer-icon"/>
-            <div><Link to={"/"}>Feed</Link></div>
+            <div>Feed</div>
+            </Link>
         </div>
     </Navbar>
     </>

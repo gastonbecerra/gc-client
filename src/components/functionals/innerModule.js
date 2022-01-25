@@ -10,7 +10,7 @@ export default function InnerModule() {
         <div className='inner-module'>
 
             <ChartContainer indicator={selectedIndicator} />
-
+            
             <Inputer/>
         </div>
         )

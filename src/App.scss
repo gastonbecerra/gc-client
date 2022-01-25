@@ -97,6 +97,24 @@ $breakpoints: (
  //HIGHLIGHTS
  .highlights-container {
   min-height: 10vh;
+  // width: 100vw;
+  // border: solid 1px #d2d4d2;
+  // position: absolute;
+  // right: 0;
+  // padding: 5px 5px 5px 5px;
+  
+ .highlight-text{
+  font-weight: 650;
+  color: black;
+ } 
+ .highlight-context{
+  font-weight: 650;
+  color: dodgerblue;
+ }
+ .highlight-value{
+  font-weight: 650;
+  color: tomato;
+}
 }
 
 
@@ -186,6 +204,8 @@ $breakpoints: (
   }
   .footer-icon{
     font-size: 20px;
+    text-decoration: none;
+    color: black;
   }
 }
 

@@ -47,12 +47,25 @@ export default function Inputer() {
           <strong>Inputs</strong>
         </div>
         
-        <div style={{display: 'flex', justifyContent: 'center', marginTop: '5px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '5px'}}>
           {values.map((v, idx) => (
-            <Button key={idx} variant="outlined" color="primary" onClick={() => handleShow(v)} startIcon={<MdInput/>} style={{ width: '210px'}}>
-              Inputs!
+            <>
+            <p key={idx}>
+              This the list of inputs associated to this indicator. Check it's values, add new ones or change them!
               {typeof v === 'string' && `below ${v.split('-')[0]}`}
-            </Button>
+            </p>
+
+            {selectedContext 
+            ? <Button key={idx + 1} variant="outlined" color="primary" onClick={() => handleShow(v)} startIcon={<MdInput/>} style={{ width: '210px'}}>
+                Inputs!
+                {typeof v === 'string' && `below ${v.split('-')[0]}`}
+              </Button>
+            : <Button key={idx + 1} variant="outlined" color="primary" disabled>
+                Select a context to get Inputs!
+              </Button>
+            }
+            
+            </>
           ))}
           <Modal show={show} fullscreen={fullscreen} onExit={()=> handleClose()} onHide={() => setShow(false)}>
             <Modal.Header closeButton>

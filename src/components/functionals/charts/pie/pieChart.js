@@ -3,7 +3,7 @@ import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
 import { selectContext } from '../../../../store/slices/context';
 
-export default function BarChart() {
+export default function PieChart() {
 
     const { sample } = useSelector(state => state.indicator);
     const { user_value } = useSelector(state => state.indicator); 
@@ -12,6 +12,7 @@ export default function BarChart() {
     const [options, setOptions] = React.useState(false);
     const [acc, setAcc] = useState(0);
     const [belonging, setBelonging] = useState(0);
+    const [index, setIndex] = useState(false);
 
     useEffect(()=>{
         if(sample && typeof(sample.values) !== undefined){        
@@ -32,17 +33,20 @@ export default function BarChart() {
         if(sample && typeof(sample.values) !== undefined && selectedIndicator && selectContext){
             try{
                 holder.push([selectedIndicator.indicator, sample.context, { role: 'style' }, { role: 'annotation' }])
-                sample.values.data.forEach((row, i)=>{                    
+                sample.values.data.forEach((row, i)=>{
+                    // setAcc(0)
                     var k = Object.keys(row)
-                    var v = Object.values(row)                    
+                    var v = Object.values(row)
+                    // i !== 0 && setAcc(acc + v[0])
                     if(k[0] === user_value.value ){
-                        holder.push([k[0], v[0], 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2', k[0]])                
+                        setIndex(holder.length - 1)
+                        holder.push([k[0], v[0], 'border: 2px solid black', k[0]])
                         setBelonging(v[0])
                     }else{
                         holder.push([k[0], v[0], 'color: #76A7FA', k[0]])
-                    }
-            })
-            
+                    }                    
+                })
+
             }catch(error){
 
             }
@@ -51,6 +55,7 @@ export default function BarChart() {
                 
                     title: selectedIndicator.indicator,
                     chartArea: { width: "90%" },
+                    legend: {position: 'bottom'},
                     hAxis: { 
                         title: 'Cantidad', 
                         minValue: 0, 
@@ -59,9 +64,11 @@ export default function BarChart() {
                       title: selectedIndicator.indicator, 
                       gridlines: {color: 'white'}
                     },
-
+                    slices: {
+                        [index] : { offset: 0.05 },
+                    },
             })
-
+            
             setDataChart(holder)
         } 
     },[sample, user_value])
@@ -69,16 +76,15 @@ export default function BarChart() {
     return (
         <>
         {sample && dataChart  && options &&
-
+        
         <Chart
-            chartType="BarChart"
+            chartType="PieChart"
             width="100%"
             height="400px"
             data={dataChart}
-         options={options}   
+            options={options}   
         />
         }
-
         <hr></hr>
             <div className="highlights-container">
             <strong>Highlights</strong>                
@@ -105,7 +111,7 @@ export default function BarChart() {
                     </span>.
                 </div>
                 }
-                <hr></hr>
+        <hr></hr>
             </div>
         </>
     )
