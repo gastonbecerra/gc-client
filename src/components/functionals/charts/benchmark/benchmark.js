@@ -23,14 +23,14 @@ export default function Benchmark() {
             title: selectedIndicator.indicator,
             hAxis: { gridlines: {color: 'white'}, minValue: 0, maxValue: sample.values.val_max + sample.values.val_max * 0.1 },
             vAxis: { gridlines: {color: 'white'}, minValue: 0, maxValue: 0 },
-            legend: 'none',
+            // legend: 'none',
         })
         setDataChart(holder)
     },[sample, user_value])
 
     return (                        
             <>
-            {sample && selectedContext &&
+            {sample && selectedContext && 
 
             <Chart
                 chartType="ScatterChart"
@@ -39,6 +39,59 @@ export default function Benchmark() {
                 options={options}
                 rootProps={{ 'data-testid': '1' }}/>
             }
+            <hr></hr>
+            <div className="highlights-container">
+                <strong>Highlights</strong>                
+                {![false, undefined].includes(user_value) &&
+                
+                
+                <div>
+                Regarding the context 
+                    <span className='highlight-context'>
+                        {' ' + sample.context}
+                    </span>, 
+                    your 
+                    <span className='highlight-context'>  
+                        {' ' + selectedIndicator.indicator}
+                    </span> 
+                    {' '} level is:
+                    <li>
+                    {
+                        ![false, undefined].includes(user_value) && sample.values.val_min > user_value.value 
+
+                        ?   <> 
+                                {' '} <span className="highlight-text">below </span> the min value by 
+                                <span className="highlight-value">{' -' + Math.round(((sample.values.val_min - user_value.value)* 100) / user_value.value )}%</span>
+                            </>
+                        :   <> 
+                                {' '} <span className="highlight-text">above the min value by </span>
+                                <span className="highlight-value">{' -' + Math.round(((sample.values.val_min - user_value.value)* 100) / user_value.value )}%</span>
+                                <span>{}</span>.
+                            </>
+                        }
+                    </li>
+
+                    <li>
+                    {
+                        ![false, undefined].includes(user_value) && sample.values.val_min > user_value.value 
+                         
+                        ?   <> 
+                                {' '} <span className="highlight-text">above </span> the max value by 
+                                <span className="highlight-value">{' -' + Math.round((user_value.value * 100) / sample.values.val_max)}%</span>
+                            </>
+                        :   <> 
+                                {' '} <span className="highlight-text">below the max value by </span>
+                                <span className="highlight-value">{' +' + Math.round((user_value.value * 100) / sample.values.val_max)}%</span>
+                                <span>{}</span>.
+                            </>
+
+                        }
+                    </li>   
+                </div>
+                }
+                <hr></hr>
+            </div>
+
             </>
         
     )
