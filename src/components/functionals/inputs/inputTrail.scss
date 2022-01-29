@@ -1,11 +1,42 @@
+  
+  // MEDIA QUERY BREAKPOINTS
+  $breakpoints: (
+    sm : 540px,
+    md: 768px,
+    lg : 1024px,
+    xl : 1280px    
+  );
+  
+  // MEDIA QUERY DEFINITIONS
+  @mixin media-up($breakpoint){
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+      @content; 
+    }
+  }
+  
+  $xs:540px;
+  $md: 768px;
+  $lg: 1024px;
+  $xl: 1220px;
+
 .slider {
   position: relative;
-  height: 85.7vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: row;
-  /* border: dashed 1px black; */
+  border: dashed 1px black;
+  height: 90%;
+  width: 90%;
+
+  @media screen and (max-width: $xs) {
+    position: absolute;
+    top: 1;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    z-index: 0;
+  }
 }
 
 .title{
@@ -20,13 +51,13 @@
 
 
 .input-control {
-  /* border: solid red 1px; */
   min-width: 300px;
   display: grid;
   grid-gap: 50px 50px;
-  grid-template-rows: 60% 5% 25%;
+  grid-template-rows: 50% 5% 25%;
   text-align: center;
   justify-content: space-evenly;
+  height: 70%;
 }
 
 .input-image{
@@ -34,10 +65,6 @@
   margin-top: 5vh;
   min-height: 200px;
   max-height: 200px;
-}
-
-.input-content{
-  /* border: solid 1px black; */
 }
 
 .input-value{
@@ -56,7 +83,7 @@
 .word-list{
   margin-top: 2vh;
   /* border: solid 1px black; */
-  /* height: 80%; */
+  // /* height: 80%; 
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -85,8 +112,8 @@
 
 .right-arrow {
   position: absolute;
-  bottom: 3%;
-  right: 30%;
+  bottom: 17%;
+  right: 33%;
   font-size: 3rem;
   color: #000;
   z-index: 10;
@@ -96,8 +123,8 @@
 
 .left-arrow {
   position: absolute;
-  bottom: 3%;
-  left: 30%;
+  bottom: 17%;
+  left: 33%;
   font-size: 3rem;
   color: #000;
   z-index: 10;

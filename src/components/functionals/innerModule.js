@@ -7,11 +7,12 @@ export default function InnerModule() {
     const { selectedIndicator} = useSelector(state => state.indicator);
     
     return (
-        <div className='inner-module'>
+        <div>
+    
 
             <ChartContainer indicator={selectedIndicator} />
             
-            <Inputer/>
+
         </div>
         )
 }

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './inputTrail.css';
+import './inputTrail.scss';
 import InputTrail from './inputTrail';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchInputsByUser } from '../../../store/slices/inputs';

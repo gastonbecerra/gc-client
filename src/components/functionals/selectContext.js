@@ -21,7 +21,7 @@ export default function SelectContext(props){
     
 
     return(
-        <Container  className="context-container mt-2">
+        <div className="context-container">
         <FloatingLabel style={{marginBottom: '5px', fontWeight:'900'}} controlId="context" label="Select a Context" defaultValue={context_id}>
         <Form.Select onChange={(e)=>dispatch(pickContext(e.target.value))} >
             
@@ -36,6 +36,6 @@ export default function SelectContext(props){
         }
         </Form.Select>
         </FloatingLabel>
-        </Container>
+        </div>
     )
 }

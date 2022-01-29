@@ -6,7 +6,6 @@ import { MdInput } from 'react-icons/md';
 import { useDispatch, useSelector } from "react-redux";
 import { submitInput } from "../../store/slices/inputs";
 import { fetchIndicatorByUser, submitMissingInput } from "../../store/slices/indicator";
-import context from "react-bootstrap/esm/AccordionContext";
 
 export default function Inputer() {
     const values = [true];
@@ -42,7 +41,7 @@ export default function Inputer() {
   
 
     return (
-        <Container>
+        <div style={{height: '30vh'}}>
         <div>
           <strong>Inputs</strong>
         </div>
@@ -76,7 +75,7 @@ export default function Inputer() {
             </Modal.Body>
           </Modal>
           </div>
-        </Container>
+        </div>
       );
     }
   

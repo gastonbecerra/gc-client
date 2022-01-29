@@ -1,8 +1,9 @@
+import './charts.scss'
 import React from 'react'
-import { Container } from 'react-bootstrap' 
 import Alert from '@mui/material/Alert';
 import { useSelector } from "react-redux";
 import * as Chart from './index';
+import Inputer from '../inputer';
 
 export default function ChartContainer(indicator) {
     const { sample } = useSelector(state => state.indicator);
@@ -41,16 +42,12 @@ export default function ChartContainer(indicator) {
     }
 
     return (
-        <Container>
-           
-            
+        <div className='chart-container'>
+
+            <div  className="chart">                
             <strong>Chart</strong>
             
-
             {!sample && <Alert variant="outlined" severity="error"> No hay un valor de muestra para el contexto seleccionado</Alert> }
-
-            
-            <div  className="chart-container">                
                 {![false, undefined].includes(sample) ? renderRequiredChart() : null}    
             </div>
 
@@ -62,7 +59,7 @@ export default function ChartContainer(indicator) {
                 <hr></hr>
             </div>
             
-
-        </Container>
+            <Inputer/>
+        </div>
     )
 }

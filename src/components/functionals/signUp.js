@@ -1,7 +1,9 @@
+import './forms.scss';
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
+import { Link } from 'react-router-dom';
 const PASSWORD_MIN_LENGTH = 4;
 
 export default function SignUp() {
@@ -44,6 +46,7 @@ export default function SignUp() {
             <Row className="justify-content-md-center">
                 <Col md="6">
                     <h3>Sign up</h3>
+                    <p> ¿Ya tienes una cuenta? <Link to={'/signin'}>Inicia sesión aquí</Link></p>
                     {signupResponse ? <p style={{color: 'red', fontWeight: 900}}>{signupResponse}</p> : null}
                     <form onSubmit={(e)=>submit(e)}>
                         <div className="form-item">

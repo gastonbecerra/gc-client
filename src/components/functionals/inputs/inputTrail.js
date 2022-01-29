@@ -4,6 +4,7 @@ import { submitInput } from '../../../store/slices/inputs';
 import { FcPrevious, FcNext } from "react-icons/fc";
 import { submitMissingInput } from '../../../store/slices/indicator';
 import * as Inputs from './ux_types';
+import ColumnNav from '../../layout/columnNav';
 
 const InputTrail = ({ inputs }) => {
   const [current, setCurrent] = useState(0);
@@ -62,6 +63,11 @@ const InputTrail = ({ inputs }) => {
     return <Component input={slide} i={index}/>
  }
 
+ function handleKeys(e){
+  e.key === 'ArrowRight' && nextSlide()
+  e.key === 'ArrowLeft' && prevSlide()
+ }
+
  function setPropperTitle(slide){
   if(slide && slide.var === "preferencias_financieras"){
     var [a, b] = slide.var.split("_");
@@ -85,24 +91,24 @@ const InputTrail = ({ inputs }) => {
  }
 
   return (
-    <section className='slider'>
+    <div className='main' onKeyDown={(e)=>{handleKeys(e)}}>
+      <ColumnNav/>
+      <div className='content'>
       
-      {inputs?.map((slide, index) => {
-        return (
-          <div className={index === current ? 'slide active' : 'slide'} key={index}>
-            {index === current && (
-              setPropperTitle(slide)
-            )}          
-            
-            {renderRequiredInput(slide, index)}
-        
-              
-          </div>
-        );
-      })}
-      <FcPrevious className='left-arrow' onClick={prevSlide}/>
-      <FcNext className='right-arrow' onClick={nextSlide} />
-    </section>
+      <div className='slider'>  
+        {inputs?.map((slide, index) => (
+            <div className={index === current ? 'slide active' : 'slide'} key={index}>
+              {index === current && (
+                setPropperTitle(slide)
+              )}          
+              {renderRequiredInput(slide, index)}
+            </div>
+        ))}
+        <FcPrevious className='left-arrow' onClick={prevSlide}/>
+        <FcNext className='right-arrow' onClick={nextSlide} />
+      </div>
+      </div>
+    </div>
   );
 };
 

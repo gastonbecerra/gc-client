@@ -1,3 +1,4 @@
+import './forms.scss';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container, Row, Col } from 'react-bootstrap';

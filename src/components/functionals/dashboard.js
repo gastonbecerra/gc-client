@@ -1,3 +1,4 @@
+import './dashboard.scss';
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { Card, Button, ListGroup, ListGroupItem, Container } from 'react-bootstrap';
@@ -8,6 +9,7 @@ import { saveModules, setSelectedModule } from "../../store/slices/modules";
 import { setSelectedIndicator } from "../../store/slices/indicator";
 import Alert from '@mui/material/Alert';
 import { useHistory } from "react-router-dom";
+import ColumnNav from "../layout/columnNav";
 
 export default function Dashboard(){
     
@@ -47,7 +49,7 @@ export default function Dashboard(){
         history.push(
             {
                 pathname: '/modulo',
-                state: {  // location state
+                state: {  
                   id: id, 
                 },
               }
@@ -55,12 +57,24 @@ export default function Dashboard(){
     }
 
     return(
-        <Container className="modulo-container">
+        <div fluid  className="main">
 
-        {auth == false && <Alert className="my-2" variant="outlined" severity="info">You need to <Link href="/signin" style={{color: 'black'}}>login</Link> to access to all available data</Alert>}
+        <ColumnNav/>
+
+        <div className="content">
+        {auth == false && 
+        <Alert 
+            className="my-2" 
+            variant="outlined" 
+            severity="info"
+            style={{width: '90%'}}
+            >
+            
+                You need to <Link href="/signin" style={{color: 'black'}}>login</Link> to access all available data
+        </Alert>}
 
         {modules !== false && 
-        <div className="modulo-list">
+        <div className="inner-content">
             {modules.map((mod,i)=>(
                 <div key={i}>
                 <Card className="modulo-card" >
@@ -73,7 +87,7 @@ export default function Dashboard(){
                         {mod.indicators.length > 0  && 
                         
                         <ListGroup>
-                         {mod.indicators.map((ind, y)=>(
+                        {mod.indicators.map((ind, y)=>(
                             <ListGroupItem key={y}>
                             <div className="ms-2">
                             <div className="fw-bold">{ind.indicator}</div>
@@ -81,8 +95,8 @@ export default function Dashboard(){
                             </div>
                             <Button variant="outline-primary" onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[y], ind._id)}>Acceder</Button>
                             </ListGroupItem>
-                         ))}
-                         </ListGroup>
+                        ))}
+                        </ListGroup>
 
                         }
                     </Card>
@@ -90,7 +104,8 @@ export default function Dashboard(){
             ))}
         </div>
         }
-        </Container>
+        </div>
+        </div>
     )
 }
 

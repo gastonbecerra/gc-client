@@ -1,0 +1,44 @@
+  
+  // MEDIA QUERY BREAKPOINTS
+  $breakpoints: (
+    sm : 540px,
+    md: 768px,
+    lg : 1024px,
+    xl : 1280px    
+  );
+  
+  // MEDIA QUERY DEFINITIONS
+  @mixin media-up($breakpoint){
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+      @content; 
+    }
+  }
+  
+  $xs:540px;
+  $md: 768px;
+  $lg: 1024px;
+  $xl: 1220px;
+
+  .chart-container{
+      
+      .chart{
+          max-width: 900px;
+
+          .highlights-container {
+            min-height: 10vh;
+            
+          .highlight-text{
+            font-weight: 650;
+            color: black;
+          } 
+          .highlight-context{
+            font-weight: 650;
+            color: dodgerblue;
+          }
+          .highlight-value{
+            font-weight: 650;
+            color: tomato;
+          }
+          }
+      }
+  }
