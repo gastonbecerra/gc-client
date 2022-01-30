@@ -1,45 +1,18 @@
 // import React from 'react'
 import * as React from 'react';
 import './header.scss'
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import { Link } from 'react-router-dom';
-import { MdMenu as MenuIcon}  from "react-icons/md";
-import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+
 import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
 const pages = ['Sign Up', 'Sign In', 'Logout'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Header () {
   let history = useHistory();
   const { username, id: user_id, picture} = useSelector(state => state.user)
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   const handleLogout = (page) => {
     console.log(page);

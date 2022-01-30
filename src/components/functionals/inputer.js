@@ -43,7 +43,7 @@ export default function Inputer() {
     return (
         <div style={{height: '30vh'}}>
         <div>
-          <strong>Inputs</strong>
+          <h5>Inputs</h5>
         </div>
         
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '5px'}}>

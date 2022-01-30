@@ -86,7 +86,7 @@ export default function Dashboard(){
 
                         {mod.indicators.length > 0  && 
                         
-                        <ListGroup>
+                        <ListGroup style={{overflowY: 'visible'}}>
                         {mod.indicators.map((ind, y)=>(
                             <ListGroupItem key={y}>
                             <div className="ms-2">

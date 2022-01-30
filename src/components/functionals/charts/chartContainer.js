@@ -45,21 +45,22 @@ export default function ChartContainer(indicator) {
         <div className='chart-container'>
 
             <div  className="chart">                
-            <strong>Chart</strong>
+            <h5>Chart</h5>
             
             {!sample && <Alert variant="outlined" severity="error"> No hay un valor de muestra para el contexto seleccionado</Alert> }
                 {![false, undefined].includes(sample) ? renderRequiredChart() : null}    
             </div>
 
-            <div>
-                <strong>Info</strong>
+            <div className='inner-chart mt-3'>
+                
+                <h5>Info</h5>
                 <div>
                     {selectedIndicator.description}
                 </div>
                 <hr></hr>
             </div>
             
-            <Inputer/>
+            <Inputer className='inner-chart'/>
         </div>
     )
 }
