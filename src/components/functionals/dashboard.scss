@@ -1,0 +1,32 @@
+// MEDIA QUERY BREAKPOINTS
+$breakpoints: (
+  sm : 540px,
+  md: 768px,
+  lg : 1024px,
+  xl : 1280px    
+);
+
+// MEDIA QUERY DEFINITIONS
+@mixin media-up($breakpoint){
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+    @content; 
+  }
+}
+
+$xs:540px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1220px;
+
+
+    .modulo-card{
+      width: 100%;
+      border-radius: 1%;
+      padding: 15px 15px 15px 15px;
+      margin: 0px 0 5px 0; 
+
+      @media screen and (max-width: $xs) {
+        margin: 5px 0 5px 0;
+        padding: 0;
+      }
+  }

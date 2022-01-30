@@ -10,6 +10,22 @@ export default function Benchmark() {
     const [ dataChart, setDataChart ] = React.useState(false)
     const [options, setOptions] = React.useState(false)
 
+    const [width, setWidth] = React.useState('0%');
+
+    React.useEffect(()=>{
+        console.log(window.innerWidth);
+        if (window.innerWidth < 490) {
+            setWidth('100%')
+        }else if (window.innerWidth > 490  && window.innerWidth  < 700) {
+            setWidth('100%')
+        }else{
+            if (window.innerWidth > 700) {
+                setWidth('600px')
+            }
+        }
+        
+    },[])
+
     React.useEffect(()=>{
         var holder = []
         holder.push([sample.context, sample.context, {role: 'style'}])
@@ -37,11 +53,12 @@ export default function Benchmark() {
                 loader={<div>Loading Chart</div>}
                 data={dataChart}
                 options={options}
+                width={[width]}
                 rootProps={{ 'data-testid': '1' }}/>
             }
             <hr></hr>
             <div className="highlights-container">
-                <strong>Highlights</strong>                
+                <h5>Highlights</h5>                
                 {![false, undefined].includes(user_value) &&
                 
                 

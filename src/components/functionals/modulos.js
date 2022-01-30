@@ -1,3 +1,4 @@
+import './modulos.scss';
 import React,{ useEffect, useState } from "react";
 import SelectContext from "./selectContext";
 import Tab from '@mui/material/Tab';
@@ -9,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedIndicator, fetchIndicatorByUser } from "../../store/slices/indicator";
 import { useHistory } from "react-router-dom";
 import InnerModule from "./innerModule";
+import ColumnNav from "../layout/columnNav";
 
 export default function Modulo(){
     let history = useHistory();
@@ -36,39 +38,51 @@ export default function Modulo(){
     };
 
     return(
-        <>
+        <div className="main">
 
-        <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
+        <ColumnNav/>
+        
+        <div className='content'>
+        <div className="inner-content">
 
-        <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList 
-            onChange={handleChange} 
-            aria-label="lab API tabs example" 
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example">
+            <TabContext value={value} style={{border: 'solid 1px lightgray'}}>
+            
+            <div id='tab-container'>
+            <TabList 
+                onChange={handleChange} 
+                aria-label="lab API tabs example" 
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example">
+                {selectedModule &&
+                    selectedModule.indicators &&
+                    selectedModule.indicators.map((indicator, i)=>(
+                        <Tab label={indicator.indicator} key={i} value={indicator.indicator} onClick={()=> dispatch(setSelectedIndicator(indicator))}/>
+                    ))
+                }
+            </TabList>
+            </div>
+            <SelectContext/>
+
+
+
+            
             {selectedModule &&
                 selectedModule.indicators &&
                 selectedModule.indicators.map((indicator, i)=>(
-                    <Tab label={indicator.indicator} key={i} value={indicator.indicator} onClick={()=> dispatch(setSelectedIndicator(indicator))}/>
+                    <TabPanel value={indicator.indicator} key={i}>
+                        <InnerModule indicator={selectedIndicator}/>
+                    </TabPanel>
                 ))
             }
-          </TabList>
-          <SelectContext/>
+            
+            </TabContext>
 
-        </Box>
-        {selectedModule &&
-            selectedModule.indicators &&
-            selectedModule.indicators.map((indicator, i)=>(
-                <TabPanel value={indicator.indicator} key={i}>
-                    <InnerModule indicator={selectedIndicator}/>
-                </TabPanel>
-            ))
-        }
-        </TabContext>
-        </Box>
-        </>
+            </div>
+        </div>
+            
+            
+        </div>
     )
 }
 

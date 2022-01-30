@@ -1,0 +1,110 @@
+// MEDIA QUERY BREAKPOINTS
+$breakpoints: (
+  sm : 540px,
+  md: 768px,
+  lg : 1024px,
+  xl : 1280px    
+);
+
+// MEDIA QUERY DEFINITIONS
+@mixin media-up($breakpoint){
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+    @content; 
+  }
+}
+
+$xs:540px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1220px;
+
+#header{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100vw;
+  height: 10vh;
+  background-color: #1976D2;
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  margin:0;
+  align-items: center;
+  font-size: 30px;
+  @media screen and (max-width: $xs) {
+    height: 8vh;
+  }
+}
+
+#left-header{
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 5%;
+}
+
+#center-header{
+  width: 30vw;
+  font-size: 25px;
+  display: flex;
+  flex-direction: row;
+  @media screen and (max-width: $xs) {
+    display: none;
+  }
+
+  @media screen and (max-width: $md) {
+    display: none;
+  }
+}
+
+.link-header{
+  text-decoration: none;
+  color:white;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: lightblue;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}

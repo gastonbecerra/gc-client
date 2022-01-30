@@ -1,0 +1,46 @@
+  
+  // MEDIA QUERY BREAKPOINTS
+  $breakpoints: (
+    sm : 540px,
+    md: 768px,
+    lg : 1024px,
+    xl : 1280px    
+  );
+  
+  // MEDIA QUERY DEFINITIONS
+  @mixin media-up($breakpoint){
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+      @content; 
+    }
+  }
+  
+  $xs:540px;
+  $md: 768px;
+  $lg: 1024px;
+  $xl: 1220px;
+  
+#tab-container{
+  width: 600px;
+  margin-bottom: 10px;
+  border: solid 1px lightgray;
+
+  @media screen and (max-width: $xs) {
+    max-width: 99vw;
+  }
+
+  @media screen and (max-width: $md) {
+    max-width: 99vw;
+  }
+}
+
+.context-container{
+  width: 600px;
+  
+  @media screen and (max-width: $xs) {
+    max-width: 99vw;
+  }
+
+  @media screen and (max-width: $md) {
+    max-width: 99vw;
+  }
+}
