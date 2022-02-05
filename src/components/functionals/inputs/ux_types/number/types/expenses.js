@@ -58,8 +58,8 @@ export default function Expenses(props) {
     };
     
     return (
-            <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"}>
-                <img src={Pic} alt="expenses" className="input-image text-center"/>
+            <div className={!input.value ? "input-control" : "input-control"}>
+                <img src={Pic} alt="expenses" className="input-image" style={{margin: 'auto'}}/>
                 <TextField
                     id="gastos"
                     label="gastos"
@@ -74,6 +74,6 @@ export default function Expenses(props) {
                     value={value}
                 />
                 <p className="input-value">{value}<span>ARS</span></p>
-            </Box>
+            </div>
     )
 }

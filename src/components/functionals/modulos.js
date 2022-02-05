@@ -42,7 +42,9 @@ export default function Modulo(){
 
         <ColumnNav/>
         
+        <div className="wrap-content">
         <div className='content'>
+
         <div className="inner-content">
 
             <TabContext value={value} style={{border: 'solid 1px lightgray'}}>
@@ -80,7 +82,7 @@ export default function Modulo(){
 
             </div>
         </div>
-            
+        </div>
             
         </div>
     )

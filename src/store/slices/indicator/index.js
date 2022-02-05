@@ -60,7 +60,7 @@ export const setMissingRequest = (data) => (dispatch) => {
     dispatch(setRequiredRequest(data))
 }
 
-export const submitMissingInput = (body, missings, inputs) => (dispatch) => {
+export const submitMissingInput = (body, missings, inputs, user, indicator) => (dispatch) => {
     
     
     Promise.all(body).then((body) => {
@@ -80,9 +80,23 @@ export const submitMissingInput = (body, missings, inputs) => (dispatch) => {
                 var updated_missings = missings.filter(q => q.field !== body[0].field)
                 setMissingInputs(updated_missings)                  
               })
-              .catch((error) => {
-                  return false;
-              })
+              .then((res)=>{
+                if(missings.length === 0)  console.log(user, indicator.indicator)
+                Axios({
+                    method: 'POST',
+                    withCredentials: true,
+                    url: '/values/user_value',
+                    data: {user: user, indicator: indicator.indicator}
+                })
+                .then((data)=>{
+                    console.log(data.data[0])
+                    dispatch(setUserValue(data.data))
+                })
+                
+            })
+            .catch((error) => {
+                return false;
+            })
             break;
         
         case 'POST':
@@ -110,17 +124,24 @@ export const submitMissingInput = (body, missings, inputs) => (dispatch) => {
                 var queu_updated = body.filter(q => q.field !== body[0].field)
                 dispatch(setRequiredRequest(queu_updated))
               })
-              .then(()=>{
-                console.log('data layer contact for user value');                    
+              .then(()=>{        
                 var updated_missings = missings.filter(q => q.var !== body[0].field)
                 dispatch(setMissingInputs(updated_missings))
+                return updated_missings;
               })
-              .then(()=>{
-                console.log('data layer contact for user value');                    
-                var updated_missings = missings.filter(q => q.var !== body[0].field)
-                dispatch(setMissingInputs(updated_missings))
+              .then((missings)=>{
+                if(missings.length === 0) console.log(user, indicator.indicator)
+                Axios({
+                    method: 'POST',
+                    withCredentials: true,
+                    url: '/values/user_value',
+                    data: {user: user, indicator: indicator.indicator}
+                })
+                .then((data)=>{
+                    console.log(data.data[0])
+                    dispatch(setUserValue(data.data))
+                })
               })
-
               .catch((error)=>{
                   console.log(error)
               })
@@ -132,4 +153,5 @@ export const submitMissingInput = (body, missings, inputs) => (dispatch) => {
     } 
     });
 }
+
 

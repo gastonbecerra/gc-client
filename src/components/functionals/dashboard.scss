@@ -20,13 +20,19 @@ $xl: 1220px;
 
 
     .modulo-card{
-      width: 100%;
+      width: 900px;
       border-radius: 1%;
       padding: 15px 15px 15px 15px;
       margin: 0px 0 5px 0; 
-
+      font-size: smaller;
       @media screen and (max-width: $xs) {
         margin: 5px 0 5px 0;
         padding: 0;
+        width: 98vw;
+      }
+      @media screen and (max-width: $md) {
+        margin: 5px 0 5px 0;
+        padding: 0;
+        width: 98vw;
       }
   }

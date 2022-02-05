@@ -20,29 +20,32 @@
   $xl: 1220px;
 
 .slider {
-  // border: dashed 1px black;
+  border: solid 1px lightgray;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: row;
-  height: 90%;
+  height: 88vh;
   width: 90%;
-
+  background-color: white;
+  // z-index: 1;
+  // border: solid 1px lightgray;
   @media screen and (max-width: $xs) {
     position: absolute;
-    top: 1;
+    top: 0;
     left: 0;
     width: 100vw;
     min-height: 100vh;
-    z-index: 0;
+    // z-index: 0;
+    margin: 0;
   }
 }
 
 .title{
   /* border: dashed 0.5px red; */
   font-variant: small-caps;
-  margin-top: 3vh;
+  margin-top: 10px;
   text-align: center;
   font-size: 3em;
   max-width: 300px;
@@ -51,20 +54,23 @@
 
 
 .input-control {
+  // border: dashed 1px black !important;
   min-width: 300px;
   display: grid;
   grid-gap: 50px 50px;
   grid-template-rows: 50% 5% 25%;
   text-align: center;
   justify-content: space-evenly;
-  height: 70%;
+  // height: %;
 }
 
 .input-image{
   /* border: solid black 1px; */
-  margin-top: 5vh;
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 100px;
+  max-height: 100px;
+  margin: auto;
+  margin: 3vh 0 3vh 0;
+
 }
 
 .input-value{
@@ -72,6 +78,55 @@
   max-width: 300px;
 }
 
+.right-arrow {
+  position: absolute;
+  bottom: 3.8vh;
+  right: 33%;
+  font-size: 3rem;
+  color: #000;
+  // z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  @media screen and (max-width: $xs) {
+    bottom: 17%;
+  }
+}
+
+.left-arrow {
+  position: absolute;
+  bottom: 3.8vh;
+  left: 33%;
+  font-size: 3rem;
+  color: #000;
+  // z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  @media screen and (max-width: $xs) {
+    bottom: 17%;
+  }
+}
+
+.slide {
+  position: absolute;
+  opacity: 0;
+  transition-duration: 1s ease;
+  z-index: -1;
+}
+
+.slide.active {
+  z-index: 0;
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+
+// ------------------RADIO------------------
+.radio-buttons-group{
+  font-size: 10px;
+}
+
+
+// ------------OPEN CAT----------------
 /* for "worder" */
 .worder-control {
   min-width: 300px;
@@ -108,40 +163,4 @@
   right: 10px;
   top:30%;
 
-}
-
-.right-arrow {
-  position: absolute;
-  bottom: 17%;
-  right: 33%;
-  font-size: 3rem;
-  color: #000;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
-}
-
-.left-arrow {
-  position: absolute;
-  bottom: 17%;
-  left: 33%;
-  font-size: 3rem;
-  color: #000;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
-}
-
-.slide {
-  position: absolute;
-  opacity: 0;
-  transition-duration: 1s ease;
-  z-index: -1;
-}
-
-.slide.active {
-  z-index: 0;
-  opacity: 1;
-  transition-duration: 1s;
-  transform: scale(1.08);
 }

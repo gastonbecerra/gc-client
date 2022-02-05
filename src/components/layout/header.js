@@ -31,21 +31,15 @@ export default function Header () {
       </div>
       
       <div id='center-header'>
-        <Link to={'/signin'} className='link-header'>  {' ' + 'Login ' + ' '}</Link>
-        <Link to={'/signup'} className='link-header'> {' ' + ' | SignUp ' + ' '} </Link>        
-        <Link to={'/logout'} className='link-header'> {' ' + ' | Logout ' + ' '}</Link>
+        <Link to={'/signin'} className='link-header'> Login <span>&nbsp;</span></Link>
+        <Link to={'/signup'} className='link-header'>| SignUp <span>&nbsp;</span></Link>        
+        <Link to={'/logout'} className='link-header'>| Logout</Link>
       </div>
 
       <div id='right-header'>          
         {picture ? 
           <div class="dropdown">
-          <img src={picture}
-          style={{  
-              borderRadius: '50%',
-              maxWidth:'70%',
-              maxHeight: '70%'                         
-          }}
-      />
+          <img src={picture}/>
           <div class="dropdown-content">
           {pages.map((page) => (                
               <Link to={page === 'Sign Up'? '/signup' : page === 'Sign In' ? '/signin' : '/logout'}
