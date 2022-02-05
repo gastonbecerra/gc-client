@@ -56,7 +56,7 @@ export default function Age({input}) {
     };
 
     return (
-        <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"} >      
+        <div  className={!input.value ? "input-control" : "input-control"} >      
         <img src={value < 18 ? boy : value > 55 ? old : man} className="input-image" /> 
             <Slider
                 onChange={(e) => handleChange(e)}
@@ -69,6 +69,6 @@ export default function Age({input}) {
                 value={input.value && value}            
             />
             <p><span className="input-value">{value}</span></p>
-        </Box>
+        </div>
     )
 }

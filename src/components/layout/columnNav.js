@@ -42,13 +42,14 @@ export default function ColumnNav() {
                     modules &&
                     <ul>
                     {modules.map((mod,i)=> (
-                        <li key={i}>
+                        <li key={i} style={{wordBreak: 'break-word'}}>
                             {mod.indicators.length > 0 ?
                             <p 
                                 onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[0], modules[i].indicators[0]._id)}
                                 style={{
                                     color: '#1976D2',
-                                    paddingLeft: '7px'
+                                    paddingLeft: '7px',
+                                    wordBreak: 'break-word'
                                 }}
                             >
                                 {mod.module}

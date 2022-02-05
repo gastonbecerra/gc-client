@@ -82,7 +82,7 @@ export default function OpenCat({input}) {
     },[ selectedValues])
 
     return(
-            <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"}>
+            <div className={!input.value ? "input-control" : "input-control"}>
                 <div className='worder-control'>
                     
                 <TextField
@@ -112,7 +112,7 @@ export default function OpenCat({input}) {
                 null
                 }
                 
-            </Box>
+            </div>
     )
     }
 

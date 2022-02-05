@@ -5,7 +5,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { BsGenderTrans } from 'react-icons/bs';
 import Studies from '../../assets/studies.png';
-import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from "react-redux";
 import { setInputRequest } from '../../../../../store/slices/inputs';
 import { setMissingRequest } from '../../../../../store/slices/indicator';
@@ -62,12 +61,10 @@ export default function RadioUx ({input}) {
     function renderImage(){
         switch (input.var) {
             case "gender":
-                return <BsGenderTrans style={{fontSize: '200px'}} className="input-image"/>
-            break;
+                return <BsGenderTrans style={{fontSize: '100px'}} className="input-image"/>            
             
             case "nivel_estudio":
                 return <img src={Studies} className="input-image"/>
-            break;
 
             case "map":
             
@@ -79,26 +76,31 @@ export default function RadioUx ({input}) {
     }
     
     return (        
-        <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"}>
+        <div className={!input.value ? "input-control" : "input-control"}>
         <FormControl component="fieldset">
         
         {renderImage()}
-        
-        
+                
         <RadioGroup
             id="value"
-            aria-label={input.var}
-            name="radio-buttons-group"
+            className='radio-buttons-group'
+            aria-label={input.var}            
             value={input.value && value}
             onChange={(e) => handleChange(e)}
             defaultChecked={value}
         >
         {options && options.map((opt, y)=>(
-            <FormControlLabel key={y} value={opt} control={<Radio />} label={opt} />
+            <FormControlLabel 
+            key={y} 
+            value={opt} 
+            control={
+                <Radio size='smaller' className='radio-buttons-group' />
+            } 
+            label={opt} />
         ))}
         </RadioGroup>
         </FormControl>
-        </Box>
+        </div>
         
     )
 }

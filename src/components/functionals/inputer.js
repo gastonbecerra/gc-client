@@ -46,14 +46,15 @@ export default function Inputer() {
           <h5>Inputs</h5>
         </div>
         
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '5px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '5px', textAlign:'left'}}>
           {values.map((v, idx) => (
             <>
-            <p key={idx}>
+            <p key={idx} style={{textAlign: 'left'}}>
               This the list of inputs associated to this indicator. Check it's values, add new ones or change them!
               {typeof v === 'string' && `below ${v.split('-')[0]}`}
             </p>
 
+            <div style={{margin:'auto'}}>
             {selectedContext 
             ? <Button key={idx + 1} variant="outlined" color="primary" onClick={() => handleShow(v)} startIcon={<MdInput/>} style={{ width: '210px'}}>
                 Inputs!
@@ -63,6 +64,7 @@ export default function Inputer() {
                 Select a context to get Inputs!
               </Button>
             }
+              </div>
             
             </>
           ))}

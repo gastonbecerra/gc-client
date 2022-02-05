@@ -15,17 +15,20 @@ export default function PieChart() {
     const [index, setIndex] = useState(false);
 
     useEffect(()=>{
-        if(sample && typeof(sample.values) !== undefined){        
-            setAcc(0);
-            var values = []
-            for(var i = 0; i < sample.values.data.length; i++){                
-                var v = Object.values(sample.values.data[i])
-                values.push(v[0])
-                console.log(values);
-                setAcc(acc + v[0])
+        try{
+            if(sample && typeof(sample.values) !== undefined){        
+                setAcc(0);
+                var values = []
+                for(var i = 0; i < sample.values.data.length; i++){                
+                    var v = Object.values(sample.values.data[i])
+                    values.push(v[0])
+                    setAcc(acc + v[0])
+                }
+                setAcc(values.reduce((pv, cv) => pv + cv, 0));
             }
-            setAcc(values.reduce((pv, cv) => pv + cv, 0));
-        }
+        }catch(e){
+            console.log(e);
+        }        
     },[sample])
 
     useEffect(()=>{

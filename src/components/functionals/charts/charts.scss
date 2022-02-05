@@ -20,7 +20,7 @@
   $xl: 1220px;
 
   .chart-container{
-
+    font-size: smaller;
 
     @include media-up(xs){
       max-width: 800px;  

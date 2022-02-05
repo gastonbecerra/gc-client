@@ -54,8 +54,9 @@ export default function Earning({input}) {
     };
 
     return (
-            <Box width={300} className={!input.value ? "input-control" : "input-control border border-danger"}>
-                <MdOutlineAttachMoney style={{fontSize: '200px'}} className="input-image"/>
+        <>
+            <div className={!input.value ? "input-control" : "input-control"}>
+            <MdOutlineAttachMoney style={{fontSize: '200px', margin: 'auto'}} className="input-image"/>
                 <TextField
                     id="value"
                     label="Ingresos"
@@ -70,6 +71,7 @@ export default function Earning({input}) {
                     onChange={(e) => handleChange(e)}
                 />
                 <p className="input-value">{value}<span>ARS</span></p>
-            </Box>
+            </div>
+            </>
     )
 }

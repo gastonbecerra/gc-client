@@ -23,7 +23,7 @@
   width: 600px;
   margin-bottom: 10px;
   border: solid 1px lightgray;
-
+  font-size: smaller;
   @media screen and (max-width: $xs) {
     max-width: 99vw;
   }

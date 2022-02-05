@@ -61,6 +61,9 @@ export default function Dashboard(){
 
         <ColumnNav/>
 
+        <div className="wrap-content">
+
+        
         <div className="content">
         {auth == false && 
         <Alert 
@@ -104,6 +107,7 @@ export default function Dashboard(){
             ))}
         </div>
         }
+        </div>
         </div>
         </div>
     )

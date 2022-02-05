@@ -31,17 +31,22 @@ $xl: 1220px;
   margin:0;
   align-items: center;
   font-size: 30px;
+
   @media screen and (max-width: $xs) {
-    height: 8vh;
+    height: 8vh;    
   }
 }
 
 #left-header{
-  width: 70vw;
+  width: 50vw;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-left: 5%;
+  white-space: nowrap;
+  @media screen and (max-width: $xs) {
+    justify-content: flex-start;    
+  }
 }
 
 #center-header{
@@ -49,6 +54,8 @@ $xl: 1220px;
   font-size: 25px;
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
+
   @media screen and (max-width: $xs) {
     display: none;
   }
@@ -63,11 +70,34 @@ $xl: 1220px;
   color:white;
 }
 
+a.link-header:hover{
+  color:darkgray;
+}
+
+.right-header{
+  
+}
 
 .dropdown {
   position: relative;
   display: inline-block;
+  
+  @media screen and (max-width: $xs) {
+    max-height: 5.5vh;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 70px;
+  }
+
+  img{
+    border-radius: 50%;
+    max-width:'70%';
+    max-height: 55px;                         
+  }
 }
+
+
 
 .dropbtn {
   background-color: lightblue;
