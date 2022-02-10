@@ -73,7 +73,7 @@ export default function Dashboard(){
             style={{width: '90%'}}
             >
             
-                You need to <Link href="/signin" style={{color: 'black'}}>login</Link> to access all available data
+                You need to <Link to="/signin" style={{color: 'black'}}>login</Link> to access all available data
         </Alert>}
 
         {modules !== false && 

@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
 import { TestLayout } from './components/layout/testLayout';
+import Context from './components/functionals/contexts/contextsHome';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/signin" component={SignIn}/>
           <Route exact path="/inputs" component={Inputs}/>
-          <Route exact path="/coso" component={TestLayout}/>
+          <Route exact path="/context" component={Context}/>
         </Switch>
         <Footer/>
         </Provider>

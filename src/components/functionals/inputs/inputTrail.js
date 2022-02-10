@@ -36,24 +36,6 @@ const InputTrail = ({ inputs }) => {
       dispatch(submitMissingInput(missing_queu, missing_inputs, inputs_mod, username, selectedIndicator ));    
     } 
   }, [current])
-  
-  // React.useEffect(()=>{
-  //   try{
-  //     if(inputs_mod.length > 1 && (missing_inputs.length === 0 || missing_inputs === false)){
-  //       Axios({
-  //         method: 'POST',
-  //         withCredentials: true,
-  //         url: '/values/user_value',
-  //         data: {user: username, indicator: selectedIndicator.indicator}
-  //       })
-  //       .then(()=>{
-  //         alert(true)
-  //       })
-  //     }
-  //   }catch(e){
-  //     console.log(e);
-  //   }
-  // },[inputs_mod, missing_inputs])
 
   if (!Array.isArray(inputs) || inputs.length <= 0) {
     return null;

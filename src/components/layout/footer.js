@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
         
         <div>
-        <Link to={"/"}>
+        <Link to={"/context"}>
             <VscActivateBreakpoints className="footer-icon"/>
             <div>Contexts</div>
         </Link>

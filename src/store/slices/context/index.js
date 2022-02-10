@@ -5,7 +5,8 @@ export const contextSlice = createSlice({
     name: 'context',
     initialState: {
         contexts: false,
-        selectedContext: false
+        selectedContext: false,
+        context4user: false
     },
     reducers: {
         getContexts : (state, action) => {
@@ -13,11 +14,14 @@ export const contextSlice = createSlice({
         },
         selectContext : (state, action) => {
             state.selectedContext = action.payload;
+        },
+        getContexts4User : (state, action) => {
+            state.context4user = action.payload;
         }
     }
 })
 
-export const {getContexts, selectContext} = contextSlice.actions;
+export const {getContexts, selectContext, getContexts4User} = contextSlice.actions;
 
 export default contextSlice.reducer;
 
@@ -37,4 +41,48 @@ export const fetchContexts = () => (dispatch) => {
 
 export const pickContext = (picked) => (dispatch) => {
     dispatch(selectContext(picked))
+}
+
+export const fetchContexts4User = (id) => (dispatch) => {
+    Axios({
+        method: 'GET',
+        withCredentials: true,
+        url: `/contexts/${id}`
+    })
+    .then((res)=>{
+        dispatch(getContexts4User(res.data));
+    })
+    .catch((error)=>{
+        console.log(error, ' error fetching contexts');
+    })
+}
+
+export const removeContexts4User = (id, context) => (dispatch) => {
+    Axios({
+        method: 'POST',
+        withCredentials: true,
+        url: `/contexts/remove/${id}/${context}`
+    })
+    .then((res)=>{
+        dispatch(getContexts4User(res.data));
+        // dispatch(getContexts(res.data));
+    })
+    .catch((error)=>{
+        console.log(error, ' error removing contexts');
+    })
+}
+
+export const addContexts4User = (id, context) => (dispatch) => {
+    Axios({
+        method: 'POST',
+        withCredentials: true,
+        url: `/contexts/add/${id}/${context}`
+    })
+    .then((res)=>{
+        dispatch(getContexts4User(res.data));
+        // dispatch(getContexts(res.data));
+    })
+    .catch((error)=>{
+        console.log(error, ' error removing contexts');
+    })
 }
