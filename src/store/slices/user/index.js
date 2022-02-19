@@ -5,7 +5,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         id: true,
-        username: 'gaston',
+        username: false,
         auth: true,
         type: false,
         picture: false

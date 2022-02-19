@@ -57,7 +57,7 @@ export default function Dashboard(){
     }
 
     return(
-        <div fluid  className="main">
+        <div className="main">
 
         <ColumnNav/>
 

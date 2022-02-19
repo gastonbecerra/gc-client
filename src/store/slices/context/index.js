@@ -64,8 +64,7 @@ export const removeContexts4User = (id, context) => (dispatch) => {
         url: `/contexts/remove/${id}/${context}`
     })
     .then((res)=>{
-        dispatch(getContexts4User(res.data));
-        // dispatch(getContexts(res.data));
+        fetchContexts4User(id);
     })
     .catch((error)=>{
         console.log(error, ' error removing contexts');
@@ -79,8 +78,7 @@ export const addContexts4User = (id, context) => (dispatch) => {
         url: `/contexts/add/${id}/${context}`
     })
     .then((res)=>{
-        dispatch(getContexts4User(res.data));
-        // dispatch(getContexts(res.data));
+        fetchContexts4User(id);
     })
     .catch((error)=>{
         console.log(error, ' error removing contexts');

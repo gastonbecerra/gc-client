@@ -1,0 +1,16 @@
+.context-indicator-box{
+    width: 40vw;
+    border: solid 1px black;
+    font-size: 10px;
+}
+
+.lister{
+    position: relative;
+    min-width: 50vw;
+
+    .lister-icon{
+        position: absolute;
+        right: 10%;
+        // margin: auto;
+    }
+}
