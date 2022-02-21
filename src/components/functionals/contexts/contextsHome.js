@@ -123,7 +123,7 @@ export default function Context(props) {
         <div >
         <h5>Tus contextos</h5>
         {
-            contextForUser.length === 0 ? <p>Elige de los contextos disponibles para adcribirte</p> 
+            contextForUser.length === 0 && !undefined ? <p>Elige de los contextos disponibles para adcribirte</p> 
             :
             <>
             <p>Estos son los contextos que usas para comparar tus indicadores: </p>            
