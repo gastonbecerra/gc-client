@@ -1,5 +1,7 @@
 import React,{useState} from 'react';
 import {uid} from 'react-uid';
+import { Form, Row, Col } from 'react-bootstrap';
+import { FaGreaterThan, FaLessThan } from 'react-icons/fa';
 
 export default function IntComponent({variable, ruler}) {
     const [object, setRule] = useState();
@@ -19,6 +21,7 @@ export default function IntComponent({variable, ruler}) {
                     },
                     
                     );
+                    document.getElementsByName('less').value = 0;
                 break;
             
             case 'lesser':
@@ -53,31 +56,79 @@ export default function IntComponent({variable, ruler}) {
 
   return(
     <div>
-        <form>
+        <Form className="form-content">
         
-        <li style={{listStyle:'none'}} id="biggerLI">
-                Mayor a: <input type="number"   id={`${id}bigger`}   onChange={(e)=> handlingRule(e.target, document.getElementById(`${id}bigger`).value, 'bigger' )}/> 
-                {/* &nbsp; <input type="checkbox" id="biggerC"/> */}
-        </li>
-        
-        <li style={{listStyle:'none'}} id="minorLI">
-                Menor a: <input type="number"  defaultValue={0} id={`${id}lesser`} onChange={(e)=> handlingRule(e.target, document.getElementById(`${id}lesser`).value, 'lesser' )}  />
-                {/* &nbsp; <input type="checkbox" id="minorC"/> */}
+        <div className='form-group'>
 
-        </li>
-        <li style={{listStyle:'none'}} id="btwLI" 
+        <Form.Group id="biggerLI" as={Row}>
+            
+            <Form.Label column xs={3} className="label"> 
+                <FaGreaterThan/>
+            </Form.Label>
+            
+            <Col column xs={9}>
+                <Form.Control                     
+                    type="number"   
+                    id={`${id}bigger`}   
+                    onChange={(e)=> handlingRule(e.target, document.getElementById(`${id}bigger`).value, 'bigger' )}
+                /> 
+            </Col>
+                
+        </Form.Group>
+        
+        
+
+        <Form.Group 
+            as={Row} 
+            id="minorLI"
+        >
+            
+            <Form.Label column xs={3} className="label">
+                <FaLessThan/>
+            </Form.Label>
+            
+            <Col column xs={9}>
+                <Form.Control 
+                    type="number"  
+                    id={`${id}lesser`} 
+                    name={"less"}
+                    onChange={(e)=> handlingRule(e.target, document.getElementById(`${id}lesser`).value, 'lesser' )}  
+                />
+            </Col>
+        </Form.Group>
+        
+        </div>
+        
+        <Form.Group
+            as={Row} 
+            id="btwLI" 
             onChange={(e) => handlingRule(e.target, [parseInt(document.getElementById(`${id}btw1`).value), parseInt(document.getElementById(`${id}btw2`).value)], 'btw')} >
             
-            Greater than: 
-                <input type="number" defaultValue={0} id={`${id}btw1`} />,
-            Lesser than: 
-                <input type="number" defaultValue={0} id={`${id}btw2`} />         
-                {/* &nbsp; <input type="checkbox" id="btwC"/> */}
+            <span style={{textAlign: 'center'}}><strong>Or btw</strong></span>
             
-        </li>
-        <input type="submit" value="submit rule" onClick={(e)=> submitRule(e)}/>
-        </form>
-        <pre>{JSON.stringify(object)}</pre>
+            <Row>
+            <Col column xs={5}>
+                <Form.Control 
+                    type="number" 
+                    id={`${id}btw1`} 
+                />
+            </Col>
+            
+            <Col style={{paddingTop:'5px'}}>and</Col>
+            
+            <Col column xs={5}>
+                <Form.Control 
+                    type="number" 
+                    id={`${id}btw2`} 
+                />         
+            </Col>
+            </Row>
+        </Form.Group>
+                
+            
+        {/* <input type="submit" value="submit rule" onClick={(e)=> submitRule(e)}/> */}
+        </Form>
+        {/* <pre>{JSON.stringify(object)}</pre> */}
     </div>
   );
 }

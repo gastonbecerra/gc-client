@@ -84,3 +84,34 @@ export const addContexts4User = (id, context) => (dispatch) => {
         console.log(error, ' error removing contexts');
     })
 }
+
+// save context into the database
+// export const saveContext = (createdContext) => {
+//     console.log(createdContext)
+//     Axios({
+//         method: 'post',
+//         withCredentials: true,
+//         url: '/contexts/create',
+//         data: 
+//             createdContext
+        
+//     })
+//     .then(()=>{
+//         console.log('TODO PIPI');
+//     })
+
+    // fetch(`/contexts/create`, {
+    //     method: 'POST',
+    //     // withCredentials: true,
+    //     url: `/contexts/create`,
+    //     // body: JSON.stringify(createdContext),
+    //     body: JSON.stringify(createdContext),
+    //     headers: {
+    //         //'Content-Type': 'application/json'
+    //          'Content-Type': 'application/x-www-form-urlencoded',
+    //       },
+    // })
+    // .then(()=>{
+    //     console.log('TODO PIPI');
+    // })
+    // }

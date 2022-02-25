@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Row, Col, Form} from 'react-bootstrap';
 
 export default function CloseComponent({variable, ruler}) {
     const [options, setOptions] = useState(false);
@@ -59,37 +60,59 @@ export default function CloseComponent({variable, ruler}) {
   return (
     <div>
       <div>
-          Value equals to: 
-      <select onChange={(e) => handleRadio(e)}>
-            {options &&
-                options.map((o,i) => (
-                    <option key={i}>
-                        {o}
-                    </option>
-                ))    
-            }
-        </select>
+          
+        <Form.Group as={Row}>
+            <Col column sx={9}>
+            <Form.Label>
+                <strong>Equals to</strong>
+            </Form.Label>
+               
+                <Form.Select 
+                    onChange={(e) => handleRadio(e)} 
+                    aria-label="Default select example"
+                >
+                    
+                    {options &&
+                    <>                        
+                       { options.map((o,i) => (
+                            <>
+                                <option key={i}>
+                                    {o}
+                                </option>
+                            </>
+                        ))}
+                    </>
+                    }
+                </Form.Select>
+            </Col>
+        </Form.Group>
+
+        
         
         <div>
-            Value has any of:
+            <span style={{fontWeight:'700'}}>Value has any of:</span>
             {
                 options && 
 
-                <form onChange={(e)=> handleCheck(e)}>
+                <Form onChange={(e)=> handleCheck(e)}>
                     {options.map((o,i)=>(
-                        <span key={i}>
-                            <input type="checkbox" id={o} name={o} value={o}/>
+                        <div 
+                            key={i}
+                            inline
+                        >
+                            <Form.Check
+                                inline 
+                                type="checkbox" 
+                                id={o} 
+                                name={o} 
+                                value={o}/>
                             <label for={o}>{o}</label>
-                        </span>
-                    ))}
-                    <br></br>
-                    <input type={'submit'} value="submit rule" onClick={(e)=>handleSubmit(e)}/>
-                </form>
+                        </div>
+                    ))}                    
+                </Form>
                 
             }
         </div>
-            
-            <pre>{JSON.stringify(criteria)}</pre>
             
       </div>
     </div>

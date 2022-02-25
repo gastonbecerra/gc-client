@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import * as Types from './index';
-import {uid} from 'react-uid';
+import { uid } from 'react-uid';
+import { Form } from 'react-bootstrap';
 
 export default function LabComponent({inputs, ruler, selecter, s1, s2}) {
     const [variable, setVariable] = useState(false);
@@ -46,23 +47,31 @@ export default function LabComponent({inputs, ruler, selecter, s1, s2}) {
     }
     
   return (
-  <div className='context-indicator-box'>
-  <p>1) Selecciona una variab le y un valor de filtro</p>
+    <>
+    <div className='context-indicator-box'>
+  
     {inputs ? 
-            <select id="variable" onChange={(e) => handleVarSelection(e.target.value)}>
-                {
+    <div id="box-selection">
+            <Form.Select 
+                style={{color: 'dodgerblue', fontWeight: '700'}}
+                id="variable" 
+                onChange={(e) => handleVarSelection(e.target.value)}
+            >
+            {
                 inputs.map((v,i)=>(
-                <option key={i}>
+                <option key={i} style={{color: 'dodgerblue'}}>
                     {v.var} 
                 </option>
             ))
-                }
-            </select>
+            }
+            </Form.Select>
+            
+    </div>
             :
             null
     }
         {renderLab()}
-        
   </div>
+  </>
   );
 }

@@ -1,16 +1,254 @@
-.context-indicator-box{
-    width: 40vw;
-    border: solid 1px black;
-    font-size: 10px;
+// MEDIA QUERY BREAKPOINTS
+$xs:540px;
+$md: 910px;
+$lg: 1024px;
+$xl: 1220px;
+
+
+// MEDIA QUERY DEFINITIONS
+@mixin media-up($breakpoint){
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+    @content; 
+  }
 }
 
-.lister{
-    position: relative;
-    min-width: 50vw;
+// CONTEXT (home) COMPONENT
+.context-content{
+    padding-left: 7px;
+    min-height: 1000px;
+    font-size: small;
+    padding-right: 7px;
 
-    .lister-icon{
-        position: absolute;
-        right: 10%;
-        // margin: auto;
+    @media screen and (min-width: $md) {
+        width: 600px;
+        font-size: large;
+    }
+
+    @media screen and (min-width: $lg) {
+        width: 700px;
+        font-size: large;
+    }
+
+    @media screen and (min-width: $xl) {
+        width: 800px;
+        font-size: larger;
+        height: 83vh;
+    }
+
+
+    .lister{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (min-width: $md) {
+            width: 600px;
+        
+        }
+    
+        @media screen and (min-width: $lg) {
+        
+        }
+    
+        @media screen and (min-width: $xl) {
+            width: 800px;
+            font-size: large;
+        }
+
+
+        .context-item{
+            display: flex;
+            position: relative;
+            justify-content: center;
+            margin-bottom: 3px;
+            height: 40px;
+            min-width: 360px;
+
+            @media screen and (min-width: $lg) {
+                
+            }
+
+            @media screen and (min-width: $lg) {
+                width: 700px;
+            }
+
+            @media screen and (min-width: $xl) {
+                width: 90%;
+            }
+
+            .item-button{
+                position: absolute;
+                right: 5%;
+                padding: auto;        
+            }
+        }
+
+    }
+}
+
+
+.checker{
+    padding: 7px;
+
+}
+
+#check{
+    margin-top: 7px;
+    max-width: 300px;
+    color: dodgerblue;
+    font-weight: 600;
+}
+
+.counter {
+    font-weight: 650;
+    color: tomato;
+}
+
+.lister-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    @media screen and (min-width: $md) {
+            
+    }
+
+    @media screen and (min-width: $lg) {
+       
+    }
+
+    @media screen and (min-width: $xl) {
+        // width: 700px;
+    }
+    
+    .info{
+        text-align: justify;
+        width: 350px;   
+        font-size: small;
+
+            @media screen and (min-width: $md) {
+            
+            }
+
+            @media screen and (min-width: $lg) {
+                width: 700px;
+                font-size: large;
+            }
+
+            @media screen and (min-width: $xl) {
+                width: 700px;
+            }
+    }
+
+
+}
+
+.rule-content{
+    padding: 7px;
+    // border: solid 0.5px lightgray;
+    font-size: small;
+    display: flex;
+    flex-direction: row;
+    border: solid lightcoral 1px;
+    border-radius: 1%;
+    
+    .rule-box{
+        width: 50%;
+    }
+}
+
+
+// LAB COMPONENT
+.lab-context{
+    display: flex;
+    font-size: small;
+    flex-direction: column;
+    padding-left: 7px;
+    padding-right: 7px;
+    min-height: 150vh;
+
+    @media screen and (min-width: $md) {
+        width: 600px;
+        font-size: large;
+    }
+
+    @media screen and (min-width: $lg) {
+        width: 700px;
+        font-size: large;
+    }
+
+    @media screen and (min-width: $xl) {
+        width: 800px;
+        font-size: larger;
+        height: 83vh;
+    }
+    
+    #title{
+        margin-bottom: 7px;
+    }
+
+    #check{
+        margin-top: 2vh;
+        max-width: 100px;
+    }
+}
+
+.ruler-content{
+    padding-left: 5px;
+    padding-right: 5spx;
+}
+
+.selecter{
+    border: solid 1.5px gray;
+    border-radius: 1%;
+    padding: 5px;
+    margin-bottom: 5px;
+
+    .context-indicator-box{
+        border-radius: 1%;
+        padding: 7px;
+        
+        #box-selection{
+            text-align: center;
+            margin-bottom: 7px;
+            text-align: center;
+            
+            #variable{
+                
+            }
+        }
+    }
+}
+
+
+
+
+// INPUTS COMPONENTS
+.form-content{
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+
+
+    .form-group{
+        display: flex;
+        flex-direction: column;
+        // align-items: center;    
+        justify-content: center;
+        //text-align: center;
+
+        .label{
+            text-align: center;
+        }
+    }
+    #btwLI{
+        display: flex;
+        margin-top: 7px;
+        align-items: center;
+        justify-content: center;
+        // max-width: 95vw;
+    
     }
 }
