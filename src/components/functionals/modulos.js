@@ -2,7 +2,6 @@ import './modulos.scss';
 import React,{ useEffect, useState } from "react";
 import SelectContext from "./selectContext";
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';

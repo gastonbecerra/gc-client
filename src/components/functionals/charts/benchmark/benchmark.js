@@ -82,7 +82,7 @@ export default function Benchmark() {
                             </>
                         :   <> 
                                 {' '} <span className="highlight-text">above the min value by </span>
-                                <span className="highlight-value">{' -' + Math.round(((sample.values.val_min - user_value.value)* 100) / user_value.value )}%</span>
+                                <span className="highlight-value">{' ' + Math.round(((sample.values.val_min - user_value.value)* 100) / user_value.value )}%</span>
                                 <span>{}</span>.
                             </>
                         }

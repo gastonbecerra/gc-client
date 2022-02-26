@@ -74,7 +74,7 @@ export default function ColumnNav() {
                 </li>
                 <li className='li-flex'>   
                     <VscActivateBreakpoints className="footer-icon mx-2 mt-1"/>
-                    <Link to={''} className='link-nodeco'> <p>Contexts</p> </Link>
+                    <Link to={'/context'} className='link-nodeco'> <p>Contexts</p> </Link>
                 </li>
                 <li className='li-flex'>
                     <ImLab className="footer-icon mx-2 mt-1"/>    

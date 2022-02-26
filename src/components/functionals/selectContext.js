@@ -1,16 +1,15 @@
 
 import React, { useEffect } from "react";
-import { Form, FloatingLabel, Container } from 'react-bootstrap';
+import { Form, FloatingLabel } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux"; 
 import { pickContext } from "../../store/slices/context";
 import { fetchIndicatorByUser } from "../../store/slices/indicator";
 
-export default function SelectContext(props){
+export default function SelectContext(){
     const dispatch = useDispatch();
     const {contexts, selectedContext: context_id} = useSelector(state => state.context)
     const { username:  user_id} = useSelector(state => state.user)
     const { selectedIndicator } = useSelector(state => state.indicator)
-    const [classFlag, setClassFlag] = React.useState(false)
 
     useEffect(()=>{
     ![false, undefined].includes(selectedIndicator.indicator && context_id) &&

@@ -36,11 +36,9 @@ export default function PieChart() {
         if(sample && typeof(sample.values) !== undefined && selectedIndicator && selectContext){
             try{
                 holder.push([selectedIndicator.indicator, sample.context, { role: 'style' }, { role: 'annotation' }])
-                sample.values.data.forEach((row, i)=>{
-                    // setAcc(0)
+                sample.values.data.forEach((row, i)=>{                    
                     var k = Object.keys(row)
-                    var v = Object.values(row)
-                    // i !== 0 && setAcc(acc + v[0])
+                    var v = Object.values(row)                
                     if(k[0] === user_value.value ){
                         setIndex(holder.length - 1)
                         holder.push([k[0], v[0], 'border: 2px solid black', k[0]])

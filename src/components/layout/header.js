@@ -38,10 +38,10 @@ export default function Header () {
 
       <div id='right-header'>          
         {picture ? 
-          <div class="dropdown">
-          <img src={picture}/>
-          <div class="dropdown-content">
-          {pages.map((page) => (                
+          <div className="dropdown">
+          <img src={picture} alt="user" />
+          <div className="dropdown-content">
+          {pages.map((page, i) => (                
               <Link to={page === 'Sign Up'? '/signup' : page === 'Sign In' ? '/signin' : '/logout'}
                   style={{
                       textDecoration: 'none', 
@@ -49,6 +49,7 @@ export default function Header () {
                       textAlign:'left'
                   }}
                   onClick={() => handleLogout(page)}
+                  key={i}
                 >
                 <Typography textAlign="left">{page}</Typography>
               </Link>                        
@@ -57,14 +58,14 @@ export default function Header () {
         </div>
               :
           
-          <div class="dropdown">
+          <div className="dropdown">
           <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" 
           style={{  
               borderRadius: '50%',  
           }}
           />
-          <div class="dropdown-content">
-          {pages.map((page) => (                
+          <div className="dropdown-content">
+          {pages.map((page, i) => (                
               <Link to={page === 'Sign Up'? '/signup' : page === 'Sign In' ? '/signin' : '/logout'}
                   style={{
                       textDecoration: 'none', 
@@ -72,6 +73,7 @@ export default function Header () {
                       textAlign:'left'
                   }}
                   onClick={() => handleLogout(page)}
+                  key={i}
                 >
                 <Typography textAlign="left">{page}</Typography>
               </Link>                        

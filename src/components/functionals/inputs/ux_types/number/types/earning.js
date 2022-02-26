@@ -35,7 +35,7 @@ export default function Earning({input}) {
                     var: input.var,
                     timestamp: Date.now(),
                     user: username ? username : input.user,
-                    value: e.target.value
+                    value: parseInt(e.target.value)
             }
         }
         

@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Button, Badge} from 'react-bootstrap';
 import { RiDeleteBin5Line } from 'react-icons/ri';
-import { IoEnterOutline } from "react-icons/io5";
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { MdOutlineAttachMoney } from 'react-icons/md';
 import { useDispatch, useSelector } from "react-redux";
 import { setInputRequest } from '../../../../../store/slices/inputs';
 import { setMissingRequest } from '../../../../../store/slices/indicator';
