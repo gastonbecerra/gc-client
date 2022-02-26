@@ -9,7 +9,7 @@ import Dashboard from './components/functionals/dashboard';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
-import { TestLayout } from './components/layout/testLayout';
+import Event from './components/functionals/events/eventsHome';
 import Context from './components/functionals/contexts/contextsHome';
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
           <Route exact path="/signin" component={SignIn}/>
           <Route exact path="/inputs" component={Inputs}/>
           <Route exact path="/context" component={Context}/>
+          <Route exact path="/events" component={Event}/>
         </Switch>
         <Footer/>
         </Provider>

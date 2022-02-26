@@ -27,7 +27,7 @@ export default function Header () {
   return (
     <div id='header'>
       <div id='left-header'>
-        <Link style={{textDecoration: 'none'}} to={'/'}><h1 style={{textDecoration: 'none', color: 'white'}}>Get Context( )</h1></Link>
+        <Link style={{textDecoration: 'none'}} to={'/'}><h1 style={{textDecoration: 'none', color: 'white'}}>getContext( )</h1></Link>
       </div>
       
       <div id='center-header'>

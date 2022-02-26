@@ -1,0 +1,77 @@
+// MEDIA QUERY BREAKPOINTS
+$breakpoints: (
+  sm : 540px,
+  md: 768px,
+  lg : 1024px,
+  xl : 1280px    
+);
+
+// MEDIA QUERY DEFINITIONS
+@mixin media-up($breakpoint){
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+    @content; 
+  }
+}
+
+$xs:540px;
+$md: 910px;
+$lg: 1024px;
+$xl: 1220px;
+
+
+// EVENT CLASSES 
+
+// home
+.event-list{
+    margin-top: 5px;
+    font-size: small;
+
+
+    .event{
+        border: solid 1px black;
+        width: 100vw;
+        min-height: 140px;
+        margin-bottom: 5px;
+        padding: 7px;
+        border-radius: 1%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+
+
+        .event-mold{
+
+
+          .event-date{
+            display: flex;
+            font-style: italic;
+            justify-content: flex-end;
+            font-size: smaller;
+          }
+
+          .event-card{
+            
+
+            .event-title{
+              text-align: center;
+              font-weight: 600;
+
+              
+            }
+
+            .event-main{
+              display: flex;
+              justify-content: center;
+              font-weight: 600;
+              font-size: medium;
+            }
+
+            .event-content{
+              padding: 7px;
+            }
+          }
+
+
+        }
+    }
+}

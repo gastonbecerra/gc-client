@@ -40,7 +40,7 @@ export default function Footer() {
         </Link>
         </div>
         <div>
-            <Link to={"/"}>
+            <Link to={"/events"}>
             <MdOutlineRssFeed className="footer-icon"/>
             <div>Feed</div>
             </Link>
