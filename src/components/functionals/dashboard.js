@@ -89,10 +89,11 @@ export default function Dashboard(){
 
                         {mod.indicators.length > 0  && 
                         
-                        <ListGroup style={{overflowY: 'visible'}}>
+                        <ListGroup>
                         {mod.indicators.map((ind, y)=>(
                             <ListGroupItem key={y}>
-                            <div className="ms-2">
+                            <div>
+
                             <div className="fw-bold">{ind.indicator}</div>
                             <Card.Text className="my-2">{ind.description}</Card.Text>
                             </div>

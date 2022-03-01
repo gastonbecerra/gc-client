@@ -13,7 +13,7 @@ export default function Footer() {
     <>
     <Navbar id="footer" bg="white" variant="dark">
         <div>
-        <Link to={"/"}>
+        <Link to={"/indicators"}>
             <MdViewModule className="footer-icon"/>
             <div><span>Indicators</span></div>
             </Link>
@@ -40,7 +40,7 @@ export default function Footer() {
         </Link>
         </div>
         <div>
-            <Link to={"/events"}>
+            <Link to={"/"}>
             <MdOutlineRssFeed className="footer-icon"/>
             <div>Feed</div>
             </Link>

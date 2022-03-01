@@ -8,7 +8,8 @@ export default function IntComponent({variable, ruler}) {
     const id = uid(Math.random())
 
 
-    const handlingRule = (target, value, rule) => {
+    const handlingRule = (target, value, rule, id) => {
+        console.log(id);
         var varis = variable.var;
         
         switch (rule) {
@@ -30,6 +31,7 @@ export default function IntComponent({variable, ruler}) {
                         value: parseInt(value),
                         var: varis
                 })
+                document.getElementsByClassName('bigger').value = 0;
                 break;
 
             case 'btw':
@@ -69,8 +71,9 @@ export default function IntComponent({variable, ruler}) {
             <Col column xs={9}>
                 <Form.Control                     
                     type="number"   
+                    className='bigger'
                     id={`${id}bigger`}   
-                    onChange={(e)=> handlingRule(e.target, document.getElementById(`${id}bigger`).value, 'bigger' )}
+                    onChange={(e)=> handlingRule(e.target, document.getElementById(`${id}bigger`).value, 'bigger', `${id}bigger` )}
                 /> 
             </Col>
                 

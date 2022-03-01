@@ -18,14 +18,14 @@ function App() {
         <Provider store={store}>
         <Header/>
         <Switch>
-          <Route exact path="/" component={Dashboard}/>
+          <Route exact path="/indicators" component={Dashboard}/>
           <Route exact path="/logout" component={Dashboard}/>
           <Route exact path="/modulo" component={Modulo}/>
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/signin" component={SignIn}/>
           <Route exact path="/inputs" component={Inputs}/>
           <Route exact path="/context" component={Context}/>
-          <Route exact path="/events" component={Event}/>
+          <Route exact path="/" component={Event}/>
         </Switch>
         <Footer/>
         </Provider>

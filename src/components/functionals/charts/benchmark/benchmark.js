@@ -78,7 +78,7 @@ export default function Benchmark() {
 
                         ?   <> 
                                 {' '} <span className="highlight-text">below </span> the min value by 
-                                <span className="highlight-value">{' -' + Math.round(((sample.values.val_min - user_value.value)* 100) / user_value.value )}%</span>
+                                <span className="highlight-value">{' ' + Math.round(((sample.values.val_min - user_value.value)* 100) / user_value.value )}%</span>
                             </>
                         :   <> 
                                 {' '} <span className="highlight-text">above the min value by </span>
@@ -94,11 +94,11 @@ export default function Benchmark() {
                          
                         ?   <> 
                                 {' '} <span className="highlight-text">above </span> the max value by 
-                                <span className="highlight-value">{' -' + Math.round((user_value.value * 100) / sample.values.val_max)}%</span>
+                                <span className="highlight-value">{' ' + Math.round((user_value.value * 100) / sample.values.val_max)}%</span>
                             </>
                         :   <> 
-                                {' '} <span className="highlight-text">below the max value by </span>
-                                <span className="highlight-value">{' +' + Math.round((user_value.value * 100) / sample.values.val_max)}%</span>
+                                {' '} <span className="highlight-text">above the max value by </span>
+                                <span className="highlight-value">{' ' + Math.round((user_value.value * 100) / sample.values.val_max)}%</span>
                                 <span>{}</span>.
                             </>
 

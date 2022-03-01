@@ -10,10 +10,10 @@ import { useHistory } from "react-router-dom";
 import { Button, Card, Tabs, Tab, Alert, Form } from 'react-bootstrap';
 
 export default function Context(props) {
+    const { context4user } = useSelector(state => state.context);
     let history = useHistory();
     const dispatch = useDispatch();
     const { username, auth } = useSelector(state => state.user);
-    const { context4user } = useSelector(state => state.context);
     const { contexts } = useSelector(state => state.context);
     const [contextForUser, setContextForUser] = useState([]);
     const [inputs, setInputs] = useState(false);
@@ -24,6 +24,7 @@ export default function Context(props) {
     const [selected2, setSelected2] = useState(2);
     const [counter, setCounter] = useState(false);
     const [createdContext, setCreatedContext] = useState();
+    const [description, setDescription] = useState(false)
 
     // on init functions
     useEffect(()=>{
@@ -65,8 +66,9 @@ export default function Context(props) {
                         rule2 !== null && rule2
                     ],
                     user: username,
-                    info: 'xxxxxx',
+                    description: description,
                     timestamp: Date.now(),
+                    scope: counter
                 })
         }catch(err){
             console.log(err);
@@ -236,8 +238,9 @@ export default function Context(props) {
                     </Alert>
 
                     <div className="selecter">
-                        <h6> 1) Give your context a title:</h6>
+                        <h6> 1) Give your context a title and a description:</h6>
                         <Form.Control type="text" id="title" placeholder='Enter a title' defaultVale={'undefined'} onChange={(e)=> setTitle(e.target.value)}/>                            
+                        <Form.Control type="text" id="description" placeholder='Enter a description' as="textarea" defaultVale={'undefined'} rows={3} onChange={(e)=> setDescription(e.target.value)} style={{fontSize: 'small'}}/>                            
                     </div>
 
                     <div className="selecter">
@@ -266,7 +269,9 @@ export default function Context(props) {
                             color: rule1 || rule2 ? 'black' : 'lightgrey'
                         }}>
 
-                        {!title ? <h6>preview</h6> : <h6>{title}</h6>}                        
+                        {!title ? <h6>preview</h6> : <h6 style={{color: 'tomato'}}>{title}</h6>}                        
+
+                        {description ? <p style={{fontStyle:'normal', color: 'black', textAlign: 'left', padding: '5px'}}>{description}</p> : ' ' }
 
                         {(rule1 || rule2) &&
                             
