@@ -7,7 +7,7 @@ import { AiOutlineShareAlt } from 'react-icons/ai';
 import { Row, Col} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { addContexts4User, removeContexts4User } from '../../../../store/slices/context';
-import { fetchUser } from "../../../../store/slices/user"
+import { fetchUser } from "../../../../store/slices/user";
 import { useHistory } from "react-router-dom";
 import Axios from 'axios';
 
@@ -24,8 +24,7 @@ export default function EventContext({event, data}) {
 
     // on init functions
     useEffect(() =>{
-        // auth === false && dispatch(fetchUser());
-        // if( !auth || !username )  history.push('/signin')
+        console.log(event, data)
         try{
             checkReach()
             checkSubscribers()
@@ -33,6 +32,7 @@ export default function EventContext({event, data}) {
             console.log({msge: 'fail scope checking on init', err: e});
         }
     },[])
+    
 
     // counts the numebr of rules in the context
     useEffect(()=>{

@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# getContext( )
+This project encapusaltes our desire to build, create and learn. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fundamentally, what we are aiming here is to develop a web app that offers researchers a social network and gamified UX where they could collect and analyse data from differents users. 
 
-## Available Scripts
+In summary, we try to offer a platform where users can anonymously provide personal data regarding valuable indicators so they can compare themselves with any other group of users.
 
-In the project directory, you can run:
+Simples users, or users in the role of researchers, 
 
-### `npm start`
+## How this is ment to work?
+We provide a series of theoretical constructs in order to think our UX research proposal:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Research, and any other use case is built upon this notions:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<li>Inputs / Values</li>
+This is the brick in wich the system is founded. Is refers to any kind of data voluntarily provided by users (age, incomes, expenses, etc.)
 
-### `npm test`
+<li>Indicators</li>
+Some of these data can be integrated in a new piece of information that we call "Indicator", a value that comes from combining 2 or more data points and as such has a more deep level of signification. Basic example: "saving" indicator comes from combining data from income and expenses. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<li>Contexts</li>
+This is one of the most peculiar construct. It refers to any scope of users reached under the intersection of one or more values or indicators. As such, users can compare them selves or experiment with differents contexts. 
 
-### `npm run build`
+So, a context example could be "Overeducated rich people of Buenos Aires", whose scope reaches to ever user that previously indicated some academic level, high income, and are located in Buenos Ares city.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Type of users
+<li>Common User</li>
+For them, the platform provides a social network experience that invites them to share personal data so they can compare with other users and contexts.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<li>Researchers</li>
+Users that choose to create and propose their own values, indicators and contexts to be shared and interact with other users.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<li>Advertisers</li>
+Not developed yet, but the idea is to compensate users for their own contribution. May be through some kind of blockchain tokenization.  
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## TECH Stack
+Front: React.
+Back: Node.
+Data Layaer: R. 

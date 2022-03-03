@@ -29,15 +29,15 @@ export default function Context(props) {
     // on init functions
     useEffect(()=>{
         auth === false && dispatch(fetchUser());
-        if( !auth || !username )  history.push('/')
+        if( !auth || !username )  history.push('/');
+        dispatch(fetchContexts4User(username))
+        dispatch(fetchContexts())
+        setContextForUser(JSON.parse(JSON.stringify(context4user)))
     },[])
 
     useEffect(()=>{
-        if(selected1 === selected2){
-            setRule1(false)
-            setRule2(false)
-        }
-    },[selected1, selected2])
+        context4user !== false && setContextForUser(JSON.parse(JSON.stringify(context4user)))
+    },[context4user])
 
     useEffect(() => {
         Axios({
@@ -51,10 +51,15 @@ export default function Context(props) {
         .catch((error)=>{
             console.log(error, ' error fetching inputs');
         })
-        dispatch(fetchContexts4User(username))
-        dispatch(fetchContexts())
-        setContextForUser(JSON.parse(JSON.stringify(context4user)))
     },[])
+
+    useEffect(()=>{
+        if(selected1 === selected2){
+            setRule1(false)
+            setRule2(false)
+        }
+    },[selected1, selected2])
+
 
     // set created context data 
     useEffect(()=>{
@@ -155,13 +160,9 @@ export default function Context(props) {
                 <div className="lister-wrapper">
                 <h5>Your contexts</h5>
                 {
-                    !contextForUser                        
+                    contextForUser                        
                     
                     ? 
-                    
-                    <p>Elige de los contextos disponibles para adcribirte</p> 
-                    
-                    :
                     
                     <>
                     <Alert  className='info'>These are the contexts you will use to compare your self through indicators</Alert>
@@ -186,6 +187,11 @@ export default function Context(props) {
                     ))}
                     </div>
                     </>
+                    
+                    :
+                    
+                    <p>Elige de los contextos disponibles para adcribirte</p> 
+                 
                 }
                 </div>
                 

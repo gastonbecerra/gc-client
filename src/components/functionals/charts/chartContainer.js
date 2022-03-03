@@ -7,7 +7,6 @@ import Inputer from '../inputer';
 
 export default function ChartContainer(indicator) {
     const { sample } = useSelector(state => state.indicator);
-    const { user_value } = useSelector(state => state.indicator); 
     const { selectedIndicator } = useSelector(state => state.indicator);
 
     function renderRequiredChart (){
