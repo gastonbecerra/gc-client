@@ -5,8 +5,6 @@ Fundamentally, what we are aiming here is to develop a web app that offers resea
 
 In summary, we try to offer a platform where users can anonymously provide personal data regarding valuable indicators so they can compare themselves with any other group of users.
 
-Simples users, or users in the role of researchers, 
-
 ## How this is ment to work?
 We provide a series of theoretical constructs in order to think our UX research proposal:
 

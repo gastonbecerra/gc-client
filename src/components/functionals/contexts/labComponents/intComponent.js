@@ -90,7 +90,7 @@ export default function IntComponent({variable, ruler}) {
                 <FaLessThan/>
             </Form.Label>
             
-            <Col column xs={9}>
+            <Col column xs={8}>
                 <Form.Control 
                     type="number"  
                     id={`${id}lesser`} 
