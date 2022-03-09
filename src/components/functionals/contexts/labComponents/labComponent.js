@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React,{ useState, useEffect } from 'react';
 import * as Types from './index';
 import { uid } from 'react-uid';
 import { Form } from 'react-bootstrap';
+
 
 export default function LabComponent({inputs, ruler, selecter, s1, s2}) {
     const [variable, setVariable] = useState(false);

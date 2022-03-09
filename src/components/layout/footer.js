@@ -33,12 +33,7 @@ export default function Footer() {
         </Link>
             
         </div>
-        <div>
-        <Link to={"/"}>
-            <ImLab className="footer-icon"/>
-            <div>Lab</div>
-        </Link>
-        </div>
+
         <div>
             <Link to={"/"}>
             <MdOutlineRssFeed className="footer-icon"/>

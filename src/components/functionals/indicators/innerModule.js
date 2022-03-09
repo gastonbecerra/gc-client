@@ -1,6 +1,5 @@
 import React from 'react'
-import Inputer from './inputer';
-import ChartContainer from './charts/chartContainer';
+import ChartContainer from '../charts/chartContainer';
 import { useSelector } from "react-redux";
 
 export default function InnerModule() {
@@ -8,11 +7,7 @@ export default function InnerModule() {
     
     return (
         <div>
-    
-
             <ChartContainer indicator={selectedIndicator} />
-            
-
         </div>
         )
 }

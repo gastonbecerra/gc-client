@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchInputsByUser, submitInput } from "../../../../store/slices/inputs";
+import { fetchInputsByUser } from "../../../../store/slices/inputs";
 import EventValueNumber from "./EventValueNumber";
 import Axios from 'axios';
 
 export default function EventValue({ event, data }) {
   const { inputs } = useSelector((state) => state.inputs);
-  const { username, auth } = useSelector((state) => state.user);
+  const { username } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [uservalue, setUservalue] = useState(false);
 
@@ -21,10 +21,6 @@ export default function EventValue({ event, data }) {
     }
   }, [inputs]);
 
-  useEffect(() => {
-    console.log(uservalue);
-  }, [uservalue]);
-
   const submitValue = (body, action) => {
     Axios.get({
       method: action,
@@ -32,7 +28,7 @@ export default function EventValue({ event, data }) {
       data: body
     })
     .then((res)=>{
-      console.log('created')
+      
     })
   }
 

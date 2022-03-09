@@ -1,15 +1,15 @@
-import './dashboard.scss';
+import './indicators.scss';
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { Card, Button, ListGroup, ListGroupItem, Container } from 'react-bootstrap';
-import { fetchUser } from "../../store/slices/user";
-import { fetchContexts } from "../../store/slices/context";
+import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { fetchUser } from "../../../store/slices/user";
+import { fetchContexts } from "../../../store/slices/context";
 import { useDispatch, useSelector } from "react-redux";
-import { saveModules, setSelectedModule } from "../../store/slices/modules";
-import { setSelectedIndicator } from "../../store/slices/indicator";
+import { saveModules, setSelectedModule } from "../../../store/slices/modules";
+import { setSelectedIndicator } from "../../../store/slices/indicator";
 import Alert from '@mui/material/Alert';
 import { useHistory } from "react-router-dom";
-import ColumnNav from "../layout/columnNav";
+import ColumnNav from "../../layout/columnNav";
 
 export default function Dashboard(){
     
@@ -97,7 +97,7 @@ export default function Dashboard(){
                             <div className="fw-bold">{ind.indicator}</div>
                             <Card.Text className="my-2">{ind.description}</Card.Text>
                             </div>
-                            <Button variant="outline-primary" onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[y], ind._id)}>Acceder</Button>
+                            <Button size="sm" variant="outline-primary" onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[y], ind._id)}>Acceder</Button>
                             </ListGroupItem>
                         ))}
                         </ListGroup>

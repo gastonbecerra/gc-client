@@ -123,6 +123,7 @@ $xl: 1220px;
     align-items: center;
     width: 90%;
     border: solid 1px lightgray;
+    font-size: smaller;
 
     @media screen and (max-width: $xs) {
       width: 100%;
@@ -141,7 +142,8 @@ $xl: 1220px;
   bottom: 0px;
   width: 100vw;
   display: grid;
-  grid-template-columns: 20% 20% 20% 18% 18%;
+  grid-template-columns: 24% 24% 24% 24%;
+  justify-content: center;
   padding: 5px;
   grid-gap: 5px;
   border: solid 0.5px darkgray;

@@ -6,6 +6,11 @@ import * as EventCard from './index';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../store/slices/user";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 export default function Event() {
 
@@ -35,7 +40,7 @@ export default function Event() {
         setEvents(res.data)
       })
       .then((res)=>{
-        console.log(events.length)
+        
       })
     }catch(e){
       console.log(e)
@@ -83,11 +88,11 @@ export default function Event() {
                 
                 events.map((e,i)=>(
                   
-                  <div key={i} className='event'>
+                  <Card key={i} sx={{width: 370}} className='event'>
                       <div className="event-mold">
-                        <div className="event-date">
+                        <Typography className="event-date" sx={{ fontSize: 11 }} color="text.secondary">
                           {e.timestamp}
-                        </div>
+                        </Typography>
                         <div className='event-card'>
                           {renderequiredEvent(e)}
                         </div>
@@ -95,7 +100,7 @@ export default function Event() {
                       <div className="event-comment">
 
                       </div>
-                  </div>
+                  </Card>
                   
                 ))
                 : null
