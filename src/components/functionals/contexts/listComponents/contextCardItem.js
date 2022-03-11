@@ -4,70 +4,41 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import { RiUserUnfollowLine } from 'react-icons/ri';
-import { AiOutlineUsergroupAdd } from 'react-icons/ai';
+import { AiOutlineUsergroupAdd} from 'react-icons/ai';
+import { MdSearch } from 'react-icons/md';
 
 export default function ContextCardListItem({   context,  addContext, removeContext, list}) {
   
-  if( list === 'have'){
+  
     return (
-    <Card sx={{ minWidth: 345, m:0.4, height: 50 }}>
+    <Card sx={{ width: 370, m:0.4, height: 50, border: "0px solid lightgray" }}>
       <CardContent sx={{display: 'flex', justifyContent:'flex-start', alignItems: 'center', position: 'relative'}}>
         
         <div style={{display:'flex', justifyContent: 'start'}}>
-          <Typography sx={{ mb: 0 }} color="text.secondary">
+          <Typography sx={{ mb: 0 }} variant={"h6"}>
             {context.context}
           </Typography>
         </div>
           <Button 
-            onClick={(e)=> removeContext(context, e)} 
+            onClick={ 
+              list === 'have' ? (e)=> removeContext(context, e) 
+              : list === 'dont' ? (e)=> addContext(context, e) 
+              : (e) => e.preventDefault()} 
             size="small"
-            color="error"
             variant="outlined" 
-            startIcon={<RiUserUnfollowLine />}
+            startIcon={ 
+              list === 'have' ? <RiUserUnfollowLine /> 
+              : list === 'dont' ? <AiOutlineUsergroupAdd /> 
+              : list === "created" ? <MdSearch/> : null  }
             style={{
                 position: 'absolute',
                 right: '1%'
               }}
+              color={  list === 'have' ? 'error' : 'primary'}
           > 
-            
               </Button>
-        
-        
-        
       </CardContent>
     </Card>
   );
-}
-
-  if(list = 'dont'){
-    return (
-      <Card sx={{ minWidth: 345, m:0.4, height: 50 }}>
-        <CardContent sx={{display: 'flex', justifyContent:'flex-start', alignItems: 'center', position: 'relative'}}>
-          
-          <div style={{display:'flex', justifyContent: 'start'}}>
-            <Typography sx={{ mb: 0 }} color="text.secondary">
-              {context.context}
-            </Typography>
-          </div>
-            <Button 
-              onClick={(e)=> addContext(context, e)} 
-              size="small"
-              color="primary"
-              variant="outlined" 
-              startIcon={<AiOutlineUsergroupAdd />}
-              style={{
-                  position: 'absolute',
-                  right: '1%'
-                }}
-            > 
-              
-                </Button>
-          
-          
-          
-        </CardContent>
-      </Card>
-    );
-  }
 }
   

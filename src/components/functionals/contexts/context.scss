@@ -292,6 +292,27 @@ $xl: 1220px;
 
   }
 
+  .highlight-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;          
+    border-right: solid 0.5px lightgrey;
+  }
+
+  .highlight-header{
+    font-weight: 700;
+    font-size: larger;
+    color: tomato;
+  }
+
   .section-title{
       margin-top: '10px'
+  }
+
+  .accordion-card {
+    // margin-top: 20px;
+    width: 95vw;
+    min-width: 370px; 
+    padding: 5px;
   }

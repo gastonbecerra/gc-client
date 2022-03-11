@@ -1,7 +1,7 @@
 import './indicators.scss';
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { Card, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { fetchUser } from "../../../store/slices/user";
 import { fetchContexts } from "../../../store/slices/context";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,10 @@ import { setSelectedIndicator } from "../../../store/slices/indicator";
 import Alert from '@mui/material/Alert';
 import { useHistory } from "react-router-dom";
 import ColumnNav from "../../layout/columnNav";
+import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+
+
 
 export default function Dashboard(){
     
@@ -81,7 +85,7 @@ export default function Dashboard(){
             {modules.map((mod,i)=>(
                 <div key={i}>
                 <Card className="modulo-card" >
-                        <Card.Header as="h5">{mod.module}</Card.Header>
+                        <Card.Header><Typography variant="h6">{mod.module}</Typography></Card.Header>
                         
                         <Card.Body>
                             <Card.Text>{mod.description}</Card.Text>
@@ -92,12 +96,15 @@ export default function Dashboard(){
                         <ListGroup>
                         {mod.indicators.map((ind, y)=>(
                             <ListGroupItem key={y}>
-                            <div>
-
-                            <div className="fw-bold">{ind.indicator}</div>
-                            <Card.Text className="my-2">{ind.description}</Card.Text>
-                            </div>
-                            <Button size="sm" variant="outline-primary" onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[y], ind._id)}>Acceder</Button>
+                            <>
+                            
+                            <Typography variant="subtitle1" style={{fontStyle: 'bold'}}>    {ind.indicator}</Typography>
+                            
+                            <Card.Text className="my-2">
+                                <Typography variant="body2">{ind.description}</Typography>
+                            </Card.Text>
+                            </>
+                            <Button variant="text" size="small" onClick={()=>handleModuleNavigation(modules[i], modules[i].indicators[y], ind._id)}>Acceder</Button>
                             </ListGroupItem>
                         ))}
                         </ListGroup>

@@ -4,8 +4,6 @@ import ContextResultCard from './contextResultCard';
 
 export default function ResultsList({ searchText }) {
     const [displayData, setDisplayData] = useState([]);
-    var response = ['argentina', 'bolivia', 'coso'];
-    const { context4user } = useSelector(state => state.context);
     const { contexts } = useSelector(state => state.context);
 
     useEffect(() => {
@@ -27,8 +25,8 @@ export default function ResultsList({ searchText }) {
         {
             displayData && 
 
-            displayData.map((item) => (
-          <ContextResultCard key={item} context={item}/>
+            displayData.map((item,i) => (
+          <ContextResultCard key={i} context={item}/>
         ))}
       
     </section>

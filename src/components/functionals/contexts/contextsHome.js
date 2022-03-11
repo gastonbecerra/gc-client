@@ -6,6 +6,8 @@ import {
   fetchContexts4User,
   removeContexts4User,
   addContexts4User,
+  setCreatedContext
+
 } from "../../../store/slices/context";
 import Axios from "axios";
 import "./context.scss";
@@ -38,18 +40,15 @@ export default function Context(props) {
   // on init functions
   useEffect(() => {
     auth === false && dispatch(fetchUser());
+    
     if (!auth || !username) history.push("/");
+    
     dispatch(fetchContexts4User(username));
+    
     dispatch(fetchContexts());
+    
     setContextForUser(JSON.parse(JSON.stringify(context4user)));
-  }, []);
-
-  useEffect(() => {
-    context4user !== false &&
-      setContextForUser(JSON.parse(JSON.stringify(context4user)));
-  }, [context4user]);
-
-  useEffect(() => {
+    
     Axios({
       method: "GET",
       withCredentials: true,
@@ -61,7 +60,25 @@ export default function Context(props) {
       .catch((error) => {
         console.log(error, " error fetching inputs");
       });
+
   }, []);
+
+  useEffect(() => {
+    context4user !== false &&
+      setContextForUser(JSON.parse(JSON.stringify(context4user)));
+  }, [context4user]);
+
+  // useEffect(()=>{
+    // if(contexts !== false && username !== false){
+      // let data = contexts.filter(c => c.user === username)
+      // console.log(data);
+      // dispatch(setCreatedContext(data))
+    // }
+  // },[contexts])
+
+  // useEffect(() => {
+
+  // }, []);
 
   useEffect(() => {
     if (selected1 === selected2) {
@@ -111,11 +128,10 @@ export default function Context(props) {
   const removeContext = (context, e) => {
     e.preventDefault();
     try {
-      contextForUser.splice(
-        contextForUser.findIndex((c) => c.context === context),
-        1
-      );
-      setContextForUser([...contextForUser]);
+      let aux = JSON.parse(JSON.stringify(context4user))
+      let idx = contextForUser.findIndex((c) => c.context === context)
+      (idx !== - 1) && aux.splice(idx,1);
+      setContextForUser(aux);
       dispatch(removeContexts4User(username, context.context));
     } catch (err) {
       console.log(err);

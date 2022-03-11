@@ -1,4 +1,5 @@
-import { Typography } from '@mui/material';
+import  { Typography }  from '@mui/material';
+import { Button } from '@mui/material';
 import React, {useState} from 'react'
 import '../context.scss';
 import ResultsList from './contextResultsList';
@@ -15,8 +16,11 @@ export default function ExplorerTab() {
 
   return (
     <>
+    <div style={{textAlign: 'center'}}>
+          <Typography variant="h5" >Explore Contexts</Typography>
+      </div>
     <div className='search-wrapper'>
-        <Typography variant="h">Buscador</Typography>
+
         <div className="">
         
         <section id="search-box">
@@ -28,7 +32,6 @@ export default function ExplorerTab() {
         </section>
           <ResultsList searchText={searchText} />
       </div>
-
     </div>
     </>
   )

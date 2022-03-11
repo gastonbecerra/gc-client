@@ -4,7 +4,6 @@ import './header.scss'
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-
 import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
@@ -27,7 +26,7 @@ export default function Header () {
   return (
     <div id='header'>
       <div id='left-header'>
-        <Link style={{textDecoration: 'none'}} to={'/'}><h1 style={{textDecoration: 'none', color: 'white'}}>getContext( )</h1></Link>
+        <Link style={{textDecoration: 'none'}} to={'/'}><Typography variant={"h4"} style={{textDecoration: 'none', color: 'white'}}>getContext( )</Typography></Link>
       </div>
       
       <div id='center-header'>

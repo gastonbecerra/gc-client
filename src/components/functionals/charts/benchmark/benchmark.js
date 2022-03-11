@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
 
-export default function Benchmark({muestra}) {
+export default function Benchmark({ muestra }) {
   const { sample } = useSelector((state) => state.indicator);
   const { user_value } = useSelector((state) => state.indicator);
   const { selectedIndicator } = useSelector((state) => state.indicator);
@@ -11,7 +11,7 @@ export default function Benchmark({muestra}) {
   const [options, setOptions] = React.useState(false);
   const [width, setWidth] = React.useState("0%");
   var route = window.location.pathname;
- const [chartidx, setChartidx] = React.useState([])
+  const [counter, setCounter] = React.useState(0);
 
   // on init actions
   React.useEffect(() => {
@@ -32,17 +32,18 @@ export default function Benchmark({muestra}) {
 
   const setData = (route) => {
     let data;
-    route === '/context' ? (data = muestra) : (data = sample);
-    try{
+    route === "/context" ? (data = muestra) : (data = sample);
+    try {
       let holder = [];
       holder.push([data.context, data.context, { role: "style" }]);
-        data &&
-          data.chart === "benchmark" &&
-          holder.push([data.values.val_max, 0, "color: blue"]);
-        holder.push([data.values.val_min, 0, "color: blue"]);
-    
-      if(route === '/modulo' && user_value)   holder.push([user_value.value, 0, "color: tomato"])
-  
+      data &&
+        data.chart === "benchmark" &&
+        holder.push([data.values.val_max, 0, "color: blue"]);
+      holder.push([data.values.val_min, 0, "color: blue"]);
+
+      if (route === "/modulo" && user_value)
+        holder.push([user_value.value, 0, "color: tomato"]);
+
       setOptions({
         title: data.indicator,
         hAxis: {
@@ -53,51 +54,46 @@ export default function Benchmark({muestra}) {
         vAxis: { gridlines: { color: "white" }, minValue: 0, maxValue: 0 },
         // legend: 'none',
       });
-  
+
       setDataChart(holder);
-  
-    }catch(e){
-      console.log({status: 'err setting benchmark data'});
+      setCounter(counter + 1);
+    } catch (e) {
+      console.log({ status: "err setting benchmark data" });
     }
-  }
+  };
 
   React.useEffect(() => {
-    setData(route)
+    setData(route);
   }, [sample, user_value, route, muestra]);
 
+  React.useEffect(() => {
+    console.log(counter);
+  }, [counter]);
 
   return (
     <>
-      {/* {route === "/context" && !chartidx.includes(sample ? sample._id : muestra._id)? ( */}
-        {route === "/context" ? (
-        <>
-        
-          <Chart
-            id={sample ? sample._id : muestra._id}
-            chartType="ScatterChart"
-            data={dataChart}
-            options={options}
-            width={[width]}
-            
-            rootProps={{ "data-testid": "1" }}
-          />
-        {/* {setChartidx(...chartidx, sample ? sample._id : muestra._id)} */}
-        </>
+      {route === "/context" ? (
+        <Chart
+          id={1}
+          chartType="ScatterChart"
+          data={dataChart}
+          options={options}
+          width={[width]}
+          rootProps={{ "data-testid": "1" }}
+        />
       ) : null}
 
       {route === "/modulo" ? (
         <>
-        
-        
-            <Chart
-              chartType="ScatterChart"
-              loader={<div>Loading Chart</div>}
-              data={dataChart}
-              options={options}
-              width={[width]}
-              rootProps={{ "data-testid": "1" }}
-            />
-          
+          <Chart
+            chartType="ScatterChart"
+            loader={<div>Loading Chart</div>}
+            data={dataChart}
+            options={options}
+            width={[width]}
+            rootProps={{ "data-testid": "1" }}
+          />
+
           <hr></hr>
           <div className="highlights-container">
             <h5>Highlights</h5>

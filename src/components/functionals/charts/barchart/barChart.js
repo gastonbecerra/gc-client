@@ -12,19 +12,6 @@ export default function BarChart({ muestra }) {
   const [belonging, setBelonging] = useState(0);
   const [width, setWidth] = useState("0%");
   var route = window.location.pathname;
-
-  // on init actions => set responsive witdh
-  useEffect(() => {
-    if (window.innerWidth < 490) {
-      setWidth("100%");
-    } else if (window.innerWidth > 490 && window.innerWidth < 700) {
-      setWidth("100%");
-    } else {
-      if (window.innerWidth > 700) {
-        setWidth("600px");
-      }
-    }
-  }, []);
   
   // sets accs (accumulator) of all barchart total values
   const accSetter = (route) => {
@@ -46,10 +33,6 @@ export default function BarChart({ muestra }) {
       console.log({ status: "err render barchart" });
     }
   };
-
-  useEffect(() => {
-    accSetter(route);
-  }, [route]);
 
   const setData = (route) => {
     let data;
@@ -99,6 +82,25 @@ export default function BarChart({ muestra }) {
 
     setDataChart(holder);
   };
+  
+  // on init actions => set responsive witdh
+  useEffect(() => {
+    if (window.innerWidth < 490) {
+      setWidth("100%");
+    } else if (window.innerWidth > 490 && window.innerWidth < 700) {
+      setWidth("100%");
+    } else {
+      if (window.innerWidth > 700) {
+        setWidth("600px");
+      }
+    }
+  }, []);
+  
+
+  useEffect(() => {
+    accSetter(route);
+  }, [route]);
+
 
   useEffect(() => {
     setData(route)

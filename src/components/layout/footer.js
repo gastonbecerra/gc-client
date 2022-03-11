@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-import { ImLab } from "react-icons/im";
+import Typography from '@mui/material/Typography';
 import { MdOutlineRssFeed } from "react-icons/md";
 import { VscActivateBreakpoints } from "react-icons/vsc";
 import { MdInput } from 'react-icons/md';
