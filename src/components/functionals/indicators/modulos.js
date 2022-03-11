@@ -1,15 +1,15 @@
 import './modulos.scss';
 import React,{ useEffect, useState } from "react";
-import SelectContext from "./selectContext";
+import SelectContext from "../selectContext";
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedIndicator, fetchIndicatorByUser } from "../../store/slices/indicator";
+import { setSelectedIndicator, fetchIndicatorByUser } from "../../../store/slices/indicator";
 import { useHistory } from "react-router-dom";
 import InnerModule from "./innerModule";
-import ColumnNav from "../layout/columnNav";
+import ColumnNav from "../../layout/columnNav";
 
 export default function Modulo(){
     let history = useHistory();

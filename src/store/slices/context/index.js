@@ -6,7 +6,9 @@ export const contextSlice = createSlice({
     initialState: {
         contexts: false,
         selectedContext: false,
-        context4user: false
+        context4user: false,
+        contextCreated: false,
+        contextScope: false
     },
     reducers: {
         getContexts : (state, action) => {
@@ -17,11 +19,17 @@ export const contextSlice = createSlice({
         },
         getContexts4User : (state, action) => {
             state.context4user = action.payload;
-        }
+        },
+        setContextCreated : (state, action) => {
+            state.contextCreated = action.payload;
+        },
+        setContextScope : (state, action) => {
+            state.contextScope = action.payload;
+        },
     }
 })
 
-export const {getContexts, selectContext, getContexts4User} = contextSlice.actions;
+export const {getContexts, selectContext, getContexts4User, setContextCreated} = contextSlice.actions;
 
 export default contextSlice.reducer;
 
@@ -85,33 +93,7 @@ export const addContexts4User = (id, context) => (dispatch) => {
     })
 }
 
-// save context into the database
-// export const saveContext = (createdContext) => {
-//     console.log(createdContext)
-//     Axios({
-//         method: 'post',
-//         withCredentials: true,
-//         url: '/contexts/create',
-//         data: 
-//             createdContext
-        
-//     })
-//     .then(()=>{
-//         console.log('TODO PIPI');
-//     })
+export const setCreatedContext = ({data}) => (dispatch) => {
+    dispatch(setContextCreated(data))
+}
 
-    // fetch(`/contexts/create`, {
-    //     method: 'POST',
-    //     // withCredentials: true,
-    //     url: `/contexts/create`,
-    //     // body: JSON.stringify(createdContext),
-    //     body: JSON.stringify(createdContext),
-    //     headers: {
-    //         //'Content-Type': 'application/json'
-    //          'Content-Type': 'application/x-www-form-urlencoded',
-    //       },
-    // })
-    // .then(()=>{
-    //     console.log('TODO PIPI');
-    // })
-    // }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-import { ImLab } from "react-icons/im";
+import Typography from '@mui/material/Typography';
 import { MdOutlineRssFeed } from "react-icons/md";
 import { VscActivateBreakpoints } from "react-icons/vsc";
 import { MdInput } from 'react-icons/md';
@@ -13,7 +13,7 @@ export default function Footer() {
     <>
     <Navbar id="footer" bg="white" variant="dark">
         <div>
-        <Link to={"/"}>
+        <Link to={"/indicators"}>
             <MdViewModule className="footer-icon"/>
             <div><span>Indicators</span></div>
             </Link>
@@ -33,12 +33,7 @@ export default function Footer() {
         </Link>
             
         </div>
-        <div>
-        <Link to={"/"}>
-            <ImLab className="footer-icon"/>
-            <div>Lab</div>
-        </Link>
-        </div>
+
         <div>
             <Link to={"/"}>
             <MdOutlineRssFeed className="footer-icon"/>

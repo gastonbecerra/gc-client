@@ -1,0 +1,134 @@
+// MEDIA QUERY BREAKPOINTS
+$breakpoints: (
+  sm : 540px,
+  md: 768px,
+  lg : 1024px,
+  xl : 1280px    
+);
+
+// MEDIA QUERY DEFINITIONS
+@mixin media-up($breakpoint){
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)){
+    @content; 
+  }
+}
+
+$xs:540px;
+$md: 910px;
+$lg: 1024px;
+$xl: 1220px;
+
+
+// EVENT CLASSES 
+
+// home
+.event-list{
+    margin-top: 5px;
+    font-size: smaller;
+
+
+
+    .event{
+        // border: solid 1px black;
+        // border-bottom: solid 1px black;
+        // width: 100vw;
+        // min-height: 140px;
+        margin-bottom: 5px;
+        // padding: 10px;
+        border-radius: 1%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+
+
+        .event-mold{
+
+
+          .event-date{
+            display: flex;
+            font-style: italic;
+            justify-content: flex-end;
+            // font-size: smaller;
+            padding-right: 5px;
+          }
+
+          .event-card{
+            font-size: small;
+
+            .event-title{
+              text-align: center;
+              font-weight: 600;
+            }
+
+            .event-main{
+              display: flex;
+              justify-content: center;
+              font-weight: 600;
+              font-size: medium;
+            }
+
+            .event-content{
+              padding: 7px;
+
+              .info{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-start;
+                max-height: 170px;
+                overflow-y: scroll;
+
+
+                .info-container{
+                 display: flex;
+                 font-size: smaller; 
+                }
+
+                .divider {
+                  width: 300px;
+                  padding-top: 10px;
+                  margin-bottom: 5px;
+                  margin: auto;
+                  border-bottom: solid 1px lightgrey;
+                }
+
+              }
+
+              .highlights{
+                display: flex;
+                font-size: medium;
+                justify-content: center;
+                margin-top: 10px;
+
+                .highlight-column{
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;          
+                  border-right: solid 0.5px lightgrey;
+
+                  .highlight-header{
+                    font-weight: 700;
+                    font-size: larger;
+                    color: tomato;
+                  }
+                }
+
+
+              }
+            }
+          }
+        }
+    }
+}
+
+
+// EVENT CONTEXT SPECIFICS CLASSES
+.subscribtion{
+  margin-top: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  
+}
