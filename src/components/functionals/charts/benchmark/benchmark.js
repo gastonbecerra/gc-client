@@ -73,6 +73,7 @@ export default function Benchmark({ muestra }) {
   return (
     <>
       {route === "/context" ? (
+        <>
         <Chart
           id={1}
           chartType="ScatterChart"
@@ -81,6 +82,7 @@ export default function Benchmark({ muestra }) {
           width={[width]}
           rootProps={{ "data-testid": "1" }}
         />
+        </>
       ) : null}
 
       {route === "/modulo" ? (

@@ -1,0 +1,65 @@
+.message-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: solid 0.5px lightgray;
+    width: 100%;
+
+    .message-info{
+        display: none;
+        min-height: 40px;
+        border: solid 1px lightgray;
+    }
+
+    .message-content{
+        padding: 8px;
+    }
+
+    .message-actions{
+
+    }
+
+    .messsage-input{
+
+    }
+}
+
+.comment-container{
+    border: 1px solid lightgray;
+    width: 100%;
+    .comment-header{
+        // background-color: lightgrey;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        // border-bottom: 0.5px solid lightgray;
+    }
+    .comment-content{
+        padding: 8px;
+        overflow-y: scroll;
+    }
+    .comment-actions{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: solid 0.5px lightgray;
+        width: 100%;
+    }
+}
+
+/*
+
+    user: 'Juan Pablo', 
+    message: '2', 
+    timestamp: 1647704244435, 
+    comments:  
+        message: "2.1"
+        timestamp: 1647704262694
+        user: "Juan Pablo"
+
+
+    
+*/

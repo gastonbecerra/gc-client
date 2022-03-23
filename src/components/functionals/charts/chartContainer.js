@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import * as Chart from "./index";
 import Inputer from "../indicators/indicatorInputs";
 import { Typography } from "@mui/material";
+import Comments from '../messaging';
 
 export default function ChartContainer({ indicator, muestra }) {
   const { sample } = useSelector((state) => state.indicator);
   const { samples } = useSelector((state) => state.samples);
   const { selectedIndicator } = useSelector((state) => state.indicator);
   var route = window.location.pathname;
-
+  
   function renderRequiredChart() {
     try {
       let chart;
@@ -45,13 +46,9 @@ export default function ChartContainer({ indicator, muestra }) {
       const Component = Chart[type];
       return( 
         <>
-          {
-            muestra && 
-            <Typography variant="overline" display="block" gutterBottom>
-              {muestra.indicator}
-            </Typography>
-          }
           <Component muestra={muestra} />
+          {muestra && <Comments muestra={muestra}/>}
+           {/* Y aquí debería el componente dinámico de highlights */}
         </>
         )
     } catch (e) {
