@@ -24,6 +24,7 @@ export default function BaseInput({ setMessage  }) {
   };
 
   const handleValue = (e) => {
+    e.preventDefault();
     try{
       setMessage({
         user: username,
@@ -83,7 +84,7 @@ export default function BaseInput({ setMessage  }) {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <MdInput onClick={() => handleValue()} />
+                    <MdInput onClick={(e) => handleValue(e)} />
                   </InputAdornment>
                 ),
               }}

@@ -7,13 +7,15 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import DialogContentText from "@mui/material/DialogContentText";
 import { MdOutlineModeComment } from "react-icons/md";
+import { postComment } from '../../../store/slices/comments';
+import { useDispatch } from 'react-redux';
 
-export default function CommentAnswer({ message, func }) {
+export default function CommentAnswer({ message, func, base_reference }) {
   const [answer, setAnswer] = useState(false);
   const [state, setState] = useState(message);
   const [value, setValue] = useState();
-
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   // open dialog
   const handleClickOpen = () => {
@@ -37,13 +39,18 @@ export default function CommentAnswer({ message, func }) {
   };
   
   // handles answer data
-  const handleValue = () => {
+  const handleValue = (e) => {
+    e.preventDefault();
     setAnswer({
+      user: message.username,
       message: value,
-      user: message.user,
       timestamp: Date.now(),
       level: 1,
-      comment_reference: message.client_id
+      comments: [
+
+      ],
+      comment_reference: message.client_id,
+      base_reference: base_reference
     });
   };
 
@@ -52,6 +59,7 @@ export default function CommentAnswer({ message, func }) {
       func(answer)
       setValue('')
       handleClose()
+      dispatch(postComment(answer, base_reference, message.client_id ))
   },[answer])
 
   return (
@@ -75,7 +83,7 @@ export default function CommentAnswer({ message, func }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => handleValue()}>Submit</Button>
+          <Button onClick={(e) => handleValue(e)}>Submit</Button>
         </DialogActions>
       </Dialog>
     </>

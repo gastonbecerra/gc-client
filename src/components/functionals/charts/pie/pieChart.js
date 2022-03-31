@@ -41,7 +41,6 @@ export default function PieChart({ muestra }) {
     let holder = [];
     let data;
     route === "/context" ? (data = muestra) : (data = sample);
-    console.log(data, 'pieeee')
 
     try {
       holder.push([

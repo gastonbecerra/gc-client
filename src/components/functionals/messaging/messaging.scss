@@ -8,7 +8,7 @@
 
     .message-info{
         display: none;
-        min-height: 40px;
+        min-height: 20px;
         border: solid 1px lightgray;
     }
 
@@ -26,10 +26,10 @@
 }
 
 .comment-container{
-    border: 1px solid lightgray;
+    // border: 1px solid lightgray;
     width: 100%;
+    max-height: 110px;
     .comment-header{
-        // background-color: lightgrey;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -49,17 +49,3 @@
         width: 100%;
     }
 }
-
-/*
-
-    user: 'Juan Pablo', 
-    message: '2', 
-    timestamp: 1647704244435, 
-    comments:  
-        message: "2.1"
-        timestamp: 1647704262694
-        user: "Juan Pablo"
-
-
-    
-*/

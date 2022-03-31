@@ -66,10 +66,6 @@ export default function Benchmark({ muestra }) {
     setData(route);
   }, [sample, user_value, route, muestra]);
 
-  React.useEffect(() => {
-    console.log(counter);
-  }, [counter]);
-
   return (
     <>
       {route === "/context" ? (

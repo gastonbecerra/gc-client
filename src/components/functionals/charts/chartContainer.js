@@ -1,25 +1,51 @@
 import "./charts.scss";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Alert from "@mui/material/Alert";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as Chart from "./index";
 import Inputer from "../indicators/indicatorInputs";
 import { Typography } from "@mui/material";
-import Comments from '../messaging';
+import Comments from "../messaging";
+import { fetchChartComments } from "../../../store/slices/comments";
 
 export default function ChartContainer({ indicator, muestra }) {
+  const dispatch = useDispatch();
   const { sample } = useSelector((state) => state.indicator);
   const { samples } = useSelector((state) => state.samples);
   const { selectedIndicator } = useSelector((state) => state.indicator);
   var route = window.location.pathname;
-  
+  const { chart_comments } = useSelector((state) => state.comments);
+  const [comments, setComments] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchChartComments());
+  }, [muestra]);
+
+  useEffect(()=>{
+    if (chart_comments) {
+      try {
+        var comments = chart_comments.filter(
+          (com) => com.base_reference.indicator === muestra.indicator
+        );
+
+        if (comments.length === 0 || comments == undefined) {
+          comments = false;
+        }
+
+        setComments(comments);
+      } catch (e) {
+        console.log("failure setting comments for each chart");
+      }
+    }
+  },[chart_comments])
+
   function renderRequiredChart() {
     try {
       let chart;
       let type;
       if (muestra) {
         chart = muestra.chart;
-      } else  {
+      } else {
         chart = selectedIndicator.chart;
       }
 
@@ -44,25 +70,23 @@ export default function ChartContainer({ indicator, muestra }) {
           return null;
       }
       const Component = Chart[type];
-      return( 
+      return (
         <>
           <Component muestra={muestra} />
-          {muestra && <Comments muestra={muestra}/>}
-           {/* Y aquí debería el componente dinámico de highlights */}
+          {muestra && <Comments muestra={muestra} comments={comments} />}
+          {/* Y aquí debería el componente dinámico de highlights */}
         </>
-        )
+      );
     } catch (e) {
       console.log({ status: "fail chart rendering", e: e });
     }
   }
-    return (
-      <>
-      { route === "/context" ? 
-        <>{renderRequiredChart()}</>
-      : null}
+  return (
+    <>
+      {route === "/context" ? <>{renderRequiredChart()}</> : null}
 
-      { route === '/modulo' ? 
-      <div className="chart-container">
+      {route === "/modulo" ? (
+        <div className="chart-container">
           <div className="chart">
             <h5>Chart</h5>
 
@@ -85,8 +109,7 @@ export default function ChartContainer({ indicator, muestra }) {
 
           <Inputer className="inner-chart" />
         </div>
-      : null }
-      </>
-    );
-  }
-
+      ) : null}
+    </>
+  );
+}

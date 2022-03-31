@@ -8,15 +8,19 @@ import { HiOutlineMenu } from "react-icons/hi";
 import CommentAnswer from "./answerComment";
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 
-export default function CommentBase({ message, handleAnswer, idx }) { 
+export default function CommentBase({ message, handleAnswer, idx, base_reference }) { 
     const [response, setResponse] = useState(false);
 
     useEffect(()=>{
+      try{
         let obj = Object.assign({level: 1}, message);
         if(response !== false){
             obj.comments.push(response)            
             handleAnswer(obj, idx)
         }
+      }catch(e){
+        console.log({msge: 'failure setting response tree answers', e});
+      }
     },[response])   
 
   return (
@@ -34,7 +38,9 @@ export default function CommentBase({ message, handleAnswer, idx }) {
       <Row className="comment-content">{message.message}</Row>
       <div className="comment-actions">
         <HiOutlineMenu style={{ display: "inline" }} />
-        <CommentAnswer message={message} func={setResponse} />
+        
+        <CommentAnswer message={message} func={setResponse} base_reference={base_reference} />
+        
         <div className="p-2">
           <BsArrowDownSquare />
           <span>{" " + 22 + " "}</span>
@@ -52,7 +58,7 @@ export default function CommentBase({ message, handleAnswer, idx }) {
 
 
 
-          <div className="comment-container">
+          <div className="comment-container my-1">
           <Row>
             <div className="comment-header px-2">
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -62,7 +68,9 @@ export default function CommentBase({ message, handleAnswer, idx }) {
               <span style={{ display: "flex" }}>{message.timestamp}</span>
             </div>
           </Row>
-          <Row className="comment-content">{message.message}</Row>
+          <Row className="comment-content">
+            <Typography variant="body2">{message.message}</Typography>
+          </Row>
           <div className="comment-actions">
             <HiOutlineMenu style={{ display: "inline" }} />
             <CommentAnswer message={message} func={setResponse} />

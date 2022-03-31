@@ -9,8 +9,7 @@ export default function ContextCardListContainer({  contextForUser, contexts,  a
   const [createdContext, setCreatedContexts] = useState(false)
   
   useEffect(()=>{
-    (contexts && username) && setCreatedContexts(contexts.filter(c => c.user === username))  
-    console.log(createdContext);
+    (contexts && username) && setCreatedContexts(contexts.filter(c => c.user === username));
   },[contexts])
 
   return (
