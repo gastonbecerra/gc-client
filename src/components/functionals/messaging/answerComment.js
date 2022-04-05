@@ -41,21 +41,23 @@ export default function CommentAnswer({ message, func, base_reference }) {
   // handles answer data
   const handleValue = (e) => {
     e.preventDefault();
-    setAnswer({
-      user: message.username,
-      message: value,
-      timestamp: Date.now(),
-      level: 1,
-      comments: [
-
-      ],
-      comment_reference: message.client_id,
-      base_reference: base_reference
-    });
+    if(value.length !== (false && undefined && '')){
+      setAnswer({
+        user: message.username,
+        message: value,
+        timestamp: Date.now(),
+        level: 1,
+        comments: [
+  
+        ],
+        comment_reference: message.client_id,
+        base_reference: base_reference
+      });
+    }
   };
 
   useEffect(()=>{
-    answer !== false &&
+    answer.message !== (false && '') &&
       func(answer)
       setValue('')
       handleClose()
@@ -83,7 +85,16 @@ export default function CommentAnswer({ message, func, base_reference }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={(e) => handleValue(e)}>Submit</Button>
+          <Button 
+            variant="outlined" 
+            size="small"
+            type="submit" 
+            value="Submit" 
+            onClick={(e) => handleValue(e)} 
+            disabled={value == '' ? true : false} 
+          >
+            Submit answer
+        </Button>
         </DialogActions>
       </Dialog>
     </>

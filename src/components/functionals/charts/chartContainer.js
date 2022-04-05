@@ -8,15 +8,15 @@ import { Typography } from "@mui/material";
 import Comments from "../messaging";
 import { fetchChartComments } from "../../../store/slices/comments";
 
-export default function ChartContainer({ indicator, muestra }) {
+export default function ChartContainer({ muestra, event }) {
+  // console.log(muestra)
   const dispatch = useDispatch();
   const { sample } = useSelector((state) => state.indicator);
-  const { samples } = useSelector((state) => state.samples);
   const { selectedIndicator } = useSelector((state) => state.indicator);
   var route = window.location.pathname;
   const { chart_comments } = useSelector((state) => state.comments);
   const [comments, setComments] = useState(false);
-
+  
   useEffect(() => {
     dispatch(fetchChartComments());
   }, [muestra]);
@@ -73,7 +73,8 @@ export default function ChartContainer({ indicator, muestra }) {
       return (
         <>
           <Component muestra={muestra} />
-          {muestra && <Comments muestra={muestra} comments={comments} />}
+          {(muestra !== (undefined && false)) && (route ==='/context') && <Comments muestra={muestra} comments={comments} />}
+          {(muestra !== (undefined && false)) && (event !== undefined) && <Comments muestra={muestra} event={event} />}
           {/* Y aquí debería el componente dinámico de highlights */}
         </>
       );
@@ -83,7 +84,7 @@ export default function ChartContainer({ indicator, muestra }) {
   }
   return (
     <>
-      {route === "/context" ? <>{renderRequiredChart()}</> : null}
+      {route !== "/modulo" ? <>{renderRequiredChart()}</> : null}
 
       {route === "/modulo" ? (
         <div className="chart-container">

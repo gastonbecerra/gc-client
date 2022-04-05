@@ -17,7 +17,7 @@ export default function BarChart({ muestra }) {
   const accSetter = (route) => {
     let data;
     // set chart's data on route based criteria
-    route === "/context" ? (data = muestra) : (data = sample);
+    route !== "/modulo" ? (data = muestra) : (data = sample);
     // acc (accuulator) is the 100% of cases within sample => this helps to render stats highlights
     try {
       setAcc(0);
@@ -108,7 +108,7 @@ export default function BarChart({ muestra }) {
 
   return (
     <>
-      {route === "/context" ? (
+      {route !== "/modulo" ? (
         <>
           <Chart
             chartType="BarChart"

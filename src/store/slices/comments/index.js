@@ -47,3 +47,17 @@ export const postComment = (message, base_reference, comment_reference) => (disp
         console.log(e)
       })
 }
+
+export const deleteComment = (client_id) => (dispatch) => {
+    Axios({
+        method: 'DELETE',
+        url: `/comments/:${client_id}`,
+        withCredentials: true
+    })
+    .then(()=>{
+        console.log('msge succesfully deleted')
+    })
+    .catch((e)=>{
+        console.log('error deleting mssge');
+    })
+}

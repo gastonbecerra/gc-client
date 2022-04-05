@@ -17,7 +17,7 @@ export default function PieChart({ muestra }) {
   // set acc  (accumulator) for all cases within sample / discriminates data source by routing criteria
   const accSetter = (route) => {
     let data;
-    route === "/context" ? (data = muestra) : (data = sample);
+    route !== "/modulo" ? (data = muestra) : (data = sample);
 
     try {
       setAcc(0);
@@ -91,7 +91,7 @@ export default function PieChart({ muestra }) {
 
   return (
     <>
-    {route === '/context' ? 
+    {route !== '/modulo' ? 
       <>
       <Chart
           chartType="PieChart"

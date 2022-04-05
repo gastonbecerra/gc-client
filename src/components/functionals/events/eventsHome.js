@@ -7,9 +7,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../store/slices/user";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function Event() {
@@ -40,7 +37,7 @@ export default function Event() {
         setEvents(res.data)
       })
       .then((res)=>{
-        
+        console.log(res)
       })
     }catch(e){
       console.log(e)
@@ -60,6 +57,10 @@ export default function Event() {
   
         case 'VALUE_CREATION':
           type='EventValue'
+          break;
+        
+        case 'comment':
+          type='EventComment';
           break;
       
         default:

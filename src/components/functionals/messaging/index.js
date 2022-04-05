@@ -10,8 +10,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { postComment } from "../../../store/slices/comments";
 import { useDispatch } from "react-redux";
+import FeedComment from './feedComment';
 
-export default function Message({ muestra, comments }) {
+export default function Message({ muestra, comments, event }) {
+  var route = window.location.pathname;
+  // console.log(comments);
   const dispatch = useDispatch();
   const [counterM, setMCounter] = useState(0);
   const [counterL, setLCounter] = useState(0);
@@ -29,14 +32,13 @@ export default function Message({ muestra, comments }) {
   });
 
   useEffect(() => {
-    if (comments !== false && comments.length > 0) {
+    if (route !== '/' && comments !== false && comments.length > 0 ) {
       setMCounter(comments.length);
       setResponseTree((prevState) => ({
         ...prevState,
         comments: comments,
       }));
     }
-    console.log(responseTree);
     setoLading(true);
   }, [comments]);
 
@@ -45,19 +47,19 @@ export default function Message({ muestra, comments }) {
   //When MESSAGE hcanges IT SEEMS NOT USED
   useEffect(() => {
     try {
-      if (message !== false && stack.length > 0) {
+      if (message.message !== (undefined && false && '') && stack.length > 0) {
         var index = stack.findIndex(
           (m) => m.message === message.message && m.user === message.user
         );
         index === -1 && commentApiHandler(message);
       }
-      if (message !== false && stack.length === 0) {
+      if (message.message !== (undefined && false && '') && stack.length === 0) {
         commentApiHandler(message);
       }
     } catch (e) {
       console.log("failure saving none repetead comments");
     }
-    if (message !== false) {
+    if (message.message !== (undefined && false && '')) {
       var aux = Object.assign({}, responseTree);
       aux.comments.push(message);
       setResponseTree(aux);
@@ -68,7 +70,6 @@ export default function Message({ muestra, comments }) {
     if(responseTree.comments !== undefined){
       setMCounter(responseTree.comments.length)
     }
-    muestra.indicator === 'ahorro' && console.log(responseTree);
   },[responseTree])
 
   /*---------------------------------FUNCIONES--------------------------------- */
@@ -90,13 +91,24 @@ export default function Message({ muestra, comments }) {
 
   // POST or PUT new comments
   const commentApiHandler = (message) => {
-    message && setStack([...stack, message]);
+    message !== (false || '') && setStack([...stack, message]);
     dispatch(postComment(message, responseTree.reference, false))
   };
 
   return (
     <>
-      {loading ? (
+      <>
+      {route === '/' && muestra ?
+        
+      <CommentBase
+        message={event}
+        handleAnswer={handleAnswer}
+        base_reference={event.base_reference}
+      />
+
+        :
+        
+        loading ? (
         <>
           <div onClick={() => setFlag(!flag)} className="message-container">
             <div className="p-2">
@@ -139,6 +151,8 @@ export default function Message({ muestra, comments }) {
           <CircularProgress />
         </Box>
       )}
+      </>
+
     </>
   );
 }

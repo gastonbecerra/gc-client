@@ -77,11 +77,12 @@ export default function ContextResultCard({ context }) {
                 display: "flex",
                 justifyContent: "center",
                 overflow: "visible",
+                width: 390,
               }}
             >
               <Card
                 sx={{
-                  minWidth: 380,
+                  width: '100vw',
                   p: 1.4,
                   minHeight: 200,
                 }}
@@ -264,7 +265,7 @@ export default function ContextResultCard({ context }) {
                     </AccordionDetails>
                   </Accordion>
 
-                  {/* -----------------------------SAMPLES CARD ACCORDION------------------------------------ */}
+                  {/* -----------------------------INDICATORS CARD ACCORDION------------------------------------ */}
                   <Accordion
                     className="accordion-card"
                     expanded={expanded === "panel4"}
@@ -274,7 +275,7 @@ export default function ContextResultCard({ context }) {
                       aria-controls="panel4d-content"
                       id="panel4d-header"
                     >
-                      <Typography variant="h6">Samples</Typography>
+                      <Typography variant="h6">Indicators</Typography>
                     </AccordionSummary>
 
                     <AccordionDetails>
@@ -283,8 +284,7 @@ export default function ContextResultCard({ context }) {
                           
                             <ChartContainer
                               key={i}
-                              indicator={false}
-                              muestra={samples[i]}
+                              muestra={muestra}
                             />
                           
                         ))}
