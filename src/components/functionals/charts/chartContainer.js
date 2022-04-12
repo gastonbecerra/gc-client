@@ -89,7 +89,7 @@ export default function ChartContainer({ muestra, event }) {
       {route === "/modulo" ? (
         <div className="chart-container">
           <div className="chart">
-            <h5>Chart</h5>
+            {/* <h5>Chart</h5> */}
 
             {!sample && (
               <Alert variant="outlined" severity="error">

@@ -5,12 +5,10 @@ import { FiShare2 } from "react-icons/fi";
 import { BsArrowUpSquare, BsArrowDownSquare } from "react-icons/bs";
 import CommentBase from "./listCommentBase";
 import BaseInput from "./baseComment";
-import Axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { postComment } from "../../../store/slices/comments";
 import { useDispatch } from "react-redux";
-import FeedComment from './feedComment';
 
 export default function Message({ muestra, comments, event }) {
   var route = window.location.pathname;

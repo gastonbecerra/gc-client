@@ -33,13 +33,20 @@ $xl: 1220px;
         // border-bottom: solid 1px black;
         // width: 100vw;
         // min-height: 140px;
-        margin-bottom: 5px;
+        // margin-bottom: 5px;
         // padding: 10px;
         border-radius: 1%;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         flex-direction: column;
+        max-width: 450px;
+        @media screen and (min-width: $lg) {
+            width: 700px;
+        }
 
+        @media screen and (min-width: $xl) {
+            width: 900px;
+        }
 
         .event-mold{
 

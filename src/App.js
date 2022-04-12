@@ -1,4 +1,5 @@
 import './App.scss';
+import React, {useEffect} from 'react';
 import Header from './components/layout/header';
 import Footer from './components/layout/footer';
 import Modulo from './components/functionals/indicators/modulos';

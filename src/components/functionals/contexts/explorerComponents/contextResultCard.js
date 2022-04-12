@@ -62,7 +62,12 @@ export default function ContextResultCard({ context }) {
             Explore
           </Button>
 
-          <Dialog fullScreen open={open} onClose={handleClose}>
+          <Dialog 
+            fullScreen 
+            open={open} 
+            onClose={handleClose}
+          >
+
             <DialogTitle
               id="responsive-dialog-title"
               style={{ textAlign: "center" }}
@@ -77,14 +82,17 @@ export default function ContextResultCard({ context }) {
                 display: "flex",
                 justifyContent: "center",
                 overflow: "visible",
-                width: 390,
+                minWidth: '100vw',
+                maxWidth: '900px'
               }}
             >
               <Card
                 sx={{
-                  width: '100vw',
-                  p: 1.4,
                   minHeight: 200,
+                  minWidth: '100vw', 
+                  maxWidth: '450px',
+                  display: 'flex',
+                  justifyContent: 'center'
                 }}
                 square={true}
               >
@@ -94,6 +102,7 @@ export default function ContextResultCard({ context }) {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
+                    width: '100vw'
                   }}
                 >
                   {/* -----------------------------INFO CARD ACCORDION------------------------------------ */}

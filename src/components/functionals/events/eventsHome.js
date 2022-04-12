@@ -8,37 +8,47 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../store/slices/user";
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import { fetchContexts, fetchContexts4User } from '../../../store/slices/context';
+import { getSamples } from '../../../store/slices/samples';
+import { fetchChartComments } from '../../../store/slices/comments';
 
 export default function Event() {
-
-  const [events, setEvents] = useState(false);
-  const { username } = useSelector(state => state.user)
   let history = useHistory();
   const dispatch = useDispatch();
+  const [events, setEvents] = useState(false);
+  const { username } = useSelector(state => state.user);
+  const { contexts, context4user } = useSelector(state => state.context);
 
   // ONINITIS actions: get event data
   
   useEffect(()=>{
-      username === false && dispatch(fetchUser());
-  },[dispatch])
+    if((username !== true) || (username === undefined) ) dispatch(fetchUser())
+    !contexts && dispatch(fetchContexts());
+  },[]);
 
   useEffect(()=>{
-      username === true && dispatch(fetchUser())
+    if(context4user === false) dispatch(fetchContexts4User(username));
   },[username])
 
   useEffect(()=>{
     try{
+      
+      dispatch(getSamples('Macristas'));      
+      
+      dispatch(fetchChartComments());
+
       Axios({
         method: 'get',
         withCredentials: true,
-        url: '/events/10'
+        url: '/events/20'
       })
       .then((res)=>{
         setEvents(res.data)
       })
-      .then((res)=>{
-        console.log(res)
+      .then(()=>{
+        //username === false && history.push('/signin');
       })
+      
     }catch(e){
       console.log(e)
     }
@@ -89,7 +99,7 @@ export default function Event() {
                 
                 events.map((e,i)=>(
                   
-                  <Card key={i} sx={{width: 370}} className='event'>
+                  <Card key={i} sx={{width: '100%'}} className='event'>
                       <div className="event-mold">
                         <Typography className="event-date" sx={{ fontSize: 11 }} color="text.secondary">
                           {e.timestamp}

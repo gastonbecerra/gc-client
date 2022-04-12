@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./messaging.scss";
 import { BsArrowUpSquare, BsArrowDownSquare } from "react-icons/bs";
 import { Row } from "react-bootstrap";
@@ -7,8 +7,6 @@ import Typography from "@mui/material/Typography";
 import { HiOutlineMenu } from "react-icons/hi";
 import CommentAnswer from "./answerComment";
 import { MdOutlineDeleteOutline } from 'react-icons/md';
-import { deleteComment } from '../../../store/slices/comments';
-import { useDispatch, useSelector } from 'react-redux';
 
 export default function BaseCommentItem({message, base_reference, setResponse, handleDeleting, username}) {
   return (
@@ -23,7 +21,9 @@ export default function BaseCommentItem({message, base_reference, setResponse, h
           <span style={{ display: "flex" }}>{message.timestamp}</span>
         </div>
       </Row>
-      <div className="comment-content">{message.message}</div>
+      <div className="comment-content">
+        <Typography variant="subtitle2">{message.message}</Typography>
+        </div>
       <div className="comment-actions">
         <HiOutlineMenu style={{ display: "inline" }} />
         

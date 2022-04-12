@@ -8,9 +8,8 @@ import { MdOutlineAccountCircle, MdInput } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 import Button from '@mui/material/Button';
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 
 export default function BaseInput({ setMessage  }) {
   const [show, setShow] = useState(false);
