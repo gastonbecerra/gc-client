@@ -5,7 +5,7 @@ import { FcPrevious, FcNext } from "react-icons/fc";
 import indicator, { submitMissingInput } from '../../../store/slices/indicator';
 import * as Inputs from './ux_types';
 import ColumnNav from '../../layout/columnNav';
-import Axios from 'axios'; 
+
 
 const InputTrail = ({ inputs }) => {
   const [current, setCurrent] = useState(0);

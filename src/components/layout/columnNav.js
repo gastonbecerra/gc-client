@@ -36,7 +36,7 @@ export default function ColumnNav() {
             
                 <li className='li-flex'>
                     <MdViewModule className="footer-icon mx-2 mt-1"/>
-                    <Link to={'/'} className='link-nodeco'><p> Indicators</p> </Link>
+                    <Link to={'/indicators'} className='link-nodeco'><p> Indicators</p> </Link>
                 </li>
                 {
                     modules &&
@@ -82,7 +82,7 @@ export default function ColumnNav() {
                 </li>
                 <li className='li-flex'>
                     <MdOutlineRssFeed className="footer-icon mx-2 mt-1"/>    
-                    <Link to={'/coso'} className='link-nodeco'> <p>Feed</p> </Link>
+                    <Link to={'/'} className='link-nodeco'> <p>Feed</p> </Link>
                 </li>
                 </ul>
             </div>

@@ -1,11 +1,11 @@
 import React,{ useState } from "react";
-import { Container, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import Button from '@mui/material/Button';
-import InputHome from '../../components/functionals/inputs/inputHome';
+import InputHome from '../inputs/inputHome';
 import { MdInput } from 'react-icons/md';
 import { useDispatch, useSelector } from "react-redux";
-import { submitInput } from "../../store/slices/inputs";
-import { fetchIndicatorByUser, submitMissingInput } from "../../store/slices/indicator";
+import { submitInput } from "../../../store/slices/inputs";
+import { fetchIndicatorByUser, submitMissingInput } from "../../../store/slices/indicator";
 
 export default function Inputer() {
     const values = [true];

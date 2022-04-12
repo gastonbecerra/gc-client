@@ -26,6 +26,7 @@
   font-size: smaller;
   @media screen and (max-width: $xs) {
     max-width: 99vw;
+    font-size: small;
   }
 
   @media screen and (max-width: $md) {

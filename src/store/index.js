@@ -5,6 +5,8 @@ import context from './slices/context';
 import indicator from './slices/indicator';
 import modulo from './slices/modules';
 import inputs from './slices/inputs';
+import samples from './slices/samples';
+import comments from "./slices/comments";
 
 export default configureStore({
     reducer: {
@@ -12,7 +14,9 @@ export default configureStore({
         context,
         indicator,
         modulo,
-        inputs
+        inputs,
+        samples,
+        comments
     }
 });
 
