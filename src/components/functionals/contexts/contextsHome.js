@@ -174,7 +174,7 @@ export default function Context(props) {
         <div className="content">
           <div className="inner-content">
             <Tabs
-              defaultActiveKey="Contexts"
+              defaultActiveKey="Explorer"
               id="uncontrolled-tab-example"
               className="mb-3"
               style={{ margin: "auto" }}

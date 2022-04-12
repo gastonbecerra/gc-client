@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { useSelector } from "react-redux";
-import { selectContext } from "../../../../store/slices/context";
 
 export default function PieChart({ muestra }) {
   const { sample } = useSelector((state) => state.indicator);
@@ -17,7 +16,7 @@ export default function PieChart({ muestra }) {
   // set acc  (accumulator) for all cases within sample / discriminates data source by routing criteria
   const accSetter = (route) => {
     let data;
-    route === "/context" ? (data = muestra) : (data = sample);
+    route !== "/modulo" ? (data = muestra) : (data = sample);
 
     try {
       setAcc(0);
@@ -41,7 +40,6 @@ export default function PieChart({ muestra }) {
     let holder = [];
     let data;
     route === "/context" ? (data = muestra) : (data = sample);
-    console.log(data, 'pieeee')
 
     try {
       holder.push([
@@ -83,6 +81,29 @@ export default function PieChart({ muestra }) {
       },
     });
 
+    
+    const dataOld = [
+      ["Major", "Degrees"],
+      ["Business", 256070],
+      ["Education", 108034],
+      ["Social Sciences &amp; History", 127101],
+      ["Health", 81863],
+      ["Psychology", 74194],
+    ];
+    
+    const dataNew = [
+      ["Major", "Degrees"],
+      ["Business", 358293],
+      ["Education", 101265],
+      ["Social Sciences &amp; History", 172780],
+      ["Health", 129634],
+      ["Psychology", 97216],
+    ];
+    
+     const diffdata = {
+      old: dataOld,
+      new: dataNew,
+    };
     setDataChart(holder);
   };
 
@@ -92,7 +113,7 @@ export default function PieChart({ muestra }) {
 
   return (
     <>
-    {route === '/context' ? 
+    {route !== '/modulo' ? 
       <>
       <Chart
           chartType="PieChart"

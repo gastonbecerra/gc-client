@@ -32,7 +32,7 @@ export default function Benchmark({ muestra }) {
 
   const setData = (route) => {
     let data;
-    route === "/context" ? (data = muestra) : (data = sample);
+    route !== "/modulo" ? (data = muestra) : (data = sample);
     try {
       let holder = [];
       holder.push([data.context, data.context, { role: "style" }]);
@@ -41,8 +41,9 @@ export default function Benchmark({ muestra }) {
         holder.push([data.values.val_max, 0, "color: blue"]);
       holder.push([data.values.val_min, 0, "color: blue"]);
 
-      if (route === "/modulo" && user_value)
+      if (route === "/modulo" && user_value){
         holder.push([user_value.value, 0, "color: tomato"]);
+      }
 
       setOptions({
         title: data.indicator,
@@ -66,13 +67,10 @@ export default function Benchmark({ muestra }) {
     setData(route);
   }, [sample, user_value, route, muestra]);
 
-  React.useEffect(() => {
-    console.log(counter);
-  }, [counter]);
-
   return (
     <>
-      {route === "/context" ? (
+      {route !== "/modulo" ? (
+        <>
         <Chart
           id={1}
           chartType="ScatterChart"
@@ -81,6 +79,7 @@ export default function Benchmark({ muestra }) {
           width={[width]}
           rootProps={{ "data-testid": "1" }}
         />
+        </>
       ) : null}
 
       {route === "/modulo" ? (
