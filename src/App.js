@@ -12,6 +12,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Event from './components/functionals/events/eventsHome';
 import Context from './components/functionals/contexts/contextsHome';
+import ExplorerTab from './components/functionals/contexts/explorerComponents/explorerTab';
+import ContextContainer from './components/functionals/contexts/explorerComponents/contextContainer';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route exact path="/signin" component={SignIn}/>
           <Route exact path="/inputs" component={Inputs}/>
           <Route exact path="/context" component={Context}/>
+          <Route exact path="/context/explorer" component={ExplorerTab}/>
+          <Route exact path="/context/explorer/:context" component={ContextContainer}/>
           <Route exact path="/" component={Event}/>
         </Switch>
         <Footer/>

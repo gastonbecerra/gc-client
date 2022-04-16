@@ -17,6 +17,7 @@ import FormGroup from "@mui/material/FormGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { getSamples } from "../../../../store/slices/samples";
 import ChartContainer from "../../charts/chartContainer";
+import { Link } from 'react-router-dom';
 
 export default function ContextResultCard({ context }) {
   const [open, setOpen] = React.useState(false);
@@ -46,7 +47,15 @@ export default function ContextResultCard({ context }) {
       >
         <CardContent>
           <Typography variant="h6" component="div">
+          <Link
+              style={{textDecoration: 'none'}}
+              to={{
+                pathname: `/context/explorer/${context.context}`,              
+                state: { context: context }
+              }}
+            >
             {context.context}
+            </Link>
           </Typography>
           <Typography sx={{ mb: 0.5 }} color="text.secondary">
             rules / date / scope / subscribers

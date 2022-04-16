@@ -12,6 +12,16 @@ $xl: 1220px;
   }
 }
 
+//context/explorer/:host-context
+
+.context-explorer-element{
+    min-height: 200;
+    min-width: '98vw';                 
+    max-width: 400px;
+    display: 'flex';
+    justify-content: 'center';
+}
+
 // CONTEXT (home) COMPONENT
 .context-content{
     padding-left: 7px;
