@@ -298,13 +298,11 @@ export default function ContextResultCard({ context }) {
 
                     <AccordionDetails>
                       {samples &&
-                        samples.map((muestra, i) => (
-                          
+                        samples.map((muestra, i) => (                          
                             <ChartContainer
                               key={i}
                               muestra={muestra}
-                            />
-                          
+                            />                          
                         ))}
                     </AccordionDetails>
                   </Accordion>

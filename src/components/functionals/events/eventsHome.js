@@ -72,12 +72,20 @@ export default function Event() {
         case 'comment':
           type='EventComment';
           break;
-      
+        
+        case 'image':
+          type = false;
+
         default:
           break;
       }
-      const Component = EventCard[type]
-      return <Component event={event} data={event.data}/>;
+      var Component;
+      if(type){
+        Component = EventCard[type];
+        return <Component event={event} data={event.data}/>;
+      }else{
+        return null;
+      }
     }catch(e){
       console.log(e)
     }

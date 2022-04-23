@@ -73,7 +73,8 @@ export default function ChartContainer({ muestra, event }) {
       return (
         <>
           <Component muestra={muestra} />
-          {(muestra !== (undefined && false)) && (route ==='/context') && <Comments muestra={muestra} comments={comments} />}
+          {/* {(muestra !== (undefined && false)) && (route ==='/context/explorer') && <Comments muestra={muestra} comments={comments} />} */}
+          {(muestra !== (undefined && false)) && (route !=='/modulo') && <Comments muestra={muestra} comments={comments} />}
           {(muestra !== (undefined && false)) && (event !== undefined) && <Comments muestra={muestra} event={event} />}
           {/* Y aquí debería el componente dinámico de highlights */}
         </>

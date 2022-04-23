@@ -10,19 +10,24 @@ export const commentSlice = createSlice({
     reducers : {
         setChartComments : ( state, action ) => {
             state.chart_comments = action.payload;
+        },
+        setContextComments : ( state, action ) => {
+            state.context_comments = action.payload;
         }
     }
 
 })
 
-export const { setChartComments } = commentSlice.actions;
+export const { setChartComments, setContextComments } = commentSlice.actions;
 
 export default commentSlice.reducer;
 
 export const fetchChartComments = () => (dispatch) => {
-    Axios.get(`/comments/chart`)
-    .then((response)=>{
-        dispatch(setChartComments(response.data))
+    Axios.get('/comments')
+    .then((response)=>{   
+        console.log(response.data);             
+        dispatch(setChartComments(response.data.filter(com => com.base_reference.entity === 'chart')));
+        dispatch(setContextComments(response.data.filter(com => com.base_reference.entity === 'post')));
     })
     .catch((e)=>{
         console.log('failure fetching comments for charts');

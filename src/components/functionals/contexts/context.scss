@@ -13,13 +13,45 @@ $xl: 1220px;
 }
 
 //context/explorer/:host-context
-
 .context-explorer-element{
     min-height: 200;
-    min-width: '98vw';                 
+    min-width: '96vw';                 
     max-width: 400px;
     display: 'flex';
-    justify-content: 'center';
+    justify-content: center;
+    flex-direction: row;
+}
+
+.section-header{
+    padding-left: 16px;
+    // margin-bottom: 10px;
+}
+
+.media-options-container{
+    display: flex;
+    justify-content: center;    
+    margin-top: 7px;
+    border-bottom: solid 1px lightgray;
+
+    .media-choice{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 30vw;
+        padding: 3px;
+    }
+
+    .media-choice-active{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 30vw;
+        background-color:lightgray;
+        border-radius: 1%;
+        padding: 3px;
+    }
 }
 
 // CONTEXT (home) COMPONENT

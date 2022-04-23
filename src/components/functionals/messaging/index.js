@@ -86,23 +86,35 @@ export default function Message({ muestra, comments, event }) {
     }
   };
 
-
   // POST or PUT new comments
   const commentApiHandler = (message) => {
     message !== (false || '') && setStack([...stack, message]);
     dispatch(postComment(message, responseTree.reference, false))
   };
 
+  const displayCommentBaseAtFeed = () => {
+    try{
+      if(route === '/' && (muestra !== (undefined || false))){
+        return (
+          <CommentBase
+            message={event}
+            handleAnswer={handleAnswer}
+            base_reference={event.base_reference}
+        />
+        )
+      }                   
+    }catch(e){
+      console.log(e);
+    }
+  }
+
   return (
     <>
       <>
-      {route === '/' && muestra ?
+      {route === '/' && (muestra !== (undefined || false)) ?
         
-      <CommentBase
-        message={event}
-        handleAnswer={handleAnswer}
-        base_reference={event.base_reference}
-      />
+
+      displayCommentBaseAtFeed()
 
         :
         

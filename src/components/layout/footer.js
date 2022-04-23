@@ -7,9 +7,9 @@ import { VscActivateBreakpoints } from "react-icons/vsc";
 import { MdInput } from 'react-icons/md';
 import { MdViewModule } from 'react-icons/md';
 
-export default function Footer() {
+export default function Footer(props) {
+    
     return (
-
     <>
     <Navbar id="footer" bg="white" variant="dark">
         <div>
