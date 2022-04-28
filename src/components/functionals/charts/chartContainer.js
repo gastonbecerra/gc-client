@@ -6,19 +6,19 @@ import * as Chart from "./index";
 import Inputer from "../indicators/indicatorInputs";
 import { Typography } from "@mui/material";
 import Comments from "../messaging";
-import { fetchChartComments } from "../../../store/slices/comments";
+import { fecthComments } from "../../../store/slices/comments";
 
 export default function ChartContainer({ muestra, event }) {
   // console.log(muestra)
   const dispatch = useDispatch();
   const { sample } = useSelector((state) => state.indicator);
   const { selectedIndicator } = useSelector((state) => state.indicator);
-  var route = window.location.pathname;
-  const { chart_comments } = useSelector((state) => state.comments);
   const [comments, setComments] = useState(false);
-  
+  const { chart_comments, context_comments } = useSelector(state => state.comments); 
+  var route = window.location.pathname;
+
   useEffect(() => {
-    dispatch(fetchChartComments());
+    !(chart_comments || context_comments) && dispatch(fecthComments());
   }, [muestra]);
 
   useEffect(()=>{

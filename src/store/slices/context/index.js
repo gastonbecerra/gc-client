@@ -33,6 +33,10 @@ export const {getContexts, selectContext, getContexts4User, setContextCreated} =
 
 export default contextSlice.reducer;
 
+export const pickContext = (picked) => (dispatch) => {
+    dispatch(selectContext(picked))
+}
+
 export const fetchContexts = () => (dispatch) => {
     Axios({
         method: 'GET',
@@ -45,10 +49,6 @@ export const fetchContexts = () => (dispatch) => {
     .catch((error)=>{
         console.log(error, ' error fetching contexts');
     })
-}
-
-export const pickContext = (picked) => (dispatch) => {
-    dispatch(selectContext(picked))
 }
 
 export const fetchContexts4User = (id) => (dispatch) => {

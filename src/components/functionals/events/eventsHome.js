@@ -10,7 +10,10 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { fetchContexts, fetchContexts4User } from '../../../store/slices/context';
 import { getSamples } from '../../../store/slices/samples';
-import { fetchChartComments } from '../../../store/slices/comments';
+import { fecthComments } from '../../../store/slices/comments';
+import Chip from '@mui/material/Chip';
+import { VscActivateBreakpoints } from "react-icons/vsc";
+import { MdViewModule } from 'react-icons/md';
 
 export default function Event() {
   let history = useHistory();
@@ -18,46 +21,50 @@ export default function Event() {
   const [events, setEvents] = useState(false);
   const { username } = useSelector(state => state.user);
   const { contexts, context4user } = useSelector(state => state.context);
-
-  // ONINITIS actions: get event data
-  
-  useEffect(()=>{
-    if((username !== true) || (username === undefined) ) dispatch(fetchUser())
-    !contexts && dispatch(fetchContexts());
-  },[]);
+  const { chart_comments, context_comments, comments } = useSelector(state => state.comments); 
+  const { samples } = useSelector(state => state.samples);
 
   useEffect(()=>{
-    if(context4user === false) dispatch(fetchContexts4User(username));
+    // 1) => GET USER DATA SESSION
+    if (username !== true) dispatch(fetchUser())
+    // 2.i) => GET USER SUBSCRIBED CONTEXTS
+    if ((username && !context4user)) dispatch(fetchContexts4User(username));
   },[username])
 
   useEffect(()=>{
     try{
+      // 2.ii) => GET CONTEXTS IF USER DOESENT HAVE ANY
+      if ((!username && !context4user && !contexts)) dispatch(fetchContexts())
       
-      dispatch(getSamples('Macristas'));      
-      
-      dispatch(fetchChartComments());
+      // 3) => GET SAMPLES BY USER'S CONTEXTS
+      var contexts = []; // => stores contexts req params
+      if (context4user && !samples){
+        context4user.forEach(element => {
+          contexts.push(element.context);            
+        });
+        if (contexts.length > 0) {          
+          dispatch(getSamples(contexts));
+        }
+      }
 
-      Axios({
-        method: 'get',
-        withCredentials: true,
-        url: '/events/20'
-      })
-      .then((res)=>{
-        setEvents(res.data)
-      })
-      .then(()=>{
-        //username === false && history.push('/signin');
-      })
-      
+      // 4) => GET COMMENTS BY CONTEXTS       
+      if(!context_comments && !chart_comments) dispatch(fecthComments());
+
+      // 5 MANUALLY SETTING "EVENTS" FOR FEED DISPLAY
+      if(chart_comments.length > 0 && context_comments.length > 0){
+        setEvents(chart_comments.concat(context_comments))
+      }
     }catch(e){
-      console.log(e)
+      console.log(e);
     }
-  },[])
+  },[contexts, context4user, samples])
 
+  useEffect(()=>{
+    console.log(events);
+  },[events])
   //render required event
   const renderequiredEvent = (event) => {
-    try{
-      
+    try{      
       let type;
   
       switch (event.type) {
@@ -74,7 +81,7 @@ export default function Event() {
           break;
         
         case 'image':
-          type = false;
+          type = 'EventPost';
 
         default:
           break;
@@ -82,7 +89,34 @@ export default function Event() {
       var Component;
       if(type){
         Component = EventCard[type];
-        return <Component event={event} data={event.data}/>;
+        return (
+          <>
+          <div 
+          className="event-title"
+          style={{
+            display: 'flex',
+            padding: '7px',
+            justifyContent: 'flex-start',
+            marginTop: '10px',
+            paddingTop: '3px',
+            borderTop: 'solid 1px lightgrey'
+          }}
+        >
+           <Chip 
+            label={event.base_reference.context}
+            icon={<VscActivateBreakpoints />}
+          /> 
+          {type === "EventComment" &&
+          <Chip
+            color="success"
+            label={event.base_reference.indicator}
+            icon={<MdViewModule/>}
+          />
+          }
+        </div>
+          <Component event={event} data={event.data}/>
+          </>
+        );
       }else{
         return null;
       }
@@ -93,7 +127,6 @@ export default function Event() {
     
   return (
     <div className="main">
-      
       <ColumnNav/>
 
       <div className="wrap-content">
@@ -103,7 +136,7 @@ export default function Event() {
 
               <div className="event-list">
 
-              {events.length > 0 ?
+              {chart_comments && samples && events.length > 0 ?
                 
                 events.map((e,i)=>(
                   

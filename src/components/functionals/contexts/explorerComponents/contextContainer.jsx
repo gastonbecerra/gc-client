@@ -17,19 +17,37 @@ import { getSamples } from "../../../../store/slices/samples";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ContextPost from "./comunnity/contextPost";
+import { fecthComments } from '../../../../store/slices/comments';
+import { useHistory } from "react-router-dom";
 
 export default function ContextContainer(props) {
   //State captured from url state
   const [context, setContext] = useState(false);
   const { samples } = useSelector((state) => state.samples);
+  const { username } = useSelector((state) => state.user);
+  const { context_comments } = useSelector((state) => state.comments);
+  const [ contextsPost, setContextsPosts ] = useState([]);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   //State captured on mounting
   useEffect(() => {
     props.location.state.context && setContext(props.location.state.context);
     dispatch(getSamples(context.context));
-    console.log(context);
+    dispatch(fecthComments())
   }, []);
+
+  useEffect(()=>{
+    console.log(contextsPost);
+  },[contextsPost])
+
+  useEffect(()=>{
+    try{
+      setContextsPosts(context_comments.filter(c => c.base_reference.context === context.context));
+    }catch(e){
+      console.log('error merging data');
+    }
+  },[context_comments, context])
 
   return (
     <>
@@ -48,11 +66,13 @@ export default function ContextContainer(props) {
                   <Typography variant="h3" component="div">
                     {context.context}
                   </Typography>
-                  <div>
+                  <div style={{marginBottom: '10px'}}>
                     <Breadcrumbs
-                      aria-label="breadcrumb"
-                      style={{ display: "flex", justifyContent:'center'}}
+                      aria-label="breadcrumb"                      
+                      id="breadcrumber"
                     >
+                    
+
                       <span><Link underline="hover" href="">
                         Info
                       </Link></span>
@@ -68,6 +88,7 @@ export default function ContextContainer(props) {
                       <span><Link underline="hover" href="">
                         Community
                       </Link></span>
+                    
                     </Breadcrumbs>
                   </div>
                 </div>
@@ -76,20 +97,21 @@ export default function ContextContainer(props) {
 
                 <Card
                   square={true}
-                  sx={{
-                    minHeight: 100,
-                    minWidth: "96vw",
-                    maxWidth: "400px",
+                  sx={{                  
+                    maxWidth: "96vw",                    
                     display: "flex",
                     justifyContent: "center",
-                    flexDirection: 'column',
-                    marginTop: "6px",
+                    flexDirection: 'column',                    
+                    borderTop: 'solid 2px lightgrey',                    
                   }}
                 >
                   <Typography 
                     variant="h6" 
                     gutterBottom component="div"
                     className="section-header"
+                    style={{
+                      paddingTop: '10px'
+                    }}
                   >
                     Info
                   </Typography>
@@ -261,7 +283,10 @@ export default function ContextContainer(props) {
                 <Card
                   square={true}
                   sx={{
-                    width: '100vw'
+                    minHeight: 100,
+                    minWidth: "96vw",
+                    maxWidth: "400px",
+                    marginTop: "6px",
                   }}
                 >
                 <Accordion>
@@ -294,23 +319,26 @@ export default function ContextContainer(props) {
                 <Card
                 sx={{
                     minHeight: 100,
-                    minWidth: "100vw",                  
+                    minWidth: "96vw",
+                    maxWidth: "400px",
                     marginTop: "6px",
-                    
                   }}
                 >
                 <Typography 
                     variant="h6" 
                     gutterBottom 
                     component="div"
-                    className="section-header"
-                    style={{paddingLeft: '16px'}}
+                    className="section-header"                  
                   >                  
                     Community
                     </Typography>
-                  <CardContent>
-                    <ContextPost context={context}/>
-                  </CardContent>
+                  
+                    <ContextPost 
+                      context={context}     
+                      posts={contextsPost}                 
+                    />
+
+                  
                 </Card>
               </div>
             </div>

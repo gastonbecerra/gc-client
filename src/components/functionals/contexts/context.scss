@@ -21,10 +21,19 @@ $xl: 1220px;
     justify-content: center;
     flex-direction: row;
 }
-
+#breadcrumber{
+    display: flex;
+    max-width: 350px;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 12px;
+}
 .section-header{
     padding-left: 16px;
     // margin-bottom: 10px;
+    p{
+        display: inline;
+    }
 }
 
 .media-options-container{

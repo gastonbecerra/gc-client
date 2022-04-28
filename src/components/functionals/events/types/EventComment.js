@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ChartContainer from "../../charts/chartContainer";
 import { useSelector } from "react-redux";
-import Message from "../../messaging";
+
 export default function EventComment({event}) {
     const { samples } = useSelector((state) => state.samples);
     const [ sample, setSample ] = useState(false);
@@ -11,11 +11,19 @@ export default function EventComment({event}) {
     },[])
 
     const checkSample = (event) => {
-        if(samples){
-            var aux = samples.filter(samp => (samp.context ===  event.base_reference.context && samp.indicator === event.base_reference.indicator));
-            aux !== undefined && setSample(...aux);
+        try{
+            if(samples){
+                var aux = samples.filter(samp => ((samp.context ===  event.base_reference.context) && (samp.indicator === event.base_reference.indicator)));
+                (aux !== undefined) && (aux.length > 0) && setSample(...aux);
+            }
+        }catch(e){
+            console.log(e);
         }
     }
+
+    useEffect(()=>{
+        console.log(25,sample);
+    },[sample])
 
     return (
         <>

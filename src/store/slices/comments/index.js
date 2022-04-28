@@ -5,7 +5,8 @@ export const commentSlice = createSlice({
     name: 'comments',
     initialState: {
         chart_comments: false,
-        context_comments: false
+        context_comments: false,
+        comments: false,
     },
     reducers : {
         setChartComments : ( state, action ) => {
@@ -22,10 +23,10 @@ export const { setChartComments, setContextComments } = commentSlice.actions;
 
 export default commentSlice.reducer;
 
-export const fetchChartComments = () => (dispatch) => {
+export const fecthComments = () => (dispatch) => {
     Axios.get('/comments')
     .then((response)=>{   
-        console.log(response.data);             
+        dispatch(setChartComments(response.data));
         dispatch(setChartComments(response.data.filter(com => com.base_reference.entity === 'chart')));
         dispatch(setContextComments(response.data.filter(com => com.base_reference.entity === 'post')));
     })
@@ -49,7 +50,7 @@ export const postComment = (message, base_reference, comment_reference) => (disp
           return true;
       })
       .catch((e)=>{
-        console.log(e)
+        console.log('error submiting context post')
       })
 }
 

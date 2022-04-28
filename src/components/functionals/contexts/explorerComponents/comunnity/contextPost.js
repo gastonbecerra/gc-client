@@ -26,9 +26,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { v4 as uuidv4 } from 'uuid';
+import EventPost from "../../../events/types/EventPost";
+import CardContent from "@mui/material/CardContent";
+import '../../../contexts/context.scss';
 
-
-export default function ContextPost({ context }) {
+export default function ContextPost({ context, posts }) {
   const [open, setOpen] = useState(false);
   const [openInner, setOpenInner] = useState(false);
   const dispatch = useDispatch();
@@ -115,9 +117,7 @@ export default function ContextPost({ context }) {
       dispatch(postComment(body.message, body.base_reference, body.comment_reference));
       handleInnerClose(true);
     }
-  }
-  
-      
+  }    
 
   const handleChecked = (e) => {
     setChecked(e.target.name)
@@ -125,8 +125,8 @@ export default function ContextPost({ context }) {
       ...state,
       accesibility: e.target.name,
     });
-
   }
+
   // UI Functions => close and open inners dialogs
   const handleChoice = (op) => {
     op !== 'text' && setOpenInner(true);
@@ -144,11 +144,11 @@ export default function ContextPost({ context }) {
 
   const handleInnerClose = (post) => {
     setOpenInner(false);
-    if(post){
-      setState({
+    // if(post){
+    //   setState({
 
-      })
-    }
+    //   })
+    // }
   };
   
   //State login
@@ -157,19 +157,20 @@ export default function ContextPost({ context }) {
   },[state, source])
 
   return (
-    <>
+    <CardContent>
       {/* add a new context post */}
       
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-evenly",          
-          alignItems: "center",                          
+          display: "flex",          
+          alignItems: "center",                                    
+          justifyContent: 'center',          
         }}
         onClick={()=>setOpen(!open)}
       >        
-      <MdAddCircleOutline style={{ }} />
-        <div>Add a new Context Post</div>
+        <MdAddCircleOutline style={{fontWeight:'700', fontSize: '17', color: '#1E90FF'}}/>
+        <span> {' '} </span>
+        <span >Add a new Context Post</span>
       </div>
 
       {/* list contexts posts */}
@@ -379,6 +380,14 @@ export default function ContextPost({ context }) {
         </div>
       </div>    
       </Dialog>
-    </>
+
+      {posts ?
+        posts.map((p,i)=>(
+          <EventPost key={i} event={p}/>
+        ))
+      :      
+      null 
+      }
+    </CardContent>
   );
 }
