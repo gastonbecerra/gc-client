@@ -5,10 +5,10 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         id: true,
-        username: false,
+        username: "Juan Pablo",
         auth: true,
         type: false,
-        picture: false
+        picture: "https://lh3.googleusercontent.com/a/AATXAJxrVOtWfLkCsA3heJatiKWF_PxY5ibrXc8eLBeF=s96-c"
     },
     reducers: {
         getUser : (state, action) =>{

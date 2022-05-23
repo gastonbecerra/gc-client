@@ -4,6 +4,7 @@ import Axios from 'axios';
 export const indicatorSlice = createSlice({
     name: 'indicator',
     initialState: {
+        indicators: false,
         inputs: false,
         missing_inputs: false,
         sample: false,

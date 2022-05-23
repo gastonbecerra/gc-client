@@ -4,11 +4,14 @@ import Axios from 'axios';
 export const commentSlice = createSlice({
     name: 'comments',
     initialState: {
+        comments: false,
         chart_comments: false,
         context_comments: false,
-        comments: false,
     },
     reducers : {
+        setComments : ( state, action ) => {
+            state.comments = action.payload;
+        },        
         setChartComments : ( state, action ) => {
             state.chart_comments = action.payload;
         },
@@ -19,14 +22,14 @@ export const commentSlice = createSlice({
 
 })
 
-export const { setChartComments, setContextComments } = commentSlice.actions;
+export const {setComments, setChartComments, setContextComments } = commentSlice.actions;
 
 export default commentSlice.reducer;
 
-export const fecthComments = () => (dispatch) => {
-    Axios.get('/comments')
+export const fecthComments = (limit) => (dispatch) => {
+    Axios.get(`/comments/${limit}`)
     .then((response)=>{   
-        dispatch(setChartComments(response.data));
+        dispatch(setComments(response.data));
         dispatch(setChartComments(response.data.filter(com => com.base_reference.entity === 'chart')));
         dispatch(setContextComments(response.data.filter(com => com.base_reference.entity === 'post')));
     })
